@@ -1,0 +1,82 @@
+snack-bar-container {
+
+  height: auto;
+  min-width: initial;
+  font-weight: $font-medium;
+  color: white;
+
+  &.dangerSnackbar,
+  &.successSnackbar,
+  &.alertSnackbar,
+  &.primarySnackbar,
+  &.secondarySnackbar,
+  &.darkSnackbar,
+  &.infoSnackbar,
+  &.whiteSnackbar {
+    button {
+      color: white !important;
+      font-weight: $font-medium;
+      font-size: 22px;
+
+      @media screen and (max-width:1440px) {
+        font-size: 18px;
+      }
+
+      @media screen and (max-width:992px) {
+        font-size: 16px;
+      }
+    }
+  }
+
+  &.dangerSnackbar {
+    background-color: $danger-color-public;
+  }
+
+  &.successSnackbar {
+    background-color: $success-color-public;
+  }
+
+  &.alertSnackbar {
+    background-color: $alert-color-public;
+  }
+
+  &.primarySnackbar {
+    background-color: $primary-color-public;
+  }
+
+  &.secondarySnackbar {
+    background-color: $secondary-color-public;
+  }
+
+  &.darkSnackbar {
+    background-color: $dark-color-public;
+  }
+
+  &.infoSnackbar {
+    background-color: $info-color-public;
+  }
+
+  &.whiteSnackbar {
+    background-color: white;
+    color: black;
+
+    button {
+      color: black;
+    }
+  }
+
+  .mat-simple-snackbar,
+  .mat-simple-snackbar-message {
+    white-space: normal;
+    line-height: 1em;
+    font-size: 22px;
+
+    @media screen and (max-width:1440px) {
+      font-size: 18px;
+    }
+
+    @media screen and (max-width:992px) {
+      font-size: 16px;
+    }
+  }
+}

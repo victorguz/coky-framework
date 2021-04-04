@@ -1,0 +1,431 @@
+.coky-public {
+
+  button,
+  .btn,
+  .button,
+  [class^='btn'] {
+
+    &.white {
+      background-color: white !important;
+      color: $back-color-public !important;
+
+      &:hover,
+      &:active,
+      &:focus {
+        background-color: rgb(240, 240, 240) !important;
+        color: $back-color-public !important;
+      }
+
+    }
+
+    &.white {
+      background-color: white !important;
+
+      &:hover,
+      &:active,
+      &:focus {
+        background-color: rgb(240, 240, 240) !important;
+        color: $back-color-public !important;
+      }
+    }
+
+    &.primary {
+      background-color: $primary-color-public !important;
+
+      &:hover,
+      &:active,
+      &:focus {
+        background-color: rgba($primary-color-public, 0.9) !important;
+      }
+    }
+
+    &.secondary {
+      background-color: $secondary-color-public !important;
+
+      &:hover,
+      &:active,
+      &:focus {
+        background-color: rgba($secondary-color-public, 0.9) !important;
+      }
+    }
+
+    &.alert {
+      background-color: $alert-color-public !important;
+
+      &:hover,
+      &:active,
+      &:focus {
+        background-color: rgba($alert-color-public, 0.9) !important;
+      }
+    }
+
+    &.success {
+      background-color: $success-color-public !important;
+
+      &:hover,
+      &:active,
+      &:focus {
+        background-color: rgba($success-color-public, 0.9) !important;
+      }
+    }
+
+    &.danger {
+      background-color: $danger-color-public !important;
+
+      &:hover,
+      &:active,
+      &:focus {
+        background-color: rgba($danger-color-public, 0.9) !important;
+      }
+    }
+
+    &.dark {
+      background-color: $dark-color-public !important;
+
+      &:hover,
+      &:active,
+      &:focus {
+        background-color: rgba($dark-color-public, 0.9) !important;
+      }
+    }
+
+    &.gray {
+      background-color: $gray-color-public !important;
+
+      &:hover,
+      &:active,
+      &:focus {
+        background-color: rgba($gray-color-public, 0.9) !important;
+      }
+    }
+
+    &.info {
+      background-color: $info-color-public !important;
+
+      &:hover,
+      &:active,
+      &:focus {
+        background-color: rgba($info-color-public, 0.9) !important;
+      }
+    }
+  }
+
+  .text-white {
+    color: white;
+  }
+
+  .text-primary {
+    color: $primary-color-public !important;
+  }
+
+  .text-secondary {
+    color: $secondary-color-public !important;
+  }
+
+  .text-alert {
+    color: $alert-color-public !important;
+  }
+
+  .text-success {
+    color: $success-color-public !important;
+  }
+
+  .text-danger {
+    color: $danger-color-public !important;
+  }
+
+  .text-dark {
+    color: $dark-color-public !important;
+  }
+
+  .text-gray {
+    color: $gray-color-public !important;
+  }
+
+
+  .mat-flat-button {
+    border-radius: $rounded !important;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    padding: 6rem;
+    border: $border;
+    border-radius: $rounded;
+    background-color: white;
+    height: fit-content;
+
+    box-shadow: $shadow-md;
+
+    @media screen and (max-width:1440px) {
+      padding: 5rem;
+    }
+
+    @media screen and (max-width:1280px) {
+      padding: 4rem;
+    }
+
+    @media screen and (max-width:992px) {
+      padding: 3rem;
+    }
+
+    @media screen and (max-width:768px) {
+      padding: 2.5rem;
+    }
+
+    .title {
+      font-size: 3rem;
+      margin-bottom: 3rem;
+
+      @media screen and (max-width:1440px) {
+        font-size: 2.2rem;
+      }
+
+      @media screen and (max-width:992px) {
+        margin-bottom: 2rem;
+      }
+
+      @media screen and (max-width:768px) {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+      }
+
+      @media screen and (max-width:480px) {
+        font-size: 1.6rem;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: wrap;
+
+    >* {
+      margin: .75rem;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+
+    &.row,
+    &.flex-row {
+      flex-flow: row;
+    }
+
+    .buttons {
+      flex-direction: column;
+
+      >* {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  }
+
+  .nowrap {
+    flex-flow: nowrap;
+    word-wrap: normal;
+    word-break: keep-all;
+    white-space: nowrap;
+
+    &.lg {
+      @media screen and (max-width:992px) {
+        flex-flow: wrap;
+      }
+    }
+
+    &.md {
+      @media screen and (max-width:768px) {
+        flex-flow: wrap;
+      }
+    }
+
+    &.sm {
+      @media screen and (max-width:480px) {
+        flex-flow: wrap;
+      }
+    }
+  }
+
+  .noselection {
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Old versions of Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+  }
+
+  .hover {
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  .gap {
+    gap: .5rem;
+  }
+
+  .gap-1 {
+    gap: 1rem;
+  }
+
+  .gap-2 {
+    gap: 2rem;
+  }
+
+  .gap-3 {
+    gap: 3rem;
+  }
+
+  .gap-4 {
+    gap: 4rem;
+  }
+
+  .gap-5 {
+    gap: 5rem;
+  }
+
+  .font-1 {
+    font-size: 2rem;
+  }
+
+  .font-2 {
+    font-size: 3rem;
+  }
+
+  .font-3 {
+    font-size: 4rem;
+  }
+
+  .font-4 {
+    font-size: 5rem;
+  }
+
+  .font-5 {
+    font-size: 6rem;
+  }
+
+  .text-left {
+    text-align: left;
+  }
+
+  .text-right {
+    text-align: right;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .title {
+    font-size: 2em;
+    font-weight: $font-bold !important;
+    line-height: 1em;
+  }
+
+  .text-content {
+    display: flex;
+    flex-direction: column;
+    font-size: 3rem;
+    width: 50%;
+
+    >* {
+      margin: 1rem 0;
+    }
+  }
+
+  .images-content {
+    width: 50%;
+  }
+
+  .dispose-lg {
+    visibility: visible;
+
+    @media screen and (max-width:992px) {
+      visibility: hidden;
+    }
+  }
+
+  .dispose-md {
+    visibility: visible;
+
+    @media screen and (max-width:768px) {
+      visibility: hidden;
+    }
+  }
+
+  .dispose-sm {
+    visibility: visible;
+
+    @media screen and (max-width:480px) {
+      visibility: hidden;
+    }
+  }
+
+  .not-dispose-lg {
+    visibility: hidden;
+
+    @media screen and (max-width:992px) {
+      visibility: visible;
+    }
+  }
+
+  .not-dispose-md {
+    visibility: hidden;
+
+    @media screen and (max-width:768px) {
+      visibility: visible;
+    }
+  }
+
+  .not-dispose-sm {
+    visibility: hidden;
+
+    @media screen and (max-width:480px) {
+      visibility: visible;
+    }
+  }
+
+  .form-control,
+  .form-select {
+    box-shadow: $shadow-xs;
+    border: 1px solid transparent;
+  }
+
+  .regular {
+    font-weight: $font-regular;
+  }
+
+  .medium {
+    font-weight: $font-medium;
+  }
+
+  .semibold {
+    font-weight: $font-semibold;
+  }
+
+  .bold {
+    font-weight: $font-bold;
+  }
+
+  .black {
+    font-weight: $font-black;
+  }
+}

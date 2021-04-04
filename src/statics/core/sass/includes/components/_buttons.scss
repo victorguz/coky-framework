@@ -1,0 +1,142 @@
+button,
+.btn,
+.button,
+.label {
+
+    &.white,
+    &.primary,
+    &.secondary,
+    &.success,
+    &.danger,
+    &.alert,
+    &.nonocuppied,
+    &.dark,
+    &.apartment,
+    &.basic,
+    &.standard,
+    &.premium,
+    &.ultra,
+    &.gray,
+    &.house,
+    &.info,
+    &.desinfection,
+    &.high,
+    &.low,
+    &.medium,
+    &.opened,
+    &.closed,
+    &.resolved {
+        color: white !important;
+        margin: 2px;
+    }
+
+    &.medium,
+    &.white,
+    &.basic {
+        background-color: white !important;
+        color: $back-color-public !important;
+        border: 1px solid rgba($back-color-public, 0.1) !important;
+
+        &:hover,
+        &:active,
+        &:focus {
+            background-color: rgb(250, 250, 250) !important;
+            color: $back-color-public !important;
+        }
+
+    }
+
+    &.primary {
+        background-color: $primary-color-public !important;
+
+        &:hover,
+        &:active,
+        &:focus {
+            background-color: rgba($primary-color-public, 0.9) !important;
+        }
+    }
+
+    &.secondary,
+    &.desinfection {
+        background-color: $secondary-color-public !important;
+
+        &:hover,
+        &:active,
+        &:focus {
+            background-color: rgba($secondary-color-public, 0.9) !important;
+        }
+    }
+
+    &.alert,
+    &.premium,
+    &.resolved {
+        background-color: $alert-color-public !important;
+
+        &:hover,
+        &:active,
+        &:focus {
+            background-color: rgba($alert-color-public, 0.9) !important;
+        }
+    }
+
+    &.success,
+    &.nonocuppied {
+        background-color: $success-color-public !important;
+
+        &:hover,
+        &:active,
+        &:focus {
+            background-color: rgba($success-color-public, 0.9) !important;
+        }
+    }
+
+    &.danger,
+    &.ultra,
+    &.high {
+        background-color: $danger-color-public !important;
+
+        &:hover,
+        &:active,
+        &:focus {
+            background-color: rgba($danger-color-public, 0.9) !important;
+        }
+    }
+
+    &.dark,
+    &.standard,
+    &.closed {
+
+        background-color: $dark-color-public !important;
+
+        &:hover,
+        &:active,
+        &:focus {
+            background-color: rgba($dark-color-public, 0.9) !important;
+        }
+    }
+
+    &.gray,
+    &.house,
+    &.low {
+        background-color: $gray-color-public !important;
+        color: gray !important;
+
+        &:hover,
+        &:active,
+        &:focus {
+            background-color: rgba($gray-color-public, 0.9) !important;
+        }
+    }
+
+    &.info,
+    &.apartment,
+    &.opened {
+        background-color: $info-color-public !important;
+
+        &:hover,
+        &:active,
+        &:focus {
+            background-color: rgba($info-color-public, 0.9) !important;
+        }
+    }
+}

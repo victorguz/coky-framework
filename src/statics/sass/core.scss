@@ -1,0 +1,10 @@
+// First the imports
+@import "imports/variables.scss";
+@import "imports/fonts.scss";
+@import "imports/basics.scss";
+@import "imports/bootstrap.scss";
+@import "imports/index-level.scss";
+
+// Now the components
+@import "components/navbar.scss";
+@import "components/footer.scss";

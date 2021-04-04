@@ -1,0 +1,169 @@
+@import "core.scss";
+
+.about {
+    justify-content: center;
+
+    .images-content {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            width: 100rem;
+
+            @media screen and (max-width:1700px) {
+                width: 90rem;
+            }
+
+            @media screen and (max-width:1480px) {
+                width: 70rem;
+            }
+
+            @media screen and (max-width:1240px) {
+                width: 60rem;
+            }
+
+            @media screen and (max-width:992px) {
+                width: 50rem;
+            }
+
+            @media screen and (max-width:768px) {
+                min-width: 40rem;
+            }
+
+            @media screen and (max-width:480px) {
+                min-width: 30rem;
+            }
+        }
+    }
+
+
+
+    .text-content {
+        text-align: center;
+
+
+
+        img {
+            height: 30rem;
+            width: 100%;
+            margin-bottom: 6rem;
+
+            @media screen and (max-width:992px) {
+                margin-bottom: 4rem;
+                height: 20rem;
+            }
+
+            @media screen and (max-width:768px) {
+                margin-bottom: 2rem;
+                height: 12rem;
+            }
+
+            @media screen and (max-width:480px) {
+                margin-bottom: 1rem;
+                height: fit-content;
+            }
+        }
+
+        p {
+            margin-bottom: 6rem;
+
+            @media screen and (max-width:992px) {
+                margin-bottom: 4rem;
+            }
+
+            @media screen and (max-width:768px) {
+                margin-bottom: 2rem;
+            }
+
+            @media screen and (max-width:480px) {
+                margin-bottom: 1rem;
+            }
+        }
+
+        .contact-data {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-end;
+            justify-content: space-between;
+
+            width: 100%;
+
+            @media screen and (max-width:992px) {
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+            }
+
+
+            .content-1,
+            .content-2 {
+                font-size: 3rem;
+                margin-bottom: 3rem;
+
+                @media screen and (max-width:1440px) {
+                    font-size: 2.2rem;
+                    font-size: 2rem;
+                }
+
+                @media screen and (max-width:992px) {
+                    margin-bottom: 2rem;
+                }
+
+                @media screen and (max-width:768px) {
+                    font-size: 1.8rem;
+                    margin-bottom: 1.5rem;
+                }
+
+                @media screen and (max-width:480px) {
+                    font-size: 1.6rem;
+                    margin-bottom: 1rem;
+                }
+
+
+                a {
+                    font-size: 1em;
+                    line-height: 1em;
+                    display: flex;
+                    align-items: center;
+                    color: $secondary-color-public;
+                    margin-right: 0;
+
+                    @media screen and (max-width:992px) {
+                        font-weight: $font-semibold;
+                        justify-content: center !important;
+                        text-align: center;
+                    }
+
+                    &:last-child {
+                        margin-top: 2rem;
+                    }
+
+                    ion-icon {
+                        font-size: 1.3em;
+                        margin-right: 1rem;
+
+                        @media screen and (max-width:992px) {
+                            display: none;
+                        }
+                    }
+
+                }
+            }
+
+            .content-1 {
+                a {
+                    justify-content: flex-start;
+                }
+            }
+
+            .content-2 {
+                a {
+                    justify-content: flex-end;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,317 @@
+@import 'includes/variables';
+@import 'includes/components';
+
+* {
+    box-sizing: border-box;
+    font-size: $htmlFontSize;
+}
+
+
+//Generals
+html,
+body {
+    font-family: $fontFamilyFirst !important;
+    font-weight: 400;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.#{$globalClassPcs} {
+    font-size: $htmlFontSize;
+    color: $colorFourth;
+}
+
+p,
+span,
+div,
+strong,
+small,
+ul,
+ol,
+li,
+dl,
+dd,
+a,
+mark,
+q,
+blockquote h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+select,
+textarea,
+label {
+    font-family: $fontFamilyFirst !important;
+}
+
+.dev-css-mode {
+
+    &,
+    * {
+        background: rgba(255, 0, 0, .1);
+        box-shadow: 0 0 0 1px red;
+    }
+}
+
+//Link
+a {
+
+    .#{$globalClassPcs} &,
+    &.#{$globalClassPcs} {
+        display: inline-block;
+        color: $colorFourth;
+        transition: 0.5s all ease;
+
+        &:hover,
+        &:active,
+        &:focus {
+            color: $colorFirst;
+            text-decoration: underline;
+        }
+
+        &:visited {
+            color: black;
+        }
+    }
+}
+
+//Headers
+h1 {
+
+    .#{$globalClassPcs} &,
+    &.#{$globalClassPcs} {
+        font-weight: 700;
+        font-size: $h1FontSize;
+        color: $textHeader1Color;
+        margin: $h1Margin;
+        text-transform: uppercase;
+    }
+}
+
+h2 {
+
+    .#{$globalClassPcs} &,
+    &.#{$globalClassPcs} {
+        font-weight: 700;
+        font-size: $h2FontSize;
+        color: $textHeader2Color;
+        margin: $h2Margin;
+    }
+}
+
+h3 {
+
+    .#{$globalClassPcs} &,
+    &.#{$globalClassPcs} {
+        font-weight: 400;
+        font-size: $h3FontSize;
+        color: $textHeader3Color;
+        margin: $h3Margin;
+    }
+}
+
+h4,
+h5,
+h6 {
+
+    .#{$globalClassPcs} &,
+    &.#{$globalClassPcs} {
+        font-weight: 700;
+        font-size: $h4FontSize;
+        color: $textHeader3Color;
+        margin: $h4Margin;
+    }
+}
+
+//Paragraph
+p {
+
+    .#{$globalClassPcs} &,
+    &.#{$globalClassPcs} {
+        font-family: $pFontFamily;
+        text-align: left;
+        font-size: $pFontSize;
+        line-height: $pLineHeight;
+        color: $colorFourth;
+        margin: $pMargin;
+        max-width: $pMaxWidth;
+    }
+}
+
+//List
+ul,
+ol {
+
+    .#{$globalClassPcs} &.pcs-list,
+    &.list.#{$globalClassPcs} {
+        font-family: $listFontFamily;
+        text-align: left;
+        font-size: $listFontSize;
+        line-height: $listLineHeight;
+        color: $colorFourth;
+        margin: $listMargin;
+        padding: $listPadding;
+        max-width: $listMaxWidth;
+
+        &:not(ol) {
+            list-style: none;
+
+            li {
+                position: relative;
+                padding: $listItemPadding;
+
+                &::before {
+                    display: block;
+                    position: absolute;
+                    content: ' ';
+                    top: .5rem;
+                    left: -2.5rem;
+                    width: 1rem;
+                    height: 1rem;
+                    border-radius: 100%;
+                    background-color: $colorFirst;
+                }
+            }
+        }
+
+        &:not(ul) {
+            list-style: none;
+            counter-reset: list;
+
+            li {
+                position: relative;
+                padding: $listItemPadding;
+
+                &::before {
+                    font-family: $fontFamilyFirst;
+                    counter-increment: list;
+                    display: block;
+                    position: absolute;
+                    content: counter(list) '.';
+                    font-weight: bold;
+                    top: 0rem;
+                    left: -2.5rem;
+                    width: 2rem;
+                    height: 2rem;
+                    font-size: 1.8rem;
+                    border-radius: 100%;
+                    line-height: 2rem;
+                    text-align: left;
+                    color: $colorFirst;
+                }
+            }
+        }
+    }
+}
+
+//Images
+img {
+    display: inline-block;
+    max-width: 100%;
+
+    &.block {
+        display: block;
+        margin: 0;
+    }
+}
+
+.image {
+
+    .#{$globalClassPcs} &,
+    &.#{$globalClassPcs} {
+        max-width: $pMaxWidth;
+        text-align: left;
+
+        img {
+            max-width: 100%;
+        }
+    }
+}
+
+//Quotes
+q,
+blockquote,
+p.cita,
+p.quote {
+
+    .#{$globalClassPcs} &,
+    &.#{$globalClassPcs} {
+        font-size: $quoteFontSize;
+        line-height: $quoteLineHeight;
+        color: $textQuoteColor;
+        text-align: center;
+        margin-top: $quoteMarginTop;
+        max-width: $quoteMaxWidth;
+        $quotePadding: 3% 10% 0% 10%;
+        $quoteBorderTop: 1px solid $colorFirst;
+        $quoteBorderBottom: 1px solid $colorFirst;
+    }
+}
+
+//Footer
+footer.#{$globalClassPcs} {
+
+    .#{$globalClassPcs} &,
+    &.#{$globalClassPcs} {
+        display: flex;
+        align-content: center;
+        padding: 10px 15px;
+        border-top: 1px rgba(0, 0, 0, 0.14) solid;
+
+        .logo-developed {
+            img {
+                max-height: 50px;
+                vertical-align: middle;
+            }
+        }
+    }
+}
+
+.container-medium {
+
+    .#{$globalClassPcs} &,
+    &.#{$globalClassPcs} {
+        max-width: 1200px;
+    }
+}
+
+a.ui.button {
+    text-decoration: none !important;
+}
+
+.ui.tabular.menu {
+    .item:not(.active) {
+        cursor: pointer;
+    }
+}
+
+
+.admin-title {
+    display: flex !important;
+    flex-flow: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    margin-bottom: 10px;
+
+    >* {
+        margin: 0 !important;
+    }
+
+    .header {
+        >* {
+            margin: 0 !important;
+        }
+    }
+
+    .buttons {
+        height: fit-content !important;
+
+        >* {
+            margin: 0 !important;
+        }
+    }
+}

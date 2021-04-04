@@ -1,0 +1,331 @@
+.#{$globalClassPcs}.topbar {
+
+    // --bottom-padding: 5px;
+    // position: absolute;
+    // z-index: 4;
+    // top: 0px;
+    // left: 0px;
+
+    width: 100%;
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: space-between;
+    height: $topbarHeight;
+    max-height: $topbarHeight;
+    padding: 0 !important;
+
+    // box-shadow: $shadow-xs;
+
+    @media (max-width:1440px) {
+        height: 60px;
+        max-height: 60px;
+    }
+
+    @media (max-width:992px) {
+        height: 50px;
+        max-height: 50px;
+    }
+
+    .blank {
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+        padding: 0 10px;
+
+        .nav-buttons {
+
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            align-items: center;
+            height: 100%;
+
+
+            >.menu {
+
+                transition: 0.5s background-color ease;
+                cursor: pointer;
+
+                z-index: 200;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 70px;
+                height: 100%;
+
+                &:hover {
+                    background-color: rgba($color: #d6d6d6, $alpha: 0.3);
+
+                    .items {
+                        display: flex;
+                    }
+                }
+
+                >.icon {
+                    color: white;
+                    font-size: 1.8rem;
+                    line-height: 1em;
+
+                    i {
+                        margin: 0 !important;
+                    }
+                }
+
+                .items {
+
+                    display: none;
+                    position: absolute;
+                    top: 100%;
+                    // left: 0px;
+                    right: 0;
+                    width: 300px;
+                    min-height: 100px;
+                    overflow-y: auto;
+                    flex: 0 0 auto;
+                    flex-wrap: wrap;
+                    justify-content: center;
+
+                    background-color: white;
+                    border-radius: 7px;
+                    padding: 10px;
+                    box-shadow: $shadow-md;
+
+                    &.FORCE_ACTIVE {
+                        display: flex;
+                    }
+
+                    >.item {
+
+                        cursor: pointer;
+                        text-decoration: none;
+                        transition: 0.5s background-color ease;
+
+                        width: 100%;
+                        color: rgb(39, 39, 39);
+                        padding: 0.5rem 0.8rem 0.5rem 1.2rem;
+                        display: flex;
+                        column-gap: 8px;
+                        align-items: center;
+
+                        border-radius: 7px;
+                        background-color: rgba(240, 240, 240, $alpha: 0.4);
+
+                        &:not(:first-child) {
+                            margin-top: 0.4rem;
+                        }
+
+                        .figure {
+                            font-size: 1.5rem;
+                            line-height: 1.5rem;
+                        }
+
+                        .text {
+                            font-size: 1.1rem;
+                            text-overflow: ellipsis;
+                            max-width: 260px;
+                            white-space: nowrap;
+                            overflow: hidden;
+                        }
+
+                        &:hover {
+                            background-color: rgba(220, 220, 220, $alpha: 0.4);
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        .user-info {
+
+            $avatar-size: 36px;
+
+            transition: 0.5s background-color ease;
+            cursor: pointer;
+
+            position: relative;
+            z-index: 200;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 70px;
+
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+
+                .info-menu {
+                    display: flex;
+                }
+            }
+
+            >.avatar {
+                margin: 0 auto;
+                width: $avatar-size;
+                height: $avatar-size;
+                background-color: $colorFirst;
+                border-radius: 100%;
+                border: 1px solid $colorFirst;
+
+                img {
+                    max-width: 100%;
+                    border-radius: 100%;
+                    object-fit: cover;
+                }
+            }
+
+            .info-menu {
+                position: absolute;
+                top: 100%;
+                right: 0px;
+
+                display: none;
+                flex-flow: column;
+                justify-content: center;
+                align-items: center;
+
+
+                width: max-content;
+                max-width: 300px;
+                max-height: 300px;
+
+                overflow-y: auto;
+
+                background-color: white;
+                border-radius: 7px;
+                padding: 10px;
+                box-shadow: $shadow-md;
+
+                >.item {
+
+                    transition: 0.5s background-color ease;
+                    cursor: pointer;
+                    text-decoration: none;
+
+                    width: 100%;
+                    display: flex;
+                    padding: 0.5rem 0.8rem 0.5rem 1.2rem;
+                    column-gap: 8px;
+
+                    align-items: center;
+                    background-color: rgba(240, 240, 240, $alpha: 0.4);
+                    color: rgb(39, 39, 39);
+
+                    border-radius: 7px;
+
+
+                    &:not(:first-child) {
+                        margin-top: 0.4rem;
+                    }
+
+                    .figure {
+                        font-size: 1.5rem;
+                        line-height: 1.5rem;
+                    }
+
+                    .text {
+                        font-size: 1.1rem;
+                        text-overflow: ellipsis;
+                        max-width: 260px;
+                        white-space: nowrap;
+                        overflow: hidden;
+                    }
+
+                    &:hover {
+                        background-color: rgba(220, 220, 220, $alpha: 0.4);
+                    }
+
+                    &.avatar {
+                        cursor: pointer;
+
+                        padding: 0;
+                        margin-top: .5rem;
+                        margin-bottom: 1rem;
+                        grid-template-columns: 60px auto;
+                        background-color: transparent;
+
+                        .figure {
+
+                            img {
+                                width: 60px;
+                                height: 60px;
+                                border-radius: 100%;
+                            }
+
+                            .no-avatar {
+                                background-color: $colorFirst;
+                                width: 60px;
+                                height: 60px;
+                                border-radius: 100%;
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+        }
+    }
+
+
+
+    @media screen and (max-width:540px) {
+
+        padding-top: 3px;
+        height: $topbarHeightMobile;
+        max-height: initial;
+
+        .nav-buttons {
+
+            padding-bottom: 0px;
+            justify-content: center;
+            column-gap: 10px;
+
+            >.menu {
+
+                z-index: 300;
+                width: auto;
+
+                >.icon {
+                    padding: 5px;
+                }
+
+                >.items {
+                    right: 0;
+                    width: 270px !important;
+                }
+
+            }
+
+        }
+
+        .user-info {
+
+            padding: 0px;
+
+            .info-menu {
+                right: 0;
+            }
+
+        }
+
+    }
+
+    @media screen and (max-height:450px) {
+
+        .nav-buttons {
+            >.menu {
+                .items {
+                    max-height: 75vh;
+                }
+            }
+        }
+
+    }
+}
