@@ -35,7 +35,8 @@
         "yourivw/leclient": "^1.2",
         "psr/log": "^1.1",
         "piecesphp/database": "~2",
-        "leafo/scssphp": "^0.8.4"
+        "leafo/scssphp": "^0.8.4",
+        "meyfa/php-svg": "^0.11.1"
     },
     "suggest": {
         "ext-zlib": ">=1.2.0.4",

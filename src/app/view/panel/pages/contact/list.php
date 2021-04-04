@@ -14,7 +14,7 @@
     <table process="<?= $process_table; ?>" style='width:100%;' class="ui table striped nowrap celled">
         <thead>
             <tr>
-                <th>ID</th>
+                <th>ID <i class="trash icon"></i> </th>
                 <th>Name</th>
                 <th>Date</th>
                 <th order='false'>Actions</th>

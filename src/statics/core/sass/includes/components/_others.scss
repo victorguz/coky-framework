@@ -1,5 +1,6 @@
 //-------- Párrafos descriptivos
 .section-description {
+
     &.#{$globalClassPcs},
     .#{$globalClassPcs} & {
         max-width: 50rem;
@@ -9,65 +10,75 @@
 
 //-------- Vista de formulario de usuarios
 .user-form-component {
+
     &.#{$globalClassPcs},
     .#{$globalClassPcs} & {
+
         //Items de los tabs
         .items-pointing {
             .item {
-                color: $colorThird;
+                color: $gray-color;
             }
+
             .item.active {
-                &,
                 &:hover {
                     padding: 0.7rem;
-                    color: $colorSecond !important;
-                    border-color: $colorSecond !important;
-                    border-bottom: 4px solid $colorSecond;
+                    color: $secondary-color !important;
+                    border-color: $secondary-color !important;
+                    border-bottom: 4px solid $secondary-color;
                     font-size: 1.1rem;
                 }
             }
-        } //Formulario de usuario
+        }
+
+        //Formulario de usuario
         .form.users {
             .field {
                 .ui.labeled {
                     .ui.label {
-                        background-color: $colorFirst;
+                        background-color: $primary-color;
                         font-size: 1.1rem;
                         padding: 0.7rem;
-                        color: $colorFirstOver;
+                        color: $white-color;
                         width: 35%;
                         align-items: center;
                         display: flex;
+
                         &.pass {
-                            background-color: $colorThird;
+                            background-color: $gray-color;
                         }
                     }
                 }
+
                 input[type=text] {
                     font-size: 1.1rem;
                     border: 1px solid #ccc;
                     font-weight: 700;
-                    color: $colorSecond;
+                    color: $secondary-color;
                 }
+
                 input[type=email] {
                     font-size: 1.1rem;
                     border: 1px solid #ccc;
-                    color: $colorSecond;
+                    color: $secondary-color;
                     font-weight: 700;
                 }
+
                 select {
                     border: 1px solid #ccc;
-                    color: $colorSecond;
+                    color: $secondary-color;
                     font-weight: 700;
                 }
+
                 input[type=password] {
                     font-size: 1.1rem;
                     border: 1px solid #ccc;
-                    color: $colorSecond;
+                    color: $secondary-color;
                     font-weight: 700;
                 }
             }
         }
+
         @media (max-width: 460px) {
             .form.users {
                 .field {
@@ -76,6 +87,7 @@
                             font-size: 0.9rem;
                             width: 40%;
                         }
+
                         input {
                             width: 60%;
                         }
@@ -97,20 +109,25 @@
     display: grid;
     grid-template-columns: 50rem auto;
     grid-column-gap: 1rem;
+
     [blackboard-list] {
         [content] {
-			max-width: 50rem;
-			>*{
-				padding: 1.5rem 2.5rem;
-			}
+            max-width: 50rem;
+
+            >* {
+                padding: 1.5rem 2.5rem;
+            }
         }
     }
+
     @media screen and (max-width:1200px) {
         grid-template-columns: 70% auto;
     }
+
     @media screen and (max-width:700px) {
         grid-template-columns: 100%;
         justify-content: center;
+
         [blackboard-list] {
             [content] {
                 max-height: 500px;

@@ -41,8 +41,8 @@ $config['keywords'] = [
     'Application',
 ];
 
-$config['meta_theme_color'] = "#13436C";
-$config['admin_menu_color'] = "#111213";
+$config['meta_theme_color'] = "#ffffff";
+$config['admin_menu_color'] = "#ffffff";
 
 $config['description'] = "Descripción de la página.";
 

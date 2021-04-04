@@ -10,96 +10,49 @@ $pFontFamily: $fontFamilySecond;
 $listFontFamily: $fontFamilySecond;
 //========COLORS
 //Generales
-$colorFirst: rgb(240, 240, 240);
-$colorSecond: rgb(40, 100, 133);
-$colorThird: rgb(150, 150, 150);
-$colorFourth: rgb(70, 70, 70);
-$colorFirstOver: white;
-$textHeader1Color: #1e1e1e;
-$textHeader2Color: #286485;
-$textHeader3Color: #464646;
-$textQuoteColor: $colorThird;
-
+// $colorFirst: rgb(240, 240, 240);
+// $colorSecond: rgb(40, 100, 133);
+// $colorThird: rgb(150, 150, 150);
+// $colorFourth: rgb(70, 70, 70);
+// $colorFirstOver: white;
 //Sidebar
 $sidebarColor: rgb(220, 220, 220);
 $sidebarColorLogoDeveloped: rgb(200, 200, 200);
 $toggleMenuColor: rgb(146, 146, 146);
 $toggleMenuColorActive: white;
-
-//Topbar
-$topbarColorUserInfoMain: rgb(240, 240, 240);
-$topbarColorUserInfoSecond: rgb(200, 200, 200);
-
-$topbarHeight: 70px;
-$topbarHeightMobile: 70px;
-
-//Colors by names
-$gray-light:#959595;
-$green:#1bc256;
-$gray:#5f5f5f;
-
 //========SIZES
 //General
 $htmlFontSize: 14px;
-//Header
-$h1FontSize:2.3rem;
-$h2FontSize:2rem;
-$h3FontSize:1.6rem;
-$h4FontSize:1.3rem;
-$h1Margin: 0 0 1.5rem 0;
-$h2Margin: 0 0 1rem 0;
-$h3Margin: 0 0 1rem 0;
-$h4Margin: 0 0 1rem 0;
-//Paragraph
-$pFontSize:1.15rem;
-$pLineHeight:1.8rem;
-$pMargin:0.5rem 0 0.5rem 0;
-$pMaxWidth: 58rem;
-//List
-$listFontSize:1.15rem;
-$listLineHeight:1.8rem;
-$listMargin:1.5rem 0 1rem 0;
-$listPadding:0 0 0 4rem;
-$listMaxWidth: 54rem;
-$listItemPadding:0 0 0 0;
-//Quotes
-$quoteFontSize:1.15rem;
-$quoteLineHeight:1.8rem;
-$quoteMarginTop:1.5rem;
-$quotePadding: 3% 10% 0% 10%;
-$quoteMaxWidth: 54rem;
-$quoteBorderTop: 1px solid $colorFirst;
-$quoteBorderBottom: 1px solid $colorFirst;
 
 //========MISC
 $globalClassPcs: 'ui-pcs';
 
-
 //Other colors
-$border-color-public:#e9e9e9;
-$shadow-color-public:#0000003B;
+$border-color:#e9e9e9;
+$shadow-color:#0000003B;
 
 
 //sizes
 $rounded-sm:10px;
 $rounded:15px;
-$border:1px solid $border-color-public;
+$border:1px solid $border-color;
 
 
 //effects
-$shadow-xs:1px 1px 2px 0px $shadow-color-public;
-$shadow-sm:3px 3px 4px 0px $shadow-color-public;
-$shadow-md:0px 5px 10px $shadow-color-public;
-$shadow:0px 10px 20px $shadow-color-public;
+$shadow-xs:1px 1px 2px 0px $shadow-color;
+$shadow-sm:3px 3px 4px 0px $shadow-color;
+$shadow-md:0px 5px 10px $shadow-color;
+$shadow:0px 10px 20px $shadow-color;
 
 //Public colors
-$back-color-public:#3C5F5B;
-$primary-color-public:#A6C634;
-$gray-color-public:#DBE0DC;
-$dark-color-public:#15214B;
-$secondary-color-public:#343a40;
+$white-color:#ffffff;
+$back-color:#3C5F5B;
+$primary-color:#A6C634;
+$gray-color:#DBE0DC;
+$dark-color:#15214B;
+$secondary-color:#343a40;
 
-$danger-color-public:#FA6F6F;
-$alert-color-public:#f1bc2a;
-$success-color-public:#4cca79;
-$info-color-public:#1999c0;
+$danger-color:#FA6F6F;
+$alert-color:#f1bc2a;
+$success-color:#4cca79;
+$info-color:#1999c0;

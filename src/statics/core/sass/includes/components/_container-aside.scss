@@ -2,7 +2,8 @@
     display: flex;
     flex-direction: row;
     font-size: 1rem;
-    background-color: var(--bg-color);
+    // background-color: var(--bg-color);
+    background-color: $back-color;
 
     height: calc(100vh - 50px);
     max-height: calc(100vh - 50px);
@@ -21,6 +22,7 @@
     }
 
     .sidebar {
+        transition: all ease 1.5s;
 
         display: flex;
         flex-direction: column;
@@ -33,6 +35,7 @@
         overflow: hidden !important;
 
         // box-shadow: $shadow-xs;
+        background-color: $back-color;
 
         @media (max-width: 1700px) {
             min-width: 300px;
@@ -156,7 +159,7 @@
                         }
 
                         a:visited {
-                            color: $colorFourth;
+                            color: $dark-color;
                             font-weight: 900;
                         }
                     }
@@ -261,48 +264,21 @@
             }
         }
 
-        @media (max-width: 992px) {
-            @keyframes crecer {
-                0% {
-                    width: 0%;
-                }
-
-                100% {
-                    width: 100%;
-                }
-            }
-
-            display: none;
+        @media screen and (max-width:992px) {
             padding-top: 10px;
+            display: block;
 
-            // .logo {
-            //     display: block;
-            // }
+            position: absolute;
+            left: -100vw;
+            z-index: 100;
 
             &.overlay {
-                animation: crecer 0.5s ease;
-                display: block;
-                position: fixed;
-                top: 0;
                 left: 0;
-                z-index: 100;
-                width: 100%;
-                height: 100%;
-                overflow: auto;
-                background-color: var(--bg-color);
+                // background-color: var(--bg-color);
+                background-color: $back-color;
                 z-index: 300;
                 padding-bottom: 10px;
 
-                .logo-developed {
-                    position: static;
-                    bottom: initial;
-                    left: initial;
-                    transform: none;
-                    text-align: center;
-                    margin-top: 50px;
-                    margin-left: auto;
-                    margin-right: auto;
-                }
             }
         }
     }

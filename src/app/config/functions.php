@@ -5,6 +5,7 @@
  */
 
 use App\Controller\PublicAreaController;
+use SVG\SVG;
 
 /**
  * Funciones adicionales.
@@ -483,8 +484,45 @@ function remove_accents($string)
 
     return $string;
 }
-
+/**
+ * Da formato de moneda a un valor numérico
+ */
 function moneyFormat($value)
 {
-    return "$" . $value;
+    if ($value != null) {
+        return "$" . $value;
+    } else {
+        return $value;
+    }
+}
+
+
+/**
+ * Devuelve un HTML utilizando los íconos de la librería IONICONS
+ */
+function getIcon(string $name = "home",  string $color = "#000000", string $sizePx = null, string $class = null)
+{
+    if ($name != "" && $color != "") {
+        $name = str_replace(" ", "-", trim($name));
+        $file = "statics/images/ionicons/" . $name . ".svg";
+
+        if (file_exists($file)) {
+            $image = SVG::fromFile($file);
+            $doc = $image->getDocument();
+
+            $rect = $doc->getChild(0);
+            $rect->setStyle('fill', 'none');
+
+            if ($sizePx != null && is_string($sizePx)) {
+                $item = "<div class='ionicono " . ($class != null ? $class : "") . "' style='width:$sizePx; height:$sizePx;'>$image</div>";
+            } else {
+                $item = "<div class='ionicono " . ($class != null ? $class : "") . "'>$image</div>";
+            }
+            return $item;
+        } else {
+            return "(icon)";
+        }
+    } else {
+        return "(icon)";
+    }
 }

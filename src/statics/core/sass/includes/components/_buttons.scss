@@ -9,134 +9,107 @@ button,
     &.success,
     &.danger,
     &.alert,
-    &.nonocuppied,
     &.dark,
-    &.apartment,
-    &.basic,
-    &.standard,
-    &.premium,
-    &.ultra,
     &.gray,
-    &.house,
-    &.info,
-    &.desinfection,
-    &.high,
-    &.low,
-    &.medium,
-    &.opened,
-    &.closed,
-    &.resolved {
+    &.info {
         color: white !important;
         margin: 2px;
     }
 
-    &.medium,
-    &.white,
-    &.basic {
+
+    &.white {
         background-color: white !important;
-        color: $back-color-public !important;
-        border: 1px solid rgba($back-color-public, 0.1) !important;
+        color: $back-color !important;
+        border: 1px solid rgba($back-color, 0.1) !important;
 
         &:hover,
         &:active,
         &:focus {
             background-color: rgb(250, 250, 250) !important;
-            color: $back-color-public !important;
+            color: $back-color !important;
         }
 
     }
 
     &.primary {
-        background-color: $primary-color-public !important;
+        background-color: $primary-color !important;
 
         &:hover,
         &:active,
         &:focus {
-            background-color: rgba($primary-color-public, 0.9) !important;
+            background-color: rgba($primary-color, 0.9) !important;
         }
     }
 
-    &.secondary,
-    &.desinfection {
-        background-color: $secondary-color-public !important;
+    &.secondary {
+        background-color: $secondary-color !important;
 
         &:hover,
         &:active,
         &:focus {
-            background-color: rgba($secondary-color-public, 0.9) !important;
+            background-color: rgba($secondary-color, 0.9) !important;
         }
     }
 
-    &.alert,
-    &.premium,
-    &.resolved {
-        background-color: $alert-color-public !important;
+    &.alert {
+        background-color: $alert-color !important;
 
         &:hover,
         &:active,
         &:focus {
-            background-color: rgba($alert-color-public, 0.9) !important;
+            background-color: rgba($alert-color, 0.9) !important;
         }
     }
 
-    &.success,
-    &.nonocuppied {
-        background-color: $success-color-public !important;
+    &.success {
+        background-color: $success-color !important;
 
         &:hover,
         &:active,
         &:focus {
-            background-color: rgba($success-color-public, 0.9) !important;
+            background-color: rgba($success-color, 0.9) !important;
         }
     }
 
-    &.danger,
-    &.ultra,
-    &.high {
-        background-color: $danger-color-public !important;
+    &.danger {
+        background-color: $danger-color !important;
 
         &:hover,
         &:active,
         &:focus {
-            background-color: rgba($danger-color-public, 0.9) !important;
+            background-color: rgba($danger-color, 0.9) !important;
         }
     }
 
-    &.dark,
-    &.standard,
-    &.closed {
+    &.dark {
 
-        background-color: $dark-color-public !important;
+        background-color: $dark-color !important;
 
         &:hover,
         &:active,
         &:focus {
-            background-color: rgba($dark-color-public, 0.9) !important;
+            background-color: rgba($dark-color, 0.9) !important;
         }
     }
 
-    &.gray,
-    &.house,
-    &.low {
-        background-color: $gray-color-public !important;
+    &.gray {
+        background-color: $gray-color !important;
         color: gray !important;
 
         &:hover,
         &:active,
         &:focus {
-            background-color: rgba($gray-color-public, 0.9) !important;
+            background-color: rgba($gray-color, 0.9) !important;
         }
     }
 
-    &.info,
-    &.apartment,
-    &.opened {
-        background-color: $info-color-public !important;
+    &.info {
+        background-color: $info-color !important;
 
         &:hover,
         &:active,
         &:focus {
-            background-color: rgba($info-color-public, 0.9) !important;
+            background-color: rgba($info-color, 0.9) !important;
         }
     }
 }

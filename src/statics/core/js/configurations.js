@@ -1006,13 +1006,13 @@ function pcsAdminSideBar(selector) {
 			let bgColor = menu.css('--bg-color')
 
 			toggle.on('click', function (e) {
+				// menu.hasClass(overlay)
+				if (menu.hasClass("overlay")) {
 
-				if (menu.is(':visible')) {
-
-					menu.fadeOut(500, function () {
-						menu.attr('style', `--bg-color:${bgColor};`)
-						$(menu).removeClass('overlay')
-					})
+					// menu.fadeOut(500, function () {
+					// 	menu.attr('style', `--bg-color:${bgColor};`)
+					$(menu).removeClass('overlay')
+					// })
 
 					$(this).removeClass('active')
 
@@ -1027,7 +1027,12 @@ function pcsAdminSideBar(selector) {
 		}
 	}
 }
-
+/**
+ * Activa los menus de la barra de navegación de la zona administrativa
+ */
+function pcsTopBarMenus() {
+const menus = $(``)
+}
 /**
  * Internacionalización de mensajes
  * 
