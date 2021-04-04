@@ -73,11 +73,11 @@ $config["mail_recipient"] = [
 $config["recapcha"] = [
     "url" => "https://www.google.com/recaptcha/api/siteverify",
     "site_key" => (is_local()
-        ? "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
-        : "6Ld0ZoIaAAAAAPIfk6k-iOmoIqRmuUO0JO-OAxK9"),
+        ? "xxxxxxxx"
+        : "xxxxxxxx"),
     "secret_key" => (is_local()
-        ? "6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe"
-        : "6Ld0ZoIaAAAAAPZQBQt7kAJxhg_4PyNyNbzC7ZNp")
+        ? "xxxxxxxx"
+        : "xxxxxxxx")
 ];
 //======Información complementaria para mostrar en la aplicación========
 
