@@ -3,6 +3,7 @@
 /**
  * MenuGroup.php
  */
+
 namespace PiecesPHP\Core\Menu;
 
 use Form\Validator;
@@ -62,7 +63,14 @@ class MenuGroup
      * @var int
      */
     protected $position;
-
+    /**
+     * @var boolean
+     */
+    protected $show_text;
+    /**
+     * @var boolean
+     */
+    protected $show_icon;
     /**
      * @var array
      */
@@ -80,6 +88,14 @@ class MenuGroup
             'default' => null,
         ],
         'visible' => [
+            'rules' => ['bool'],
+            'default' => true,
+        ],
+        'show_text' => [
+            'rules' => ['bool'],
+            'default' => true,
+        ],
+        'show_icon' => [
             'rules' => ['bool'],
             'default' => true,
         ],
@@ -192,7 +208,6 @@ class MenuGroup
                         foreach ($value_on_option as $key => $value) {
                             $this->addItem($value);
                         }
-
                     }
 
                     if ($name == 'groups') {
@@ -209,11 +224,9 @@ class MenuGroup
                     } else {
                         $this->$name = $value_on_option;
                     }
-
                 } else {
                     $this->$name = $config['default'];
                 }
-
             } else {
                 $this->$name = $config['default'];
             }
@@ -278,7 +291,6 @@ class MenuGroup
 
                 $itemToOrder->setPosition($nextPosition);
                 $nextPosition++;
-
             }
 
             $itemsToOrder[] = $itemToOrder;
@@ -308,7 +320,6 @@ class MenuGroup
             }
 
             return $result;
-
         });
 
         return $itemsToOrder;
@@ -361,6 +372,8 @@ class MenuGroup
         $group_current = $this->isCurrent();
         $group_items = $this->getItems();
         $group_groups = $this->groups;
+        $group_show_text = $this->show_text;
+        $group_show_icon = $this->show_icon;
 
         if ($group_visible) {
 
@@ -369,10 +382,25 @@ class MenuGroup
             }
 
             $group_container = new HtmlElement('ul', '', null, $group_attributes);
+            $group_container->setAttribute('data-content', $group_name);
 
-            if (mb_strlen(trim($group_icon)) > 0) {
+            if (mb_strlen(trim($group_name)) > 8 && $group_show_icon) {
+                $group_name = substr($group_name, 0, 5) . "...";
+            }
+
+            if (mb_strlen(trim($group_icon)) > 0 && $group_show_icon) {
                 $group_container->setAttribute('class', 'group');
-                $group_name = "<i class='icon $group_icon'></i><span>$group_name</span>";
+                if (strpos($group_icon, "ionicono") !== false) {
+                    $group_name_icon = "$group_icon";
+                } else {
+                    $group_name_icon = "<i class='icon $group_icon'></i>";
+                }
+                if ($group_show_text) {
+                    $group_name = $group_name_icon . "<span>$group_name</span>";
+                } else {
+                    $group_container->setAttribute('class', 'group no-text');
+                    $group_name = $group_name_icon;
+                }
             } else {
                 $group_container->setAttribute('class', 'group no-icon');
                 $group_name = "<span>$group_name</span>";
@@ -391,13 +419,11 @@ class MenuGroup
                 } else {
                     $group_title_container->setAttribute('class', 'title-group');
                 }
-
             } else {
 
                 $group_title_container = new HtmlElement('a', $group_name);
                 $group_title_container->setAttribute('class', 'title-group');
                 $group_title_container->setAttribute('href', $group_href);
-
             }
 
             $group_container->appendChild($group_title_container);
@@ -428,7 +454,6 @@ class MenuGroup
             }
 
             return $group_container;
-
         } else {
             return null;
         }
@@ -529,5 +554,4 @@ class MenuGroup
     {
         return $value instanceof MenuGroup;
     }
-
 }

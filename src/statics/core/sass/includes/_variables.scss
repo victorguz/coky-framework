@@ -45,14 +45,34 @@ $shadow-md:0px 5px 10px $shadow-color;
 $shadow:0px 10px 20px $shadow-color;
 
 //Public colors
-$white-color:#ffffff;
-$back-color:#3C5F5B;
-$primary-color:#A6C634;
-$gray-color:#DBE0DC;
-$dark-color:#15214B;
-$secondary-color:#343a40;
 
-$danger-color:#FA6F6F;
-$alert-color:#f1bc2a;
-$success-color:#4cca79;
-$info-color:#1999c0;
+$back-color:unquote(var(--back-color));
+$navbar-color:unquote(var(--navbar-color));
+$navbar-hover-color:unquote(var(--navbar-hover-color));
+$navbar-height:unquote(var(--navbar-height));
+$navbar-icon-size:unquote(var(--navbar-icon-size));
+
+$white-color:#ffffff;
+$primary-color:unquote(var(--primary-color));
+$gray-color:unquote(var(--gray-color));
+$dark-color:unquote(var(--dark-color));
+$secondary-color:unquote(var(--secondary-color));
+
+$danger-color:unquote(var(--danger-color));
+$alert-color:unquote(var(--alert-color));
+$success-color:unquote(var(--success-color));
+$info-color:unquote(var(--info-color));
+
+$sidebar-color:unquote(var(--sidebar-color));
+$sidebar-icon-size:unquote(var(--sidebar-icon-size));
+$sidebar-text-color:unquote(var(--sidebar-text-color));
+$sidebar-text-hover-color:unquote(var(--sidebar-text-hover-color));
+$sidebar-button-hover-color:unquote(var(--sidebar-button-hover-color));
+$sidebar-button-selected-color:unquote(var(--sidebar-button-selected-color));
+
+
+
+$default-radius:unquote(var(--default-radius));
+$dropdown-radius:unquote(var(--dropdown-radius));
+$card-radius:unquote(var(--card-radius));
+$field-radius:unquote(var(--field-radius));

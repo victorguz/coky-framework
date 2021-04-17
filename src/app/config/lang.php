@@ -20,4 +20,5 @@ set_config('lang_by_url', true);
 set_config('allowed_langs', [
     'es',
     'en',
+    // 'fr',
 ]);

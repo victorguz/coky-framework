@@ -1,56 +1,93 @@
 .#{$globalClassPcs}.topbar {
 
-    // --bottom-padding: 5px;
-    // position: absolute;
-    // z-index: 4;
-    // top: 0px;
-    // left: 0px;
+    // width: 100%;
+    // display: flex;
+    // justify-content: space-between;
+    // padding: 0 !important;
+    max-height: $navbar-height;
+    background-color: $navbar-color;
+    border-radius: 0;
+    border: none;
+    margin: 0;
 
-    width: 100%;
-    // background-color: var(--bg-color);
-    background-color: $back-color;
-    display: flex;
-    justify-content: space-between;
-    height: 70px;
-    max-height: 70px;
-    padding: 0 !important;
-
-    // box-shadow: $shadow-xs;
-
-    @media (max-width:1440px) {
-        height: 60px;
-        max-height: 60px;
+    >* {
+        height: $navbar-height;
+        border-radius: 0 !important;
     }
 
-    @media (max-width:992px) {
-        height: 50px;
-        max-height: 50px;
+    .sidebar-toggle {
+        display: none !important;
+        align-items: center;
+        justify-content: center;
+
+        color: $sidebar-text-color !important;
+
+        width: $navbar-height;
+        height: $navbar-height;
+        padding: 0;
+
+        &::before,
+        &::after {
+            background: none;
+        }
+
+        &:hover,
+        &:active,
+        &:focus,
+        &.active {
+            color: $sidebar-text-color !important;
+            background-color: $navbar-hover-color !important;
+        }
+
+        .ionicono {
+            width: $navbar-icon-size;
+            height: $navbar-icon-size;
+        }
+
+        @media screen and (max-width:992px) {
+            display: flex !important;
+        }
+
     }
 
-    .blank {
+    .blanc {
         display: flex;
         justify-content: flex-end;
         width: 100%;
-        padding: 0 10px;
 
+        >* {
+
+            &::before,
+            &::after {
+                background: none;
+            }
+
+            &:hover,
+            &:active,
+            &:focus,
+            &.active {
+                background-color: $navbar-hover-color !important;
+            }
+        }
 
         .ui.dropdown {
-            color: white;
+            color: $sidebar-text-color;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 70px;
 
-
+            width: $navbar-height;
+            height: $navbar-height;
+            padding: 0;
 
             .ionicono {
-                width: 1.8rem;
-                height: 1.8rem;
+                width: $navbar-icon-size;
+                height: $navbar-icon-size;
             }
 
-
             .avatar {
-                $avatar-size: 36px;
+                $avatar-size: 90%;
+
                 margin: 0 auto;
                 width: $avatar-size;
                 height: $avatar-size;
@@ -67,14 +104,29 @@
 
             .menu {
                 min-width: 300px;
+                margin-top: 5px;
+                border-radius: $dropdown-radius;
+
+                border: $border;
+                // box-shadow: none;
 
                 @media screen and (max-width:992px) {
                     min-width: auto;
                 }
 
                 .item {
-                    display: flex;
+                    display: flex !important;
                     align-items: center;
+
+                    &:first-child {
+                        border-top-left-radius: $dropdown-radius;
+                        border-top-right-radius: $dropdown-radius;
+                    }
+
+                    &:last-child {
+                        border-bottom-left-radius: $dropdown-radius;
+                        border-bottom-right-radius: $dropdown-radius;
+                    }
 
                     .figure {
                         width: 1.6rem;
@@ -89,7 +141,7 @@
 
                     &.user {
                         display: flex;
-                        justify-content: center;
+                        justify-content: flex-start;
                         align-items: center;
 
                         .figure {
@@ -113,199 +165,8 @@
                 }
             }
 
-            &:hover,
-            &:active,
-            &:focus,
-            &.active {
-                background-color: rgba($color: $secondary-color, $alpha: 0.3);
-            }
+
         }
-
-        //     .nav-buttons {
-
-        //         position: relative;
-        //         display: flex;
-        //         flex-wrap: wrap;
-        //         justify-content: flex-end;
-        //         align-items: center;
-        //         height: 100%;
-
-
-        //         >.menu {
-
-        //             transition: 0.5s background-color ease;
-        //             cursor: pointer;
-
-        //             z-index: 200;
-        //             display: flex;
-        //             justify-content: center;
-        //             align-items: center;
-        //             width: 70px;
-        //             height: 100%;
-
-        //             &:hover {
-        //                 background-color: rgba($color: #d6d6d6, $alpha: 0.3);
-
-        //                 .items {
-        //                     display: flex;
-        //                 }
-        //             }
-
-        //             >.icon {
-        //                 color: white;
-        //                 font-size: 1.8rem;
-        //                 line-height: 1em;
-
-        //                 .ionicono {
-        //                     width: 1.8rem;
-        //                     height: 1.8rem;
-        //                 }
-        //             }
-
-        //             .items {
-
-        //                 display: none;
-        //                 position: absolute;
-        //                 top: 100%;
-        //                 // left: 0px;
-        //                 right: 0;
-        //                 width: 300px;
-        //                 min-height: 100px;
-        //                 overflow-y: auto;
-        //                 flex: 0 0 auto;
-        //                 flex-wrap: wrap;
-        //                 justify-content: center;
-
-        //                 background-color: white;
-        //                 border-radius: 7px;
-        //                 padding: 10px;
-        //                 box-shadow: $shadow-md;
-
-        //                 &.FORCE_ACTIVE {
-        //                     display: flex;
-        //                 }
-
-        //                 >.item {
-
-        //                     cursor: pointer;
-        //                     text-decoration: none;
-        //                     transition: 0.5s background-color ease;
-
-        //                     width: 100%;
-        //                     color: rgb(39, 39, 39);
-        //                     padding: 0.5rem 0.8rem 0.5rem 1.2rem;
-        //                     display: flex;
-        //                     column-gap: 8px;
-        //                     align-items: center;
-
-        //                     border-radius: 7px;
-        //                     background-color: rgba(240, 240, 240, $alpha: 0.4);
-
-        //                     &:not(:first-child) {
-        //                         margin-top: 0.4rem;
-        //                     }
-
-        //                     .figure {
-        //                         font-size: 1.5rem;
-        //                         line-height: 1.5rem;
-
-        //                         .ionicono {
-        //                             width: 1.5rem;
-        //                             height: 1.5rem;
-        //                         }
-        //                     }
-
-        //                     .text {
-        //                         font-size: 1.1rem;
-        //                         text-overflow: ellipsis;
-        //                         max-width: 260px;
-        //                         white-space: nowrap;
-        //                         overflow: hidden;
-        //                     }
-
-        //                     &:hover {
-        //                         background-color: rgba(220, 220, 220, $alpha: 0.4);
-        //                     }
-
-        //                 }
-
-        //             }
-
-        //         }
-
-
-        //         $avatar-size: 36px;
-
-        //         >.avatar {
-        //             margin: 0 auto;
-        //             width: $avatar-size;
-        //             height: $avatar-size;
-        //             background-color: $primary-color;
-        //             border-radius: 100%;
-        //             border: 1px solid $primary-color;
-
-        //             img {
-        //                 max-width: 100%;
-        //                 border-radius: 100%;
-        //                 object-fit: cover;
-        //             }
-        //         }
-        //     }
-        // }
-
-
-
-        // @media screen and (max-width:540px) {
-
-        //     padding-top: 3px;
-        //     height: 70pxMobile;
-        //     max-height: initial;
-
-        //     .nav-buttons {
-
-        //         padding-bottom: 0px;
-        //         justify-content: center;
-        //         column-gap: 10px;
-
-        //         >.menu {
-
-        //             z-index: 300;
-        //             width: auto;
-
-        //             >.icon {
-        //                 padding: 5px;
-        //             }
-
-        //             >.items {
-        //                 right: 0;
-        //                 width: 270px !important;
-        //             }
-
-        //         }
-
-        //     }
-
-        //     .user-info {
-
-        //         padding: 0px;
-
-        //         .info-menu {
-        //             right: 0;
-        //         }
-
-        //     }
-
-        // }
-
-        // @media screen and (max-height:450px) {
-
-        //     .nav-buttons {
-        //         >.menu {
-        //             .items {
-        //                 max-height: 75vh;
-        //             }
-        //         }
-        //     }
 
     }
 }

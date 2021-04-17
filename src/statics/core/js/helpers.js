@@ -1,3 +1,12 @@
+//Init params
+$(".ui.dropdown").dropdown()
+$("[data-content]").popup()
+$("[data-content]ul.group").popup({
+	position: 'right center',
+	on: 'hover'
+})
+
+
 /**
  * @method successMessage
  * @description Mensaje modal con tipo success (iziToast|alert)

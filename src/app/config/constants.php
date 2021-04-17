@@ -21,37 +21,37 @@ define('APP_CONFIGURATION_MODULE', true);
 define('ADMIN_PATH_VIEWS', 'panel');
 
 //Importadores
-define('IMPORTS_MODULE_ENABLED', false);
+define('IMPORTS_MODULE_ENABLED', true);
 
 //Mensajería
-define('MESSAGES_ENABLED', false);
+define('MESSAGES_ENABLED', true);
 define('MESSAGES_PATH_VIEWS', 'messages');
 define('MESSAGES_PATH_STATICS', 'statics/features/messages');
 define('MESSAGES_PATH_JS', MESSAGES_PATH_STATICS . '/js');
-define('REFRESH_MESSAGES_STATUS', false);
+define('REFRESH_MESSAGES_STATUS', true);
 
 //Tablero de noticias
-define('BLACKBOARD_NEWS_ENABLED', false);
+define('BLACKBOARD_NEWS_ENABLED', true);
 define('BLACKBOARD_NEWS_PATH_VIEWS', 'blackboard-news');
 define('BLACKBOARD_NEWS_PATH_STATICS', 'statics/features/blackboard-news');
 define('BLACKBOARD_NEWS_PATH_JS', BLACKBOARD_NEWS_PATH_STATICS . '/js');
 
 //Blog integrado
-define('PIECES_PHP_BLOG_ENABLED', false);
+define('PIECES_PHP_BLOG_ENABLED', true);
 
 //Tienda integrada
-define('PIECES_PHP_SHOP_ENABLE', false);
+define('PIECES_PHP_SHOP_ENABLE', true);
 
 //Módulo de imágenes integrado
-define('PIECES_PHP_DYNAMIC_IMAGES_ENABLE', false);
+define('PIECES_PHP_DYNAMIC_IMAGES_ENABLE', true);
 
 //Ubicaciones
-define('LOCATIONS_ENABLED', false);
+define('LOCATIONS_ENABLED', true);
 define('LOCATIONS_LANG_GROUP', 'locationBackend');
 define('LOCATIONS_PATH_JS', 'statics/features/locations/js');
 
 //Temporizadores
-define('ACTIVE_TIMER', false);
+define('ACTIVE_TIMER', true);
 
 //Otras
 define('ADMIN_AREA_PATH_JS', 'statics/admin-area/js');

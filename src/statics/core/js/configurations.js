@@ -982,17 +982,17 @@ function pcsAdminSideBar(selector) {
 					if (items.length > 0) {
 						if (ancester.hasClass('active')) {
 							ancester.removeClass('active')
-							items.hide(500)
+							// items.hide(0)
 						} else {
 							ancester.addClass('active')
-							items.show(500)
+							// items.show(0)
 						}
 					}
 
 					let ancesterOthers = titlesGroups.parent().not(ancester).not($(this).parents('.group'))
 					let itemsOthers = ancesterOthers.find('.items')
 					ancesterOthers.removeClass('active')
-					itemsOthers.hide(500)
+					// itemsOthers.hide(500)
 				})
 
 			}
@@ -1031,7 +1031,7 @@ function pcsAdminSideBar(selector) {
  * Activa los menus de la barra de navegación de la zona administrativa
  */
 function pcsTopBarMenus() {
-const menus = $(``)
+	const menus = $(``)
 }
 /**
  * Internacionalización de mensajes

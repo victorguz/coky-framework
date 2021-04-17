@@ -55,11 +55,11 @@ class AppConfigController extends AdminPanelController
 
     const ROLES_BACKGROUND = [
         UsersModel::TYPE_USER_ROOT,
-        UsersModel::TYPE_USER_ADMIN,
+        // UsersModel::TYPE_USER_ADMIN,
     ];
     const ROLES_LOGOS_FAVICONS = [
         UsersModel::TYPE_USER_ROOT,
-        UsersModel::TYPE_USER_ADMIN,
+        // UsersModel::TYPE_USER_ADMIN,
     ];
     const ROLES_SEO = [
         UsersModel::TYPE_USER_ROOT,

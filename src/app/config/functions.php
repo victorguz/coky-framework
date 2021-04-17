@@ -500,18 +500,29 @@ function moneyFormat($value)
 /**
  * Devuelve un HTML utilizando los íconos de la librería IONICONS
  */
-function getIcon(string $name = "home",  string $color = "#000000", string $sizePx = null, string $class = null)
+function getIcon(string $name = "home",  string $color = "", string $sizePx = null, string $class = null)
 {
-    if ($name != "" && $color != "") {
+    if ($name != "") {
         $name = str_replace(" ", "-", trim($name));
         $file = "statics/images/ionicons/" . $name . ".svg";
 
         if (file_exists($file)) {
             $image = SVG::fromFile($file);
-            $doc = $image->getDocument();
 
-            $rect = $doc->getChild(0);
-            $rect->setStyle('fill', 'none');
+            if ($color != "") {
+                $doc = $image->getDocument();
+                // var_dump($doc->countChildren());
+                for ($i = 0; $i < $doc->countChildren() - 1; $i++) {
+                    $rect = $doc->getChild($i);
+                    // var_dump($rect);
+                    if (strpos($name, "outline") === false) {
+                        $rect->setStyle('fill', $color);
+                        $rect->setAttribute('fill', $color);
+                    }
+                    $rect->setStyle('stroke', $color);
+                    $rect->setAttribute('stroke', $color);
+                }
+            }
 
             if ($sizePx != null && is_string($sizePx)) {
                 $item = "<div class='ionicono " . ($class != null ? $class : "") . "' style='width:$sizePx; height:$sizePx;'>$image</div>";

@@ -45,13 +45,13 @@ $canViewConfigsOption = array_reduce([
 
 ?>
 
-<div style="--bg-color:<?= get_config('admin_menu_color'); ?>;" class="ui-pcs topbar">
+<div class="ui-pcs topbar ui mini menu">
 
-    <div class="ui-pcs sidebar-toggle">
-        <?= getIcon("grid-outline") ?>
-    </div>
+    <a class="ui-pcs sidebar-toggle item">
+        <?= getIcon("menu-outline") ?>
+    </a>
 
-    <div class="blank">
+    <div class="blanc right menu">
 
         <?php if ($canViewUserOption) : ?>
 
@@ -182,7 +182,7 @@ $canViewConfigsOption = array_reduce([
             </div>
         <?php endif; ?>
 
-        <div class="ui dropdown item">
+        <div class="ui dropdown item user">
             <div class="avatar">
                 <?php if ($user->hasAvatar) : ?>
                     <img src="<?= $user->avatar; ?>">

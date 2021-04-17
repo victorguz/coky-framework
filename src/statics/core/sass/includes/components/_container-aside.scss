@@ -1,18 +1,21 @@
+$itemsFontSize:1rem;
+$itemsBackground: $sidebar-color;
+$itemPadding:0.5rem;
+
 .#{$globalClassPcs}.container-sidebar {
     display: flex;
     flex-direction: row;
-    font-size: 1rem;
-    // background-color: var(--bg-color);
+    font-size: $itemsFontSize;
     background-color: $back-color;
 
-    height: calc(100vh - 50px);
-    max-height: calc(100vh - 50px);
+    height: calc(100vh - $navbar-height);
+    max-height: calc(100vh - $navbar-height);
 
     overflow: hidden;
 
     @media (max-width:1440px) {
-        height: calc(100vh - 60px);
-        max-height: calc(100vh - 60px);
+        height: calc(100vh - $navbar-height);
+        max-height: calc(100vh - $navbar-height);
     }
 
 
@@ -28,30 +31,15 @@
         flex-direction: column;
         justify-content: space-between;
 
-        min-width: 350px;
-        height: calc(100vh - 70px);
-        max-height: calc(100vh - 70px);
-
+        //5px es el valor del scrollbar
+        min-width: calc(5px + var(--navbar-height));
+        max-width: calc(5px + var(--navbar-height));
+        max-height: calc(100vh - var(--navbar-height));
+        height: calc(100vh - var(--navbar-height));
+        padding-top: 10px;
+        
         overflow: hidden !important;
-
-        // box-shadow: $shadow-xs;
-        background-color: $back-color;
-
-        @media (max-width: 1700px) {
-            min-width: 300px;
-        }
-
-        @media (max-width: 1440px) {
-            min-width: 250px;
-            height: calc(100vh - 60px);
-            max-height: calc(100vh - 60px);
-        }
-
-        @media (max-width: 992px) {
-            overflow-y: auto !important;
-            max-height: 100vh;
-            height: 100vh;
-        }
+        background-color: $sidebar-color;
 
         .first {
             display: flex;
@@ -59,7 +47,7 @@
             height: fit-content;
 
             .logo {
-                display: flex;
+                display: none;
                 align-items: center;
                 justify-content: center;
                 width: 100%;
@@ -90,8 +78,12 @@
                 display: flex;
                 flex-flow: column;
 
-                height: calc(60vh - 10px);
-                padding: 15px;
+                height: calc(100vh - var(--navbar-height) - var(--navbar-height));
+                padding-right: 10px;
+
+                @media screen and (max-width:992px) {
+                    padding-right: 0px;
+                }
 
                 >.group {
 
@@ -102,24 +94,67 @@
                     margin-bottom: 10px;
                     padding: 0;
 
+                    //Cuando el grupo no tiene iconos
+                    &.no-icon {
 
+                        .title-group {
+                            padding-left: 0.5em;
+                        }
+
+                    }
+
+                    //Titulo de un grupo (puede ser un grupo sin items = link) 
                     .title-group {
 
-                        transition: 0.8s color ease, 0.8s background-color ease;
-                        display: grid;
-                        grid-template-columns: 3.8rem auto;
-                        align-items: center;
-                        margin-top: 0;
-                        margin-bottom: 0;
-                        padding: 0.5rem;
-                        padding-left: 2.5em;
-                        padding-right: 0px;
-                        cursor: pointer;
-                        color: $sidebarColor;
-                        text-decoration: none !important;
-                        background-color: rgba(255, 255, 255, 0.1);
-                        border-radius: 7px;
+                        transition: all ease 0.8s;
 
+                        display: flex;
+                        flex-flow: column;
+                        align-items: center;
+                        justify-content: center;
+                        text-align: center;
+
+                        background-color: $itemsBackground;
+                        border-radius: 0px 7px 7px 0px;
+
+                        margin: 0;
+                        padding: $itemPadding;
+                        cursor: pointer;
+
+                        color: $sidebar-text-color;
+                        text-decoration: none !important;
+
+                        //icons
+                        >.ionicono {
+                            width: $sidebar-icon-size;
+                            height: $sidebar-icon-size;
+                        }
+
+                        >i {
+                            font-size: $itemsFontSize;
+                            margin-right: 1.3rem;
+                            position: relative;
+                            top: 2px;
+                        }
+
+                        //text
+                        >span,
+                        >a span {
+                            display: inline-block;
+                            width: 100%;
+                            padding: 0px 5px;
+                            font-size: $itemsFontSize;
+
+                            &:last-child {
+                                margin-top: 5px;
+                            }
+
+                            &:first-child {
+                                margin-top: 0px;
+                            }
+                        }
+
+                        //status
                         &.current {
                             &.as-link {
                                 cursor: default;
@@ -128,26 +163,11 @@
                         }
 
                         &:hover {
-                            background-color: transparent;
+                            background-color: $sidebar-button-hover-color;
 
                             a {
-                                color: transparentize($sidebarColor, 0.6) !important;
+                                color: rgba($sidebarColor, 0.6) !important;
                             }
-                        }
-
-                        i {
-                            font-size: 1.4rem;
-                            margin-right: 1.3rem;
-                            position: relative;
-                            top: 2px;
-                        }
-
-                        >span,
-                        >a span {
-                            display: inline-block;
-                            width: 100%;
-                            padding: 0px 5px;
-                            font-size: 1rem;
                         }
 
                         a:active {
@@ -167,8 +187,8 @@
                     .items {
 
                         display: none;
-                        font-size: 1rem;
-                        line-height: 2rem;
+                        font-size: $itemsFontSize;
+                        line-height: $itemsFontSize;
                         border: none;
 
                         ul {
@@ -176,7 +196,7 @@
                             padding: 0px;
                             padding-left: 0;
                             list-style: none;
-                            line-height: 100%;
+                            line-height: $itemsFontSize;
                         }
 
                         li {
@@ -200,8 +220,8 @@
 
                                 display: block;
                                 padding: 0px 5px;
-                                font-size: 1rem;
-                                color: $sidebarColor;
+                                font-size: $itemsFontSize;
+                                color: $sidebar-text-color;
 
                                 &:hover {
                                     text-decoration: none;
@@ -217,21 +237,36 @@
                         }
                     }
 
-                    &.no-icon {
-
-                        .title-group {
-                            grid-template-columns: auto;
-                            padding-left: 0.5em;
-                        }
-
-                    }
-
                     &.active,
                     &[current] {
                         .title-group {
-                            background-color: transparent;
-                            color: $sidebarColor;
+                            background-color: $sidebar-button-selected-color;
+                            color: $sidebar-text-hover-color;
+                            box-shadow: $shadow-md;
                         }
+                    }
+                }
+            }
+
+            .more {
+                height: $navbar-height;
+                width: $navbar-height;
+
+                a {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    color: $sidebar-text-color;
+                    height: 100%;
+                    width: 100%;
+
+                    .ionicono {
+                        width: $sidebar-icon-size;
+                        height: $sidebar-icon-size;
+                    }
+
+                    &:hover {
+                        background-color: $sidebar-button-hover-color;
                     }
                 }
             }
@@ -255,18 +290,18 @@
             a,
             strong {
                 color: $sidebarColorLogoDeveloped;
-                font-size: 0.7rem;
-                line-height: 1.3em;
+                font-size: $itemsFontSize;
+                line-height: $itemsFontSize;
 
                 @media (max-width:1440px) {
-                    font-size: 0.5rem;
+                    font-size: calc($itemsFontSize / 2);
                 }
             }
         }
 
         @media screen and (max-width:992px) {
-            padding-top: 10px;
             display: block;
+            padding-top: 10px;
 
             position: absolute;
             left: -100vw;
@@ -274,12 +309,12 @@
 
             &.overlay {
                 left: 0;
-                // background-color: var(--bg-color);
-                background-color: $back-color;
+                // background-color: rgba($color: $sidebar-color, $alpha: 0.5);
+                // backdrop-filter: blur(4px);
                 z-index: 300;
                 padding-bottom: 10px;
-
             }
+
         }
     }
 
@@ -290,10 +325,10 @@
         overflow-x: hidden;
         width: 100%;
         padding: 2rem;
-        background-color: white;
+        background-color: $back-color;
 
         border-radius: 15px 0 0 0;
-        box-shadow: $shadow;
+        // box-shadow: $shadow;
         // margin-left: 10px;
 
         @media screen and (max-width:992px) {

@@ -34,7 +34,7 @@
 
 
         .#{$globalClassPcs}-loader {
-            border: 3px solid transparentize($gray-color, 0.5);
+            border: 3px solid rgba($gray-color, 0.5);
             border-top: 6px solid $primary-color;
             // border-bottom: none;
             border-radius: 50%;

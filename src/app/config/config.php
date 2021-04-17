@@ -41,9 +41,6 @@ $config['keywords'] = [
     'Application',
 ];
 
-$config['meta_theme_color'] = "#ffffff";
-$config['admin_menu_color'] = "#ffffff";
-
 $config['description'] = "Descripción de la página.";
 
 $config['osTicketAPI'] = "";
@@ -83,3 +80,43 @@ $config["recapcha"] = [
 
 //Desarrollador
 $config['developer'] = 'Victorguz and Ivanlnd';
+
+
+//New Styles -- Sizes are PX
+$config["navbar-color"] = "#ffffff";
+$config["navbar-hover-color"] = "#dadde1";
+$config["navbar-height"] = "48px";
+$config["navbar-icon-size"] = "25px";
+
+$config["back-color"] = "#F0F2F5";
+
+$config["primary-color"] = "#A6C634";
+$config["secondary-color"] = "#343a40";
+
+$config["gray-color"] = "#DBE0DC";
+$config["dark-color"] = "#15214B";
+
+$config["danger-color"] = "#FA6F6F";
+$config["alert-color"] = "#f1bc2a";
+$config["success-color"] = "#4cca79";
+$config["info-color"] = "#1999c0";
+
+$config["sidebar-color"] = "#F0F2F5";
+$config["sidebar-icon-size"] = "25px";
+$config["sidebar-button-selected-color"] = "#ffffff";
+$config["sidebar-button-hover-color"] = "#dadde1";
+
+$config["sidebar-text-color"] = "#000000";
+$config["sidebar-text-hover-color"] = "#000000";
+
+
+
+$config["default-radius"] = "5px";
+$config["dropdown-radius"] = "5px";
+$config["card-radius"] = "5px";
+$config["field-radius"] = "5px";
+
+
+//Old styles
+$config['meta_theme_color'] = "#ffffff";
+$config['admin_menu_color'] = "#ffffff";

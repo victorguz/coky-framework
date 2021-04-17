@@ -19,14 +19,14 @@ button,
 
     &.white {
         background-color: white !important;
-        color: $back-color !important;
-        border: 1px solid rgba($back-color, 0.1) !important;
+        color: $dark-color !important;
+        border: 1px solid rgba($dark-color, 0.1) !important;
 
         &:hover,
         &:active,
         &:focus {
             background-color: rgb(250, 250, 250) !important;
-            color: $back-color !important;
+            color: $navbar-color !important;
         }
 
     }
