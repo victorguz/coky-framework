@@ -708,7 +708,7 @@ if (typeof $ !== 'undefined') {
 		configMessagesValidationsSemanticForm()
 		configDataTables()
 		configColorPickers()
-		pcsAdminSideBar('.ui-pcs.sidebar')
+		pcsAdminSideBar('.coky.sidebar-menu')
 		genericFormHandler()
 
 		let toggleDevCSSMode = $('[toggle-dev-css-mode]')
@@ -964,63 +964,17 @@ function pcsAdminSideBar(selector) {
 
 	if (menu.length > 0) {
 
-		let groups = menu.find('.group')
-
-		if (groups.length > 0) {
-
-			let titlesGroups = groups.find('.title-group').not('[href]')
-
-			if (titlesGroups.length > 0) {
-
-				titlesGroups.click(function (e) {
-
-					e.preventDefault()
-
-					let ancester = $(this).parent()
-					let items = ancester.find('> .items')
-
-					if (items.length > 0) {
-						if (ancester.hasClass('active')) {
-							ancester.removeClass('active')
-							// items.hide(0)
-						} else {
-							ancester.addClass('active')
-							// items.show(0)
-						}
-					}
-
-					let ancesterOthers = titlesGroups.parent().not(ancester).not($(this).parents('.group'))
-					let itemsOthers = ancesterOthers.find('.items')
-					ancesterOthers.removeClass('active')
-					// itemsOthers.hide(500)
-				})
-
-			}
-
-		}
-
-		let toggle = $('.ui-pcs.sidebar-toggle')
+		let toggle = $('.coky.sidebar-toggle')
 
 		if (toggle.length > 0) {
-
-			let bgColor = menu.css('--bg-color')
-
 			toggle.on('click', function (e) {
 				// menu.hasClass(overlay)
 				if (menu.hasClass("overlay")) {
-
-					// menu.fadeOut(500, function () {
-					// 	menu.attr('style', `--bg-color:${bgColor};`)
 					$(menu).removeClass('overlay')
-					// })
-
 					$(this).removeClass('active')
-
 				} else {
-
 					$(menu).addClass('overlay')
 					$(this).addClass('active')
-
 				}
 
 			})

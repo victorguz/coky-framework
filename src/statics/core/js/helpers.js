@@ -1,7 +1,7 @@
 //Init params
 $(".ui.dropdown").dropdown()
 $("[data-content]").popup()
-$("[data-content]ul.group").popup({
+$(".no-text[data-content]").popup({
 	position: 'right center',
 	on: 'hover'
 })

@@ -160,3 +160,12 @@ $sidebar->addItem($langsItem);
 //Añadir menús a la configuración global
 $config['menus']['header_dropdown'] = $headerDropdown;
 $config['menus']['sidebar'] = $sidebar;
+$config['menus']['sidebar_more'] = new MenuGroup([
+    'name' => __(ADMIN_MENU_LANG_GROUP, 'Vista múltiple'),
+    'icon' => getIcon("grid outline"),
+    'show_text' => $show_text,
+    'show_icon' => $show_icon,
+    'visible' => Roles::hasPermissions('admin', $current_type_user),
+    'asLink' => true,
+    'href' => get_route('admin'),
+]);

@@ -47,7 +47,7 @@ $canViewConfigsOption = array_reduce([
 
 <div class="ui-pcs topbar ui mini menu">
 
-    <a class="ui-pcs sidebar-toggle item">
+    <a class="coky sidebar-toggle item">
         <?= getIcon("menu-outline") ?>
     </a>
 

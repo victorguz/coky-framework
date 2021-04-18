@@ -3,6 +3,7 @@
 /**
  * MenuItem.php
  */
+
 namespace PiecesPHP\Core\Menu;
 
 use Form\Validator;
@@ -160,16 +161,13 @@ class MenuItem
                     } else {
                         $this->$name = $value_on_option;
                     }
-
                 } else {
                     $this->$name = $config['default'];
                 }
-
             } else {
                 $this->$name = $config['default'];
             }
         }
-
     }
 
     /**
@@ -244,7 +242,7 @@ class MenuItem
             $class[] = 'current';
         }
         $class = implode(' ', $class);
-        $tag = $current ? 'span' : 'a';
+        $tag = $current ? 'div' : 'a';
 
         $a = new HtmlElement($tag, $this->text, [], $attr);
         $a->setAttribute('class', $class);
