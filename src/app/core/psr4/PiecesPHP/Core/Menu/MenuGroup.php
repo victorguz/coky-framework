@@ -395,10 +395,12 @@ class MenuGroup
                 $group_container = new HtmlElement('a', '', null, $group_attributes);
             }
 
-            $group_container->setAttribute('data-content', $group_name);
+            if (!$group_show_text) {
+                $group_container->setAttribute('data-content', $group_name);
+            }
 
-            if (mb_strlen(trim($group_name)) > 8 && $group_show_icon) {
-                $group_name = substr($group_name, 0, 5) . "...";
+            if (mb_strlen(trim($group_name)) > 10 && $group_show_icon) {
+                // $group_name = substr($group_name, 0, 7) . "...";
             }
 
             if (mb_strlen(trim($group_icon)) > 0 && $group_show_icon) {

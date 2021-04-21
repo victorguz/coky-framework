@@ -116,3 +116,11 @@ a.ui.label {
 
     }
 }
+
+//shadows
+.segment,
+.segments,
+.card {
+    box-shadow: $shadow-fb !important;
+    border: none !important;
+}

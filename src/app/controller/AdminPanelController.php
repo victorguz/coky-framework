@@ -146,36 +146,36 @@ class AdminPanelController extends \PiecesPHP\Core\BaseController
 
             $subject = "$subject " . get_title();
 
-            $success = $osTicketApi->createTicket($name, $email, $subject, $comments);
-            $result->setValue('osTicketApi', [
-                'url' => $osTicketApi->getHttpClient()->getRequestURI(),
-                'reponse' => $osTicketApi->getHttpClient()->getResponseHeaders(),
-            ]);
+            // $success = $osTicketApi->createTicket($name, $email, $subject, $comments);
+            // $result->setValue('osTicketApi', [
+            //     'url' => $osTicketApi->getHttpClient()->getRequestURI(),
+            //     'reponse' => $osTicketApi->getHttpClient()->getResponseHeaders(),
+            // ]);
 
-            $logRequest = new TicketsLogModel();
-            $logRequest->created = new \DateTime();
-            $logRequest->name = $name;
-            $logRequest->email = $email;
-            $logRequest->message = $comments;
-            $logRequest->information = [
-                'subject' => $subject,
-                'email_sended' => $success,
-                'ip' => isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '0.0.0.0',
-            ];
-            $logRequest->type = __(self::LANG_GROUP, 'Ticket soporte dentro del panel administrativo (osTicket).');
-            $logRequest->save();
+            // $logRequest = new TicketsLogModel();
+            // $logRequest->created = new \DateTime();
+            // $logRequest->name = $name;
+            // $logRequest->email = $email;
+            // $logRequest->message = $comments;
+            // $logRequest->information = [
+            //     'subject' => $subject,
+            //     'email_sended' => $success,
+            //     'ip' => isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '0.0.0.0',
+            // ];
+            // $logRequest->type = __(self::LANG_GROUP, 'Ticket soporte dentro del panel administrativo (osTicket).');
+            // $logRequest->save();
 
-            if ($success) {
-                $result->setValue('reload', true);
-                $result
-                    ->setMessage($message_create)
-                    ->operation($operation_name)
-                    ->setSuccess(true);
-            } else {
-                $result
-                    ->setMessage($message_unknow_error)
-                    ->operation($operation_name);
-            }
+            // if ($success) {
+            //     $result->setValue('reload', true);
+            //     $result
+            //         ->setMessage($message_create)
+            //         ->operation($operation_name)
+            //         ->setSuccess(true);
+            // } else {
+            //     $result
+            //         ->setMessage($message_unknow_error)
+            //         ->operation($operation_name);
+            // }
         } else {
             $result
                 ->setMessage($message_unexpected_or_missing_params)
@@ -206,6 +206,13 @@ class AdminPanelController extends \PiecesPHP\Core\BaseController
                 $lastIsBar ? '' : '[/]',
                 self::class . ':indexView',
                 'admin',
+                'GET',
+                true
+            ),
+            new Route(
+                $lastIsBar ? 'hola' : 'hola[/]',
+                self::class . ':indexView',
+                'admin-multiple-view',
                 'GET',
                 true
             ),

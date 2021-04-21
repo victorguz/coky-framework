@@ -960,6 +960,11 @@ function configColorPickers() {
  */
 function pcsAdminSideBar(selector) {
 
+	$(".no-text[data-content]").popup({
+		position: 'right center',
+		on: 'hover'
+	})
+
 	let menu = $(selector)
 
 	if (menu.length > 0) {

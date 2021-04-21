@@ -49,6 +49,7 @@ $permisosGenerales = [
     //Avatar
     'avatars', //Traer todos los elementos de los avatares
     'push-avatars', //Crear avatar
+    'admin-multiple-view', //Vista general de los links de la plataforma
 ];
 $permisosClientes = array_unique(array_merge($permisosGenerales, [
     //Por el momento solo permisos generales
