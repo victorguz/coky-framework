@@ -237,6 +237,13 @@ if (is_object($user)) :
                         'show_icon' => $topbar_show_icon,
                     ]),
                     new MenuItem([
+                        'visible' => AppConfigController::allowedRoute('backgrounds'),
+                        'href' =>  AppConfigController::routeName('backgrounds'),
+                        'icon' => getIcon("images-outline"),
+                        'text' => __(AppConfigController::LANG_GROUP, 'Fondos del login'),
+                        'show_icon' => $topbar_show_icon,
+                    ]),
+                    new MenuItem([
                         'visible' => $current_type_user == UsersModel::TYPE_USER_ROOT,
                         'href' =>  AppConfigController::routeName('generals'),
                         'icon' => getIcon("hammer-outline"),
@@ -321,7 +328,6 @@ if (is_object($user)) :
                         'show_icon' => $topbar_show_icon,
                     ]),
                     new MenuItem([
-                        'visible' => AppConfigController::allowedRoute('seo'),
                         'attributes' => ["pcsphp-users-logout" => ""],
                         'icon' => getIcon("power-outline"),
                         'text' => __(ADMIN_MENU_LANG_GROUP, 'Cerrar sesión'),
