@@ -1,0 +1,185 @@
+/**
+* Spectrum colorpicker new style
+* Styled by Victorguz on Apr 2021
+*/
+
+
+//selector
+.spectrum-colorpicker-replacer {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    background-color: transparent !important;
+    border: none !important;
+
+    width: fit-content;
+    height: fit-content;
+
+
+    //when selector is active
+    &.spectrum-colorpicker-active {
+
+        //arrow
+        .spectrum-colorpicker-dd {
+            display: flex !important;
+            width: 20px;
+            height: 20px;
+
+            background-color: white;
+            border-radius: 100px;
+            box-shadow: $shadow-md;
+
+            position: absolute;
+        }
+    }
+
+
+
+    .spectrum-colorpicker-preview {
+        margin: 0;
+        border-radius: 100px;
+        border: none;
+        box-shadow: $shadow-fb;
+        width: 40px;
+        height: 40px;
+
+        //selector
+        .spectrum-colorpicker-preview-inner {
+
+            border-radius: 100px;
+            border: none !important;
+
+            width: 100%;
+            height: 100%;
+        }
+
+
+
+
+    }
+
+    //arrow
+    .spectrum-colorpicker-dd {
+        display: none !important;
+    }
+}
+
+//container
+.spectrum-colorpicker-container {
+    border: none !important;
+    box-shadow: $shadow-md;
+    border-radius: 10px !important;
+
+    //contenedor del selector de color
+    .spectrum-colorpicker-picker-container {
+
+
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+
+        background-color: white;
+        border: none !important;
+
+
+
+        //parte superior
+        .spectrum-colorpicker-top {
+            // border: none !important;
+            // position: static;
+
+            display: flex !important;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100px;
+            margin-bottom: 10px;
+
+            .spectrum-colorpicker-top-inner {
+                // position: static;
+
+                // display: flex !important;
+                // flex-direction: column;
+                // align-items: center;
+                // justify-content: center;
+
+                width: 100%;
+                height: fit-content;
+
+                //Cuadro donde se selecciona la intensidad del color
+                .spectrum-colorpicker-color {
+                    // position: static;
+
+                    width: 90%;
+                    height: 100px;
+
+                    // padding: 30px;
+
+                    border: none;
+                    border-radius: 10px;
+
+                    .spectrum-colorpicker-sat {
+                        border-radius: 10px;
+
+                        .spectrum-colorpicker-val {
+                            border-radius: 10px;
+                        }
+                    }
+
+
+                }
+
+                //limpiador de color
+                .spectrum-colorpicker-clear {
+                    display: none !important;
+                    width: 0;
+                    height: 0;
+                }
+
+                //barra de selección donde aparecen todos los colores
+                .spectrum-colorpicker-hue {
+
+
+                    // transform: rotate(90deg);
+                    top: 0;
+                    left: 95%;
+
+                    height: 100px; //with rotation it is width
+                    width: 10px; //with rotation it is height
+
+                    border: none;
+                    border-radius: 10px;
+
+                    // .spectrum-colorpicker-slider {
+                    // transform: rotate(90deg);
+
+                    // }
+                }
+            }
+
+        }
+
+        .spectrum-colorpicker-button-container {
+            width: 100%;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            &.spectrum-colorpicker-cf:before,
+            &.spectrum-colorpicker-cf:after {
+                content: none !important;
+                display: none !important;
+            }
+        }
+
+    }
+
+
+}

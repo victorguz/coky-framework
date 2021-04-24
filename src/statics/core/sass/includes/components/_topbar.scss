@@ -85,6 +85,7 @@
     .ui.dropdown {
 
         .avatar {
+            $avatar-size: calc(var(--navbar-height)*.8);
 
             margin: 0 auto;
             width: $avatar-size;

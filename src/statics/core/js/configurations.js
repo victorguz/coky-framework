@@ -916,7 +916,7 @@ function configColorPickers() {
 			color: null,
 			preferredFormat: 'hex',
 			showInput: true,
-			showInitial: true,
+			showInitial: false,
 			showAlpha: false,
 			clickoutFiresChange: false,
 			allowEmpty: true,

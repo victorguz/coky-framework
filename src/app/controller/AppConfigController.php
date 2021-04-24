@@ -1039,6 +1039,17 @@ class AppConfigController extends AdminPanelController
                     'actionGenericURL' => $actionGenericURL,
                 ];
 
+                $tabsTitles['styles'] = __($langGroup, 'Estilos');
+                $tabsItems['styles'] = $this->render("{$baseViewDir}/inc/configuration-tabs/styles", $data, false, false);
+            }
+
+            if ($hasPermissionsGenerals) {
+
+                $data = [
+                    'langGroup' => $langGroup,
+                    'actionGenericURL' => $actionGenericURL,
+                ];
+
                 $tabsTitles['general'] = __($langGroup, 'Generales');
                 $tabsItems['general'] = $this->render("{$baseViewDir}/inc/configuration-tabs/general", $data, false, false);
             }

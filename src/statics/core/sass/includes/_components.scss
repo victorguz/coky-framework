@@ -2,6 +2,13 @@
 @import "components/container-aside";
 @import "components/sidebar";
 @import "components/buttons";
+@import "components/inputs";
 @import "components/others";
 @import "components/chat-component";
 @import "components/scrollbar";
+@import "components/spectrum";
+
+
+//it overwrite all styles
+@import "components/bootstrap"; //general classes
+@import "components/semantic"; //semantic classes
