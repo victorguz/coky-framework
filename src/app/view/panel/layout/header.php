@@ -12,36 +12,36 @@
     <?php load_css(['base_url' => "", 'custom_url' => ""]) ?>
     <style>
         :root {
-            --primary-color: <?= get_config("primary-color"); ?>;
-            --secondary-color: <?= get_config("secondary-color"); ?>;
+            --primary-color: <?= get_config("primary_color"); ?>;
+            --secondary-color: <?= get_config("secondary_color"); ?>;
 
-            --back-color: <?= get_config("back-color"); ?>;
+            --back-color: <?= get_config("back_color"); ?>;
 
-            --navbar-color: <?= get_config("navbar-color"); ?>;
-            --navbar-hover-color: <?= get_config("navbar-hover-color"); ?>;
-            --navbar-height: <?= get_config("navbar-height"); ?>;
-            --navbar-icon-size: <?= get_config("navbar-icon-size"); ?>;
+            --navbar-color: <?= get_config("navbar_color"); ?>;
+            --navbar-hover-color: <?= get_config("navbar_hover_color"); ?>;
+            --navbar-height: <?= get_config("navbar_height"); ?>;
+            --navbar-icon-size: <?= get_config("navbar_icon_size"); ?>;
 
-            --gray-color: <?= get_config("gray-color"); ?>;
-            --dark-color: <?= get_config("dark-color"); ?>;
+            --gray-color: <?= get_config("gray_color"); ?>;
+            --dark-color: <?= get_config("dark_color"); ?>;
 
-            --danger-color: <?= get_config("danger-color"); ?>;
-            --alert-color: <?= get_config("alert-color"); ?>;
-            --success-color: <?= get_config("success-color"); ?>;
-            --info-color: <?= get_config("info-color"); ?>;
+            --danger-color: <?= get_config("danger_color"); ?>;
+            --alert-color: <?= get_config("alert_color"); ?>;
+            --success-color: <?= get_config("success_color"); ?>;
+            --info-color: <?= get_config("info_color"); ?>;
 
-            --default-radius: <?= get_config("default-radius"); ?>;
-            --dropdown-radius: <?= get_config("dropdown-radius"); ?>;
-            --card-radius: <?= get_config("card-radius"); ?>;
-            --field-radius: <?= get_config("field-radius"); ?>;
+            --default-radius: <?= get_config("default_radius"); ?>;
+            --dropdown-radius: <?= get_config("dropdown_radius"); ?>;
+            --card-radius: <?= get_config("card_radius"); ?>;
+            --field-radius: <?= get_config("field_radius"); ?>;
 
 
-            --sidebar-color: <?= get_config("sidebar-color"); ?>;
-            --sidebar-icon-size: <?= get_config("sidebar-icon-size"); ?>;
-            --sidebar-text-color: <?= get_config("sidebar-text-color"); ?>;
-            --sidebar-text-hover-color: <?= get_config("sidebar-text-hover-color"); ?>;
-            --sidebar-button-hover-color: <?= get_config("sidebar-button-hover-color"); ?>;
-            --sidebar-button-selected-color: <?= get_config("sidebar-button-selected-color"); ?>;
+            --sidebar-color: <?= get_config("sidebar_color"); ?>;
+            --sidebar-icon-size: <?= get_config("sidebar_icon_size"); ?>;
+            --sidebar-text-color: <?= get_config("sidebar_text_color"); ?>;
+            --sidebar-text-hover-color: <?= get_config("sidebar_text-hover_color"); ?>;
+            --sidebar-button-hover-color: <?= get_config("sidebar_button_hover_color"); ?>;
+            --sidebar-button-selected-color: <?= get_config("sidebar_button_selected_color"); ?>;
 
         }
     </style>

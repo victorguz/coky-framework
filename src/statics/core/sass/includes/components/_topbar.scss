@@ -47,7 +47,8 @@
 
     }
 
-    .item {
+    >.item,
+    .blanc>.item {
         width: calc(15px + var(--navbar-height));
         height: $navbar-height;
         padding: 0;
@@ -90,7 +91,7 @@
             margin: 0 auto;
             width: $avatar-size;
             height: $avatar-size;
-            background-color: $primary-color;
+            background-color: $gray-color;
             border-radius: 100%;
             border: 1px solid $gray-color;
 

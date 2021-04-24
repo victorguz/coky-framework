@@ -83,38 +83,38 @@ $config['developer'] = 'Victorguz and Ivanlnd';
 
 
 //New Styles -- Sizes are PX
-$config["navbar-color"] = "#ffffff";
-$config["navbar-hover-color"] = "#dadde1";
-$config["navbar-height"] = "48px";
-$config["navbar-icon-size"] = "25px";
+$config["navbar_color"] = "#ffffff";
+$config["navbar_hover_color"] = "#dadde1";
+$config["navbar_height"] = "48px";
+$config["navbar_icon_size"] = "25px";
 
-$config["back-color"] = "#F0F2F5";
+$config["back_color"] = "#F0F2F5";
 
-$config["primary-color"] = "#A6C634";
-$config["secondary-color"] = "#343a40";
+$config["primary_color"] = "#A6C634";
+$config["secondary_color"] = "#343a40";
 
-$config["gray-color"] = "#DBE0DC";
-$config["dark-color"] = "#15214B";
+$config["gray_color"] = "#DBE0DC";
+$config["dark_color"] = "#15214B";
 
-$config["danger-color"] = "#FA6F6F";
-$config["alert-color"] = "#f1bc2a";
-$config["success-color"] = "#4cca79";
-$config["info-color"] = "#1999c0";
+$config["danger_color"] = "#FA6F6F";
+$config["alert_color"] = "#f1bc2a";
+$config["success_color"] = "#4cca79";
+$config["info_color"] = "#1999c0";
 
-$config["sidebar-color"] = "#F0F2F5";
-$config["sidebar-icon-size"] = "25px";
-$config["sidebar-button-selected-color"] = "#ffffff";
-$config["sidebar-button-hover-color"] = "#dadde1";
+$config["sidebar_color"] = "#F0F2F5";
+$config["sidebar_icon_size"] = "25px";
+$config["sidebar_button_selected_color"] = "#ffffff";
+$config["sidebar_button_hover_color"] = "#dadde1";
 
-$config["sidebar-text-color"] = "#000000";
-$config["sidebar-text-hover-color"] = "#000000";
+$config["sidebar_text_color"] = "#000000";
+$config["sidebar_text_hover_color"] = "#000000";
 
 
 
-$config["default-radius"] = "5px";
-$config["dropdown-radius"] = "5px";
-$config["card-radius"] = "5px";
-$config["field-radius"] = "5px";
+$config["default_radius"] = "5px";
+$config["dropdown_radius"] = "5px";
+$config["card_radius"] = "5px";
+$config["field_radius"] = "5px";
 
 
 //Old styles

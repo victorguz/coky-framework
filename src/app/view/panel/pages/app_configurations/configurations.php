@@ -10,25 +10,11 @@ $isFirstItem = true;
 
 <div class="container-medium">
 
-    <!-- <div class="ui top attached tabular menu">
-        <?php foreach ($tabsTitles as $name => $text) : ?>
-            <?php if ($isFirstTitle) : $isFirstTitle = false; ?>
-                <a class="item active" data-tab="<?= $name; ?>"><?= $text; ?></a>
-            <?php else : ?>
-                <a class="item" data-tab="<?= $name; ?>"><?= $text; ?></a>
-            <?php endif; ?>
-        <?php endforeach; ?>
-    </div> -->
-
     <?php foreach ($tabsItems as $name => $content) : ?>
         <?php if ($isFirstItem) : $isFirstItem = false; ?>
-            <!-- <div class="ui bottom attached tab segment active" data-tab="<?= $name; ?>"> -->
             <?= $content; ?>
-            <!-- </div> -->
         <?php else : ?>
-            <!-- <div class="ui bottom attached tab segment" data-tab="<?= $name; ?>"> -->
             <?= $content; ?>
-            <!-- </div> -->
         <?php endif; ?>
     <?php endforeach; ?>
 

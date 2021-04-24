@@ -1039,17 +1039,6 @@ class AppConfigController extends AdminPanelController
                     'actionGenericURL' => $actionGenericURL,
                 ];
 
-                $tabsTitles['styles'] = __($langGroup, 'Estilos');
-                $tabsItems['styles'] = $this->render("{$baseViewDir}/inc/configuration-tabs/styles", $data, false, false);
-            }
-
-            if ($hasPermissionsGenerals) {
-
-                $data = [
-                    'langGroup' => $langGroup,
-                    'actionGenericURL' => $actionGenericURL,
-                ];
-
                 $tabsTitles['general'] = __($langGroup, 'Generales');
                 $tabsItems['general'] = $this->render("{$baseViewDir}/inc/configuration-tabs/general", $data, false, false);
             }
@@ -1101,7 +1090,7 @@ class AppConfigController extends AdminPanelController
                 'name',
                 null,
                 function ($value) {
-                    return is_string($value);
+                    return is_string($value) || is_array($value);
                 }
             ),
             new Parameter(
@@ -1145,6 +1134,13 @@ class AppConfigController extends AdminPanelController
                     return self::parseTo($value, self::PARSE_TYPE_BOOL) === true;
                 }
             ),
+            new Parameter(
+                'reload',
+                null,
+                function ($value) {
+                    return is_bool($value) || is_string($value);
+                }
+            ),
         ]);
 
         $parametersExcepted->setInputValues($req->getParsedBody());
@@ -1157,37 +1153,74 @@ class AppConfigController extends AdminPanelController
             $value = $parametersExcepted->getValue('value');
             $parse = $parametersExcepted->getValue('parse');
             $merge = $parametersExcepted->getValue('merge');
+            $reload = $parametersExcepted->getValue('reload');
+            $reload = is_bool($reload) ? $reload : ($reload == "true" || $reload == 1 ? true : false);
 
-            $option = new AppConfigModel($name);
-            $optionExists = !is_null($option->id);
+            if (is_array($name)) {
+                $values = $parametersExcepted->getValue('value');
+                foreach ($name as $key => $val) {
+                    $option = new AppConfigModel($val);
+                    $optionExists = !is_null($option->id);
 
-            if ($optionExists && $merge) {
+                    if ($optionExists && isset($merge[$key]) && $merge[$key]) {
 
-                $oldValue = $option->value;
-                if (
-                    (is_array($oldValue) || $oldValue instanceof \stdClass)
-                    &&
-                    (is_array($value) || $value instanceof \stdClass)
-                ) {
-                    $value = self::recursiveMergeArray($oldValue, $value);
+                        $oldValue = $option->value;
+                        if (
+                            (is_array($oldValue) || $oldValue instanceof \stdClass)
+                            &&
+                            (is_array($values[$key]) || $values[$key] instanceof \stdClass)
+                        ) {
+                            $values[$key] = self::recursiveMergeArray($oldValue, $values[$key]);
+                        }
+                    }
+
+                    if (isset($parse[$key])) {
+                        $values[$key] = self::processGenericInputValues($values[$key], $parse[$key]);
+                    }
+
+                    $option->value = $values[$key];
+
+                    if ($optionExists) {
+
+                        $success = $option->update();
+                    } else {
+
+                        $option->name = $val;
+                        $success = $option->save();
+                    }
+                }
+            } else {
+                $option = new AppConfigModel($name);
+                $optionExists = !is_null($option->id);
+
+                if ($optionExists && $merge) {
+
+                    $oldValue = $option->value;
+                    if (
+                        (is_array($oldValue) || $oldValue instanceof \stdClass)
+                        &&
+                        (is_array($value) || $value instanceof \stdClass)
+                    ) {
+                        $value = self::recursiveMergeArray($oldValue, $value);
+                    }
+                }
+
+                $value = self::processGenericInputValues($value, $parse);
+
+                $option->value = $value;
+
+                if ($optionExists) {
+
+                    $success = $option->update();
+                } else {
+
+                    $option->name = $name;
+                    $success = $option->save();
                 }
             }
 
-            $value = self::processGenericInputValues($value, $parse);
-
-            $option->value = $value;
-
-            if ($optionExists) {
-
-                $success = $option->update();
-            } else {
-
-                $option->name = $name;
-                $success = $option->save();
-            }
-
             if ($success) {
-
+                $result->setValue("reload", $reload);
                 $result
                     ->setMessage($message_create)
                     ->operation($operation_name)
