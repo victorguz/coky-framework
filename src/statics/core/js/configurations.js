@@ -1,3 +1,5 @@
+$("[data-content]").popup()
+
 /**
  * Datos accesibles globalmente
  * @namespace

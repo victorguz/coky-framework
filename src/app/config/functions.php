@@ -40,7 +40,19 @@ function menu_sidebar_items(\stdClass $user): string
     $groups = get_config('menus')['sidebar'];
     return $groups->getHtml();
 }
-
+/**
+ * menu_topbar_items
+ *
+ * Devuelve un string con los ítems del menú lateral
+ *
+ * @param \stdClass $user
+ * @return string
+ */
+function menu_topbar_items(\stdClass $user): string
+{
+    $groups = get_config('menus')['topbar'];
+    return $groups->getHtml();
+}
 /**
  * datatables_proccessing_with_options
  *

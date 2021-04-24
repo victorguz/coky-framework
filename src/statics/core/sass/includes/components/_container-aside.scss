@@ -52,19 +52,24 @@ $itemPadding:0.5rem;
                 align-items: center;
                 text-align: center;
                 border: none;
+                gap: 10px;
 
                 background-color: $sidebar-color;
                 border-radius: 0px 7px 7px 0px;
-                margin-bottom: 10px;
+                margin-bottom: 5px;
 
                 &.no-text {
                     height: $navbar-height;
                     min-width: $navbar-height;
                 }
 
-                &.no-icon {
+                &.no-icon,
+                &.as-row {
                     height: $navbar-height;
-                    min-width: 100px !important;
+                    min-width: 200px;
+                    justify-content: start;
+                    flex-direction: row !important;
+                    text-align: left;
                 }
 
                 &::after,
@@ -83,7 +88,7 @@ $itemPadding:0.5rem;
 
                 &.current {
                     background-color: $sidebar-button-selected-color;
-                    box-shadow: $shadow-md;
+                    box-shadow: $shadow-fb;
                     border-radius: 0px 7px 7px 0px !important;
                 }
 
@@ -121,12 +126,12 @@ $itemPadding:0.5rem;
             transition: all ease-in 0.5s;
 
             position: absolute;
-            left: -200px;
-            top: 0;
-            z-index: 300;
+            left: -1000px;
+            top: $navbar-height;
+            z-index: 9999;
 
             height: calc(100vh - var(--navbar-height));
-            // width: 500px;
+            background-color: $sidebar-color;
 
             &.overlay {
                 left: 0;

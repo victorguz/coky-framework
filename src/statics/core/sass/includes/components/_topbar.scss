@@ -2,7 +2,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 100;
+    z-index: 10000;
 
     width: 100%;
     // display: flex;
@@ -28,15 +28,6 @@
 
         color: $sidebar-text-color !important;
 
-        width: $navbar-height;
-        height: $navbar-height;
-        padding: 0;
-
-        &::before,
-        &::after {
-            background: none;
-        }
-
         &:hover,
         &:active,
         &:focus,
@@ -56,123 +47,135 @@
 
     }
 
-    .blanc {
+    .item {
+        width: calc(15px + var(--navbar-height));
+        height: $navbar-height;
+        padding: 0;
+
+        color: $sidebar-text-color;
         display: flex;
-        justify-content: flex-end;
-        width: 100%;
+        align-items: center;
+        justify-content: center;
 
-        >* {
 
-            &::before,
-            &::after {
-                background: none;
-            }
 
-            &:hover,
-            &:active,
-            &:focus,
-            &.active {
-                background-color: $navbar-hover-color !important;
-            }
+        &.no-icon {
+            width: fit-content;
         }
 
-        .ui.dropdown {
-            color: $sidebar-text-color;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        &::before,
+        &::after {
+            background: none;
+        }
 
-            width: $navbar-height;
-            height: $navbar-height;
-            padding: 0;
+        &:hover,
+        &:active,
+        &:focus,
+        &.active {
+            background-color: $navbar-hover-color !important;
+        }
 
-            .ionicono {
-                width: $navbar-icon-size;
-                height: $navbar-icon-size;
-            }
+        .ionicono {
+            width: $navbar-icon-size;
+            height: $navbar-icon-size;
+        }
 
-            .avatar {
-                $avatar-size: 90%;
+    }
 
-                margin: 0 auto;
-                width: $avatar-size;
-                height: $avatar-size;
-                background-color: $primary-color;
+    .ui.dropdown {
+
+        .avatar {
+
+            margin: 0 auto;
+            width: $avatar-size;
+            height: $avatar-size;
+            background-color: $primary-color;
+            border-radius: 100%;
+            border: 1px solid $gray-color;
+
+            img {
+                max-width: 100%;
                 border-radius: 100%;
-                border: 1px solid $gray-color;
-
-                img {
-                    max-width: 100%;
-                    border-radius: 100%;
-                    object-fit: cover;
-                }
+                object-fit: cover;
             }
 
-            .menu {
-                min-width: 300px;
-                margin-top: 5px;
-                border-radius: $dropdown-radius;
+        }
 
-                border: $border;
-                // box-shadow: none;
+        .menu {
+            min-width: 300px;
+            margin-top: 5px;
+            border-radius: $dropdown-radius;
 
-                @media screen and (max-width:992px) {
-                    min-width: auto;
+            border: $border;
+            // box-shadow: none;
+
+            @media screen and (max-width:992px) {
+                min-width: auto;
+            }
+
+            .item {
+                display: flex !important;
+                align-items: center;
+
+                &:first-child {
+                    border-top-left-radius: $dropdown-radius;
+                    border-top-right-radius: $dropdown-radius;
                 }
 
-                .item {
-                    display: flex !important;
+                &:last-child {
+                    border-bottom-left-radius: $dropdown-radius;
+                    border-bottom-right-radius: $dropdown-radius;
+                }
+
+                .ionicono {
+                    width: $sidebar-icon-size;
+                    height: $sidebar-icon-size;
+                    margin-right: 10px;
+                }
+
+                &[user-avatar] {
+                    display: flex;
                     align-items: center;
+                    justify-content: flex-start;
 
-                    &:first-child {
-                        border-top-left-radius: $dropdown-radius;
-                        border-top-right-radius: $dropdown-radius;
-                    }
-
-                    &:last-child {
-                        border-bottom-left-radius: $dropdown-radius;
-                        border-bottom-right-radius: $dropdown-radius;
-                    }
-
-                    .figure {
-                        width: 1.6rem;
-                        height: 1.6rem;
+                    .avatar {
+                        min-width: $navbar-height;
+                        min-height: $navbar-height;
+                        width: $navbar-height;
+                        height: $navbar-height;
                         margin-right: 10px;
 
-                        .ionicono {
+                        img {
                             width: 100%;
                             height: 100%;
                         }
                     }
 
-                    &.user {
+                    span {
+                        width: 100%;
+                        font-size: 1.1rem;
+                        text-overflow: ellipsis;
+                        max-width: 260px;
+                        white-space: nowrap;
+                        overflow: hidden;
                         display: flex;
-                        justify-content: flex-start;
-                        align-items: center;
-
-                        .figure {
-                            width: fit-content;
-                            height: fit-content;
-
-                            img {
-                                width: 50px;
-                                height: 50px;
-                            }
-                        }
-
-                        .text {
-                            font-size: 1.1rem;
-                            text-overflow: ellipsis;
-                            max-width: 260px;
-                            white-space: nowrap;
-                            overflow: hidden;
-                        }
+                        flex-direction: column;
                     }
                 }
             }
-
-
         }
+
+
+    }
+
+    .blanc {
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+
+        >* {}
+
+
 
     }
 }

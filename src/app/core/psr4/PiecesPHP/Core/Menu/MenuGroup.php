@@ -95,14 +95,6 @@ class MenuGroup
             'rules' => ['bool'],
             'default' => true,
         ],
-        'show_text' => [
-            'rules' => ['bool'],
-            'default' => true,
-        ],
-        'show_icon' => [
-            'rules' => ['bool'],
-            'default' => true,
-        ],
         'asLink' => [
             'rules' => ['bool'],
             'default' => false,
@@ -136,6 +128,18 @@ class MenuGroup
         'position' => [
             'rules' => ['integer'],
             'default' => -1,
+        ],
+        'show_text' => [
+            'rules' => ['bool'],
+            'default' => true,
+        ],
+        'show_icon' => [
+            'rules' => ['bool'],
+            'default' => false,
+        ],
+        'as_row' => [
+            'rules' => ['bool'],
+            'default' => false,
         ],
     ];
 
@@ -382,6 +386,7 @@ class MenuGroup
         $group_groups = $this->groups;
         $group_show_text = $this->show_text;
         $group_show_icon = $this->show_icon;
+        $group_as_row = $this->as_row == true ? " as-row " : "";
 
         if ($group_visible) {
 
@@ -404,9 +409,9 @@ class MenuGroup
             }
 
             if (mb_strlen(trim($group_icon)) > 0 && $group_show_icon) {
-                $group_container->setAttribute('class', 'item');
+                $group_container->setAttribute('class', 'item' . $group_as_row);
 
-                if (strpos($group_icon, "ionicono") !== false) {
+                if (strpos($group_icon, "div") !== false) {
                     $group_name_icon = "$group_icon";
                 } else {
                     $group_name_icon = "<i class='icon $group_icon'></i>";
@@ -414,11 +419,11 @@ class MenuGroup
                 if ($group_show_text) {
                     $group_name = $group_name_icon . "<span>$group_name</span>";
                 } else {
-                    $group_container->setAttribute('class', 'item no-text');
+                    $group_container->setAttribute('class', 'item no-text' . $group_as_row);
                     $group_name = $group_name_icon;
                 }
             } else {
-                $group_container->setAttribute('class', 'item no-icon');
+                $group_container->setAttribute('class', 'item no-icon' . $group_as_row);
                 $group_name = "<span>$group_name</span>";
             }
 
@@ -430,15 +435,13 @@ class MenuGroup
                 $last_class = $group_container->getAttribute('class');
                 if ($group_current) {
                     if ($group_as_link) {
-                        $group_container->setAttribute('class', 'ui dropdown current as-link ' . $last_class);
+                        $group_container->setAttribute('class', 'current as-link ' . $group_as_row . $last_class);
                     } else {
-                        $group_container->setAttribute('class', 'ui dropdown current ' . $last_class);
+                        $group_container->setAttribute('class', 'ui dropdown current ' . $group_as_row . $last_class);
                     }
                 } else {
-                    $group_container->setAttribute('class', 'ui dropdown ' . $last_class);
+                    $group_container->setAttribute('class', 'ui dropdown ' . $group_as_row . $last_class);
                 }
-
-
 
                 if ($group_items !== false) {
                     $group_menu_container = new HtmlElement('div');

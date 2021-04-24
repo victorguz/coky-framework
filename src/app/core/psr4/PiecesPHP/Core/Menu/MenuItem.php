@@ -51,7 +51,14 @@ class MenuItem
      * @var int
      */
     protected $position;
-
+    /**
+     * @var boolean
+     */
+    protected $show_icon;
+    /**
+     * @var string
+     */
+    protected $icon;
     /**
      * @var array
      */
@@ -89,6 +96,14 @@ class MenuItem
         'position' => [
             'rules' => ['integer'],
             'default' => -1,
+        ],
+        'show_icon' => [
+            'rules' => ['bool'],
+            'default' => false,
+        ],
+        'icon' => [
+            'rules' => ['is_string'],
+            'default' => null,
         ],
     ];
 
@@ -238,15 +253,32 @@ class MenuItem
         $attr = $this->attributes;
         $current = $this->isCurrent();
         $class = is_array($this->class) ? $this->class : [$this->class];
+        $text = "";
+        $show_icon = $this->show_icon;
+        $icon = $this->icon;
+
+        if (mb_strlen(trim($icon)) > 0 && $show_icon) {
+            if (strpos($icon, "div") !== false) {
+                $text = "$icon";
+            } else {
+                $text = "<i class='icon $icon'></i>";
+            }
+            $text .= "<span>$this->text</span>";
+        } else {
+            $text = "<span>$this->text</span>";
+        }
+
         if ($current) {
             $class[] = 'current';
         }
         $class = implode(' ', $class);
-        $tag = $current ? 'div' : 'a';
+        $tag = $current || $this->href == "#" ? 'div' : 'a';
 
-        $a = new HtmlElement($tag, $this->text, [], $attr);
-        $a->setAttribute('class', $class);
-        $a->setAttribute('href', $this->href);
+        $a = new HtmlElement($tag, $text, [], $attr);
+        $a->setAttribute('class', $class . (!$show_icon ? " no-icon" : ""));
+        if ($this->href != "#") {
+            $a->setAttribute('href', $this->href);
+        }
 
         return $a;
     }
