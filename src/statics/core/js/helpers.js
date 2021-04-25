@@ -1265,8 +1265,7 @@ function genericFormHandler(selectorForm = 'form[pcs-generic-handler-js]', optio
  * 
  * @returns {void} 
  */
-function showGenericLoader(name = 'DEFAULT', classPrefix = 'ui-pcs-') {
-
+function showGenericLoader(name = 'DEFAULT', classPrefix = 'ui-pcs-', text = "") {
 	classPrefix = typeof classPrefix == 'string' && classPrefix.length ? classPrefix : 'ui-pcs-'
 
 	name = typeof name == 'string' && name.length > 0 ? name : 'DEFAULT'
@@ -1274,21 +1273,22 @@ function showGenericLoader(name = 'DEFAULT', classPrefix = 'ui-pcs-') {
 	let contentLoader = document.createElement('div')
 	let boxLoader = document.createElement('div')
 	let loader = document.createElement('div')
-
-	contentLoader.classList.add(`${classPrefix}global-loader`, 'active')
-	boxLoader.classList.add(`${classPrefix}box`)
-	loader.classList.add(`${classPrefix}loader`)
+	contentLoader.style.position = "absolute";
+	contentLoader.style.zIndex = 90000;
+	contentLoader.classList.add(`${classPrefix}global-loader`, "ui", "inverted", "dimmer", 'active')
+	boxLoader.classList.add(`${classPrefix}box`, "ui", "text", "loader")
+	boxLoader.innerHTML = text;
+	// loader.classList.add(`${classPrefix}loader`)
 
 	contentLoader.setAttribute('data-name', name)
 
 	let currentActive = document.querySelector(`.${classPrefix}global-loader[data-name="${name}"]`)
 
 	if (!(currentActive instanceof HTMLElement)) {
-		boxLoader.appendChild(loader)
+		// boxLoader.appendChild(loader)
 		contentLoader.appendChild(boxLoader)
 		document.body.appendChild(contentLoader)
 	}
-
 }
 
 /**

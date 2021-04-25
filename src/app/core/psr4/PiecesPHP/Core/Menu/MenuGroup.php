@@ -256,6 +256,16 @@ class MenuGroup
     }
 
     /**
+     * @param bool $show_text
+     * @return static
+     */
+    public function setShowText(bool $show_text)
+    {
+        $this->show_text = $show_text;
+        return $this;
+    }
+
+    /**
      * @return int
      */
     public function getPosition()

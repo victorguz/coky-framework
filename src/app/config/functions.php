@@ -35,9 +35,13 @@ function menu_header_items(\stdClass $user): string
  * @param \stdClass $user
  * @return string
  */
-function menu_sidebar_items(\stdClass $user): string
+function menu_sidebar_items(\stdClass $user, bool $is_config = false): string
 {
-    $groups = get_config('menus')['sidebar'];
+    if ($is_config) {
+        $groups = get_config('menus')['sidebar_config'];
+    } else {
+        $groups = get_config('menus')['sidebar'];
+    }
     return $groups->getHtml();
 }
 /**
@@ -53,6 +57,7 @@ function menu_topbar_items(\stdClass $user): string
     $groups = get_config('menus')['topbar'];
     return $groups->getHtml();
 }
+
 /**
  * datatables_proccessing_with_options
  *

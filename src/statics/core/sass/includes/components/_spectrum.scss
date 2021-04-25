@@ -17,6 +17,7 @@
 
     width: fit-content;
     height: fit-content;
+    // padding: 0 !important;
 
 
     //when selector is active
@@ -40,16 +41,16 @@
 
     .spectrum-colorpicker-preview {
         margin: 0;
-        border-radius: 100px;
+        border-radius: $rounded;
         border: none;
         box-shadow: $shadow-fb;
-        width: 40px;
-        height: 40px;
+        width: 60px;
+        height: 60px;
 
         //selector
         .spectrum-colorpicker-preview-inner {
 
-            border-radius: 100px;
+            border-radius: $rounded;
             border: none !important;
 
             width: 100%;

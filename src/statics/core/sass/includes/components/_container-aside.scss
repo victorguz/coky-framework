@@ -1,6 +1,7 @@
 $itemsFontSize:1rem;
 $itemsBackground: $sidebar-color;
 $itemPadding:0.5rem;
+$topPadding:2rem;
 
 .#{$globalClassPcs}.container-sidebar {
     position: relative;
@@ -36,7 +37,7 @@ $itemPadding:0.5rem;
             height: calc(100vh - var(--navbar-height));
             width: fit-content;
 
-            padding-top: 10px;
+            padding-top: $topPadding;
             padding-right: 10px;
 
             // pointer-events: none;
@@ -91,6 +92,7 @@ $itemPadding:0.5rem;
                     background-color: $sidebar-button-selected-color;
                     box-shadow: $shadow-fb;
                     border-radius: 0px 7px 7px 0px !important;
+                    border-left: 3px solid $primary-color;
                 }
 
                 .ionicono {
@@ -151,29 +153,17 @@ $itemPadding:0.5rem;
         max-height: calc(100vh - var(--navbar-height));
         height: calc(100vh - var(--navbar-height));
 
-        padding: 2rem;
-        padding-left: 80px;
-        // background-color: $back-color;
+        padding: $topPadding 2rem;
 
-        // border-radius: 15px 0 0 0;
-        // box-shadow: $shadow;
-        // margin-left: 10px;
+        >* {
+            max-width: 1440px;
+            margin-bottom: 15px;
+        }
 
         @media screen and (max-width:992px) {
             padding: 1rem;
         }
 
-        table {
-
-            &,
-            & * {
-                word-break: initial !important;
-            }
-        }
-    }
-
-    >.no-padding {
-        padding: 0;
     }
 
 }

@@ -1,58 +1,62 @@
-@import 'includes/variables';
-//Colors
-// $colorSecond: rgb(40, 100, 133);
-// $colorThird: rgb(150, 150, 150);
+// @import 'includes/variables';
+// // Colors
+// // $colorSecond: rgb(40, 100, 133);
+// // $colorThird: rgb(150, 150, 150);
 
-//Misc
-// $globalClassPcs: 'ui-pcs';
+// //Misc
+// // $globalClassPcs: 'ui-pcs';
+// [coky-generic-loader] {
+//     position: absolute !important;
+//     z-index: 90000 !important;
+// }
 
-.#{$globalClassPcs}-global-loader {
+// .#{$globalClassPcs}-global-loader {
 
-    position: fixed;
-    z-index: 1000;
-    top: 0px;
-    left: 0px;
-    display: none;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.85);
+//     position: fixed;
+//     z-index: 1000;
+//     top: 0px;
+//     left: 0px;
+//     display: none;
+//     width: 100%;
+//     height: 100%;
+//     background-color: rgba(255, 255, 255, 0.85);
 
-    &.active {
-        display: block;
-    }
+//     &.active {
+//         display: block;
+//     }
 
-    .#{$globalClassPcs}-box {
+//     .#{$globalClassPcs}-box {
 
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        display: block;
-        width: 300px;
-        max-width: max-content;
-        max-height: max-content;
+//         position: fixed;
+//         top: 50%;
+//         left: 50%;
+//         transform: translate(-50%, -50%);
+//         display: block;
+//         width: 300px;
+//         max-width: max-content;
+//         max-height: max-content;
 
 
-        .#{$globalClassPcs}-loader {
-            border: 3px solid rgba($gray-color, 0.5);
-            border-top: 6px solid $primary-color;
-            // border-bottom: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 2s linear infinite !important;
-        }
+//         .#{$globalClassPcs}-loader {
+//             border: 3px solid rgba($gray-color, 0.5);
+//             border-top: 6px solid $primary-color;
+//             // border-bottom: none;
+//             border-radius: 50%;
+//             width: 50px;
+//             height: 50px;
+//             animation: spin 2s linear infinite !important;
+//         }
 
-    }
+//     }
 
-    @keyframes spin {
-        0% {
-            transform: rotate(0deg);
-        }
+//     @keyframes spin {
+//         0% {
+//             transform: rotate(0deg);
+//         }
 
-        100% {
-            transform: rotate(360deg);
-        }
-    }
+//         100% {
+//             transform: rotate(360deg);
+//         }
+//     }
 
-}
+// }

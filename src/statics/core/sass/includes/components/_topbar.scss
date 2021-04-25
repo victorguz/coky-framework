@@ -72,8 +72,24 @@
         &:hover,
         &:active,
         &:focus,
-        &.active {
+        &.active,
+        &.current {
             background-color: $navbar-hover-color !important;
+
+            &.brand {
+                background-color: transparent !important;
+            }
+        }
+
+        &.brand {
+            width: fit-content;
+            padding: 0 20px;
+
+            img {
+                width: calc(var(--navbar-height)*.8);
+                height: calc(var(--navbar-height)*.8);
+                object-fit: contain;
+            }
         }
 
         .ionicono {

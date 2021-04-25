@@ -43,21 +43,24 @@ if (is_object($user)) :
     $show_icon = true;
     $as_row = true;
 
+    $home_button = new MenuGroup([
+        'name' => __(ADMIN_MENU_LANG_GROUP, 'Inicio'),
+        'icon' => getIcon("home outline"),
+        'show_text' => $show_text,
+        'show_icon' => $show_icon,
+        'as_row' => $as_row,
+        'visible' => Roles::hasPermissions('admin', $current_type_user),
+        'asLink' => true,
+        'href' => get_route('admin'),
+    ]);
+
+
     /**
      * Sidebar container
      */
     $sidebar = new MenuGroupCollection([
         'items' => [
-            new MenuGroup([
-                'name' => __(ADMIN_MENU_LANG_GROUP, 'Inicio'),
-                'icon' => getIcon("home outline"),
-                'show_text' => $show_text,
-                'show_icon' => $show_icon,
-                'as_row' => $as_row,
-                'visible' => Roles::hasPermissions('admin', $current_type_user),
-                'asLink' => true,
-                'href' => get_route('admin'),
-            ]),
+            $home_button,
             new MenuGroup([
                 'name' => __("general", "Contactos"),
                 'icon' => getIcon("call outline"),
@@ -146,6 +149,106 @@ if (is_object($user)) :
         ],
     ]);
 
+    $sidebar_config = new MenuGroupCollection([
+        'items' => [
+            new MenuGroup([
+                'name' => __(AppConfigController::LANG_GROUP, 'General'),
+                'visible' => $current_type_user == UsersModel::TYPE_USER_ROOT,
+                'href' =>  AppConfigController::routeName('generals'),
+                'icon' => getIcon("settings-outline"),
+                'show_text' => $show_text,
+                'show_icon' => $show_icon,
+                'as_row' => $as_row,
+                'asLink' => true
+            ]),
+            new MenuGroup([
+                'name' => __(AppConfigController::LANG_GROUP, 'Logotipos'),
+                'visible' => AppConfigController::allowedRoute('logos-favicons'),
+                'href' =>  AppConfigController::routeName('logos-favicons'),
+                'icon' => getIcon("heart-outline"),
+                'show_text' => $show_text,
+                'show_icon' => $show_icon,
+                'as_row' => $as_row,
+                'asLink' => true
+            ]),
+            new MenuGroup([
+                'name' => __(AppConfigController::LANG_GROUP, 'Fondos del login'),
+                'visible' => AppConfigController::allowedRoute('backgrounds'),
+                'href' =>  AppConfigController::routeName('backgrounds'),
+                'icon' => getIcon("images-outline"),
+                'show_text' => $show_text,
+                'show_icon' => $show_icon,
+                'as_row' => $as_row,
+                'asLink' => true
+            ]),
+            new MenuGroup([
+                'name' => __(AppConfigController::LANG_GROUP, 'Ajustes SEO'),
+                'visible' => AppConfigController::allowedRoute('seo'),
+                'href' =>  AppConfigController::routeName('seo'),
+                'icon' => getIcon("search-outline"),
+                'show_text' => $show_text,
+                'show_icon' => $show_icon,
+                'as_row' => $as_row,
+                'asLink' => true
+            ]),
+            new MenuGroup([
+                'name' => __(AppConfigController::LANG_GROUP, 'Actualizar sitemap'),
+                'visible' => AppConfigController::allowedRoute('generals-sitemap-create'),
+                'attributes' => [
+                    "data-url" => AppConfigController::routeName('generals-sitemap-create'), "sitemap-update-trigger" => ""
+                ],
+                'icon' => getIcon("location-outline"),
+                'show_text' => $show_text,
+                'show_icon' => $show_icon,
+                'as_row' => $as_row,
+                'asLink' => true
+            ]),
+            new MenuGroup([
+                'name' => __(AppConfigController::LANG_GROUP, 'Configuración de emails'),
+                'visible' => AppConfigController::allowedRoute('email'),
+                'href' =>  AppConfigController::routeName('email'),
+                'icon' => getIcon("mail-outline"),
+                'show_text' => $show_text,
+                'show_icon' => $show_icon,
+                'as_row' => $as_row,
+                'asLink' => true
+            ]),
+            new MenuGroup([
+                'name' => __(AppConfigController::LANG_GROUP, 'Rutas y permisos'),
+                'visible' => Roles::hasPermissions('configurations-routes', $current_type_user),
+                'href' =>  get_route('configurations-routes', [], true),
+                'icon' => getIcon("person-add-outline"),
+                'show_text' => $show_text,
+                'show_icon' => $show_icon,
+                'as_row' => $as_row,
+                'asLink' => true
+            ]),
+            new MenuGroup([
+                'name' => __(AppConfigController::LANG_GROUP, 'Log de errores'),
+                'visible' => Roles::hasPermissions('admin-error-log', $current_type_user),
+                'href' =>  get_route('admin-error-log', [], true),
+                'icon' => getIcon("bug-outline"),
+                'show_text' => $show_text,
+                'show_icon' => $show_icon,
+                'as_row' => $as_row,
+                'asLink' => true
+            ]),
+            new MenuGroup([
+                'name' => __(ADMIN_MENU_LANG_GROUP, 'Soporte técnico'),
+                'visible' => Roles::hasPermissions('tickets-create', $current_type_user),
+                'attributes' => [
+                    'support-button-js' => ""
+                ],
+                'icon' => getIcon("help-outline"),
+                'show_text' => $show_text,
+                'show_icon' => $show_icon,
+                'as_row' => $as_row,
+                'asLink' => true
+            ]),
+
+        ]
+    ]);
+
     ////////////////////////About topbar
 
     $topbar_show_icon = true;
@@ -228,75 +331,8 @@ if (is_object($user)) :
                     AppConfigController::allowedRoute('generals-sitemap-create') ||
                     AppConfigController::allowedRoute('email') ||
                     AppConfigController::allowedRoute('os-ticket'),
-                'items' => [
-                    new MenuItem([
-                        'visible' => AppConfigController::allowedRoute('logos-favicons'),
-                        'href' =>  AppConfigController::routeName('logos-favicons'),
-                        'icon' => getIcon("heart-outline"),
-                        'text' => __(AppConfigController::LANG_GROUP, 'Logotipos'),
-                        'show_icon' => $topbar_show_icon,
-                    ]),
-                    new MenuItem([
-                        'visible' => AppConfigController::allowedRoute('backgrounds'),
-                        'href' =>  AppConfigController::routeName('backgrounds'),
-                        'icon' => getIcon("images-outline"),
-                        'text' => __(AppConfigController::LANG_GROUP, 'Fondos del login'),
-                        'show_icon' => $topbar_show_icon,
-                    ]),
-                    new MenuItem([
-                        'visible' => $current_type_user == UsersModel::TYPE_USER_ROOT,
-                        'href' =>  AppConfigController::routeName('generals'),
-                        'icon' => getIcon("hammer-outline"),
-                        'text' => __(AppConfigController::LANG_GROUP, 'Otras configuraciones'),
-                        'show_icon' => $topbar_show_icon,
-                    ]),
-                    new MenuItem([
-                        'visible' => AppConfigController::allowedRoute('seo'),
-                        'href' =>  AppConfigController::routeName('seo'),
-                        'icon' => getIcon("search-outline"),
-                        'text' => __(AppConfigController::LANG_GROUP, 'Ajustes SEO'),
-                        'show_icon' => $topbar_show_icon,
-                    ]),
-                    new MenuItem([
-                        'visible' => AppConfigController::allowedRoute('generals-sitemap-create'),
-                        'attributes' => [
-                            "data-url" => AppConfigController::routeName('generals-sitemap-create'), "sitemap-update-trigger" => ""
-                        ],
-                        'icon' => getIcon("location-outline"),
-                        'text' => __(AppConfigController::LANG_GROUP, 'Actualizar sitemap'),
-                        'show_icon' => $topbar_show_icon,
-                    ]),
-                    new MenuItem([
-                        'visible' => AppConfigController::allowedRoute('email'),
-                        'href' =>  AppConfigController::routeName('email'),
-                        'icon' => getIcon("mail-outline"),
-                        'text' => __(AppConfigController::LANG_GROUP, 'Configuración de emails'),
-                        'show_icon' => $topbar_show_icon,
-                    ]),
-                    new MenuItem([
-                        'visible' => Roles::hasPermissions('configurations-routes', $current_type_user),
-                        'href' =>  get_route('configurations-routes', [], true),
-                        'icon' => getIcon("person-add-outline"),
-                        'text' => __(AppConfigController::LANG_GROUP, 'Rutas y permisos'),
-                        'show_icon' => $topbar_show_icon,
-                    ]),
-                    new MenuItem([
-                        'visible' => Roles::hasPermissions('admin-error-log', $current_type_user),
-                        'href' =>  get_route('admin-error-log', [], true),
-                        'icon' => getIcon("bug-outline"),
-                        'text' => __(AppConfigController::LANG_GROUP, 'Log de errores'),
-                        'show_icon' => $topbar_show_icon,
-                    ]),
-                    new MenuItem([
-                        'visible' => Roles::hasPermissions('tickets-create', $current_type_user),
-                        'attributes' => [
-                            'support-button-js' => ""
-                        ],
-                        'icon' => getIcon("help-outline"),
-                        'text' => __(ADMIN_MENU_LANG_GROUP, 'Soporte técnico'),
-                        'show_icon' => $topbar_show_icon,
-                    ]),
-                ]
+                'href' =>  AppConfigController::routeName('generals'),
+                'asLink' => true
             ]),
             new MenuGroup([
                 // 'name' => __(ADMIN_MENU_LANG_GROUP, 'Configuraciones'),
@@ -356,11 +392,13 @@ if (is_object($user)) :
         ]);
         $langsItem->addItem($langItem);
     }
-
+    // $home_button->setShowText(false);
     //Añadir menús a la configuración global
     $config['menus']['header_dropdown'] = $headerDropdown;
     $config['menus']['sidebar'] = $sidebar;
     $config['menus']['topbar'] = $topbar;
     $config['menus']['languages_link'] = $langsItem;
+    $config['menus']['sidebar_config'] = $sidebar_config;
+    $config['menus']['home_button'] = $home_button;
 
 endif;

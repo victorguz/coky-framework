@@ -627,229 +627,231 @@ class AppConfigController extends AdminPanelController
     {
         $langGroup = self::LANG_GROUP;
 
-        $requestMethod = mb_strtoupper($req->getMethod());
-
         set_title(__(self::LANG_GROUP, 'Configuración de emails'));
 
-        if ($requestMethod == 'GET') {
+        set_custom_assets([
+            'statics/core/js/app_config/email.js',
+        ], 'js');
 
-            set_custom_assets([
-                'statics/core/js/app_config/email.js',
-            ], 'js');
+        set_custom_assets([
+            'statics/core/css/app_config/email.css',
+        ], 'css');
 
-            set_custom_assets([
-                'statics/core/css/app_config/email.css',
-            ], 'css');
+        $emailActionUrl = self::routeName('save-email');
+        $actionGenericURL = AppConfigController::routeName('generals-generic-action');
 
-            $actionURL = self::routeName('email');
+        $element = new MailConfig;
 
-            $element = new MailConfig;
+        $data = [
+            'langGroup' => $langGroup,
+            'emailActionUrl' => $emailActionUrl,
+            'actionGenericURL' => $actionGenericURL,
+            'element' => $element,
+        ];
 
-            $data = [
-                'langGroup' => $langGroup,
-                'actionURL' => $actionURL,
-                'element' => $element,
-            ];
+        $baseViewDir = 'panel/pages/app_configurations';
+        $this->render('panel/layout/header');
+        $this->render("{$baseViewDir}/email", $data);
+        $this->render('panel/layout/footer');
+    }
+    /**
+     * @param Request $req
+     * @param Response $res
+     * @param array $args
+     * @return void
+     */
+    public function saveEmailInfo(Request $req, Response $res, array $args)
+    {
+        //──── Entrada ───────────────────────────────────────────────────────────────────────────
 
-            $baseViewDir = 'panel/pages/app_configurations';
-            $this->render('panel/layout/header');
-            $this->render("{$baseViewDir}/email", $data);
-            $this->render('panel/layout/footer');
-        } elseif ($requestMethod == 'POST') {
+        //Definición de validaciones y procesamiento
+        $expectedParameters = new Parameters([
+            new Parameter(
+                'auto_tls',
+                null,
+                function ($value) {
+                    return ctype_digit($value) || is_int($value) || is_bool($value);
+                },
+                false,
+                function ($value) {
+                    return $value === 1 || $value == '1' || $value === true;
+                }
+            ),
+            new Parameter(
+                'auth',
+                null,
+                function ($value) {
+                    return ctype_digit($value) || is_int($value) || is_bool($value);
+                },
+                false,
+                function ($value) {
+                    return $value === 1 || $value == '1' || $value === true;
+                }
+            ),
+            new Parameter(
+                'host',
+                null,
+                function ($value) {
+                    return is_string($value) && mb_strlen(trim($value)) > 0;
+                },
+                false,
+                function ($value) {
+                    return clean_string($value);
+                }
+            ),
+            new Parameter(
+                'protocol',
+                null,
+                function ($value) {
+                    return is_string($value) && mb_strlen(trim($value)) > 0;
+                },
+                false,
+                function ($value) {
+                    return clean_string($value);
+                }
+            ),
+            new Parameter(
+                'port',
+                null,
+                function ($value) {
+                    return ctype_digit($value) || is_int($value);
+                },
+                false,
+                function ($value) {
+                    return (int) $value;
+                }
+            ),
+            new Parameter(
+                'user',
+                '',
+                function ($value) {
+                    return is_string($value);
+                },
+                true,
+                function ($value) {
+                    return clean_string($value);
+                }
+            ),
+            new Parameter(
+                'password',
+                '',
+                function ($value) {
+                    return is_string($value);
+                },
+                true,
+                function ($value) {
+                    return clean_string($value);
+                }
+            ),
+            new Parameter(
+                'name',
+                '',
+                function ($value) {
+                    return is_string($value);
+                },
+                true,
+                function ($value) {
+                    return clean_string($value);
+                }
+            ),
+        ]);
 
-            //──── Entrada ───────────────────────────────────────────────────────────────────────────
+        //Obtención de datos
+        $inputData = $req->getParsedBody();
 
-            //Definición de validaciones y procesamiento
-            $expectedParameters = new Parameters([
-                new Parameter(
-                    'auto_tls',
-                    null,
-                    function ($value) {
-                        return ctype_digit($value) || is_int($value) || is_bool($value);
-                    },
-                    false,
-                    function ($value) {
-                        return $value === 1 || $value == '1' || $value === true;
-                    }
-                ),
-                new Parameter(
-                    'auth',
-                    null,
-                    function ($value) {
-                        return ctype_digit($value) || is_int($value) || is_bool($value);
-                    },
-                    false,
-                    function ($value) {
-                        return $value === 1 || $value == '1' || $value === true;
-                    }
-                ),
-                new Parameter(
-                    'host',
-                    null,
-                    function ($value) {
-                        return is_string($value) && mb_strlen(trim($value)) > 0;
-                    },
-                    false,
-                    function ($value) {
-                        return clean_string($value);
-                    }
-                ),
-                new Parameter(
-                    'protocol',
-                    null,
-                    function ($value) {
-                        return is_string($value) && mb_strlen(trim($value)) > 0;
-                    },
-                    false,
-                    function ($value) {
-                        return clean_string($value);
-                    }
-                ),
-                new Parameter(
-                    'port',
-                    null,
-                    function ($value) {
-                        return ctype_digit($value) || is_int($value);
-                    },
-                    false,
-                    function ($value) {
-                        return (int) $value;
-                    }
-                ),
-                new Parameter(
-                    'user',
-                    '',
-                    function ($value) {
-                        return is_string($value);
-                    },
-                    true,
-                    function ($value) {
-                        return clean_string($value);
-                    }
-                ),
-                new Parameter(
-                    'password',
-                    '',
-                    function ($value) {
-                        return is_string($value);
-                    },
-                    true,
-                    function ($value) {
-                        return clean_string($value);
-                    }
-                ),
-                new Parameter(
-                    'name',
-                    '',
-                    function ($value) {
-                        return is_string($value);
-                    },
-                    true,
-                    function ($value) {
-                        return clean_string($value);
-                    }
-                ),
-            ]);
+        //Asignación de datos para procesar
+        $expectedParameters->setInputValues(is_array($inputData) ? $inputData : []);
 
-            //Obtención de datos
-            $inputData = $req->getParsedBody();
+        //──── Estructura de respuesta ───────────────────────────────────────────────────────────
 
-            //Asignación de datos para procesar
-            $expectedParameters->setInputValues(is_array($inputData) ? $inputData : []);
+        $resultOperation = new ResultOperations([], __(self::LANG_GROUP, 'Configuración de emails'));
+        $resultOperation->setSingleOperation(true); //Se define que es de una única operación
 
-            //──── Estructura de respuesta ───────────────────────────────────────────────────────────
+        //Valores iniciales de la respuesta
+        $resultOperation->setSuccessOnSingleOperation(false);
 
-            $resultOperation = new ResultOperations([], __(self::LANG_GROUP, 'Configuración de emails'));
-            $resultOperation->setSingleOperation(true); //Se define que es de una única operación
+        //Mensajes de respuesta
+        $successMessage = __(self::LANG_GROUP, 'Datos guardados.');
+        $unknowErrorMessage = __(self::LANG_GROUP, 'Ha ocurrido un error desconocido, intente más tarde.');
+        $unknowErrorWithValuesMessage = __(self::LANG_GROUP, 'Ha ocurrido un error desconocido al procesar los valores ingresados.');
 
-            //Valores iniciales de la respuesta
-            $resultOperation->setSuccessOnSingleOperation(false);
+        //──── Acciones ──────────────────────────────────────────────────────────────────────────
+        try {
 
-            //Mensajes de respuesta
-            $successMessage = __(self::LANG_GROUP, 'Datos guardados.');
-            $unknowErrorMessage = __(self::LANG_GROUP, 'Ha ocurrido un error desconocido, intente más tarde.');
-            $unknowErrorWithValuesMessage = __(self::LANG_GROUP, 'Ha ocurrido un error desconocido al procesar los valores ingresados.');
+            //Intenta validar, si todo sale bien el código continúa
+            $expectedParameters->validate();
 
-            //──── Acciones ──────────────────────────────────────────────────────────────────────────
+            //Información del formulario
+            /**
+             * @var bool $autoTLS
+             * @var bool $auth
+             * @var string $host
+             * @var string $protocol
+             * @var int $port
+             * @var string $user
+             * @var string $password
+             * @var string $name
+             */;
+            $autoTLS = $expectedParameters->getValue('auto_tls');
+            $auth = $expectedParameters->getValue('auth');
+            $host = $expectedParameters->getValue('host');
+            $protocol = $expectedParameters->getValue('protocol');
+            $port = $expectedParameters->getValue('port');
+            $user = $expectedParameters->getValue('user');
+            $password = $expectedParameters->getValue('password');
+            $name = $expectedParameters->getValue('name');
+
             try {
 
-                //Intenta validar, si todo sale bien el código continúa
-                $expectedParameters->validate();
+                $mailConfig = new MailConfig;
+                $mailConfig->autoTls($autoTLS);
+                $mailConfig->auth($auth);
+                $mailConfig->host($host);
+                $mailConfig->protocol($protocol);
+                $mailConfig->port($port);
+                $mailConfig->user($user);
+                $mailConfig->password($password);
+                $mailConfig->name($name);
 
-                //Información del formulario
-                /**
-                 * @var bool $autoTLS
-                 * @var bool $auth
-                 * @var string $host
-                 * @var string $protocol
-                 * @var int $port
-                 * @var string $user
-                 * @var string $password
-                 * @var string $name
-                 */;
-                $autoTLS = $expectedParameters->getValue('auto_tls');
-                $auth = $expectedParameters->getValue('auth');
-                $host = $expectedParameters->getValue('host');
-                $protocol = $expectedParameters->getValue('protocol');
-                $port = $expectedParameters->getValue('port');
-                $user = $expectedParameters->getValue('user');
-                $password = $expectedParameters->getValue('password');
-                $name = $expectedParameters->getValue('name');
+                $success = true;
 
-                try {
+                $optionName = 'mail';
+                $optionMapper = new AppConfigModel($optionName);
 
-                    $mailConfig = new MailConfig;
-                    $mailConfig->autoTls($autoTLS);
-                    $mailConfig->auth($auth);
-                    $mailConfig->host($host);
-                    $mailConfig->protocol($protocol);
-                    $mailConfig->port($port);
-                    $mailConfig->user($user);
-                    $mailConfig->password($password);
-                    $mailConfig->name($name);
+                $optionMapper->value = $mailConfig->toSave();
 
-                    $success = true;
-
-                    $optionName = 'mail';
-                    $optionMapper = new AppConfigModel($optionName);
-
-                    $optionMapper->value = $mailConfig->toSave();
-
-                    if ($optionMapper->id !== null) {
-                        $success = $success && $optionMapper->update();
-                    } else {
-                        $optionMapper->name = $optionName;
-                        $success = $success && $optionMapper->save();
-                    }
-
-                    if ($success) {
-                        $resultOperation->setMessage($successMessage);
-                        $resultOperation->setSuccessOnSingleOperation($success);
-                    } else {
-                        $resultOperation->setMessage($unknowErrorMessage);
-                    }
-                } catch (\Exception $e) {
-                    $resultOperation->setMessage($e->getMessage());
-                    log_exception($e);
+                if ($optionMapper->id !== null) {
+                    $success = $success && $optionMapper->update();
+                } else {
+                    $optionMapper->name = $optionName;
+                    $success = $success && $optionMapper->save();
                 }
-            } catch (MissingRequiredParamaterException $e) {
 
-                $resultOperation->setMessage($e->getMessage());
-                log_exception($e);
-            } catch (ParsedValueException $e) {
-
-                $resultOperation->setMessage($unknowErrorWithValuesMessage);
-                log_exception($e);
-            } catch (InvalidParameterValueException $e) {
-
+                if ($success) {
+                    $resultOperation->setMessage($successMessage);
+                    $resultOperation->setSuccessOnSingleOperation($success);
+                } else {
+                    $resultOperation->setMessage($unknowErrorMessage);
+                }
+            } catch (\Exception $e) {
                 $resultOperation->setMessage($e->getMessage());
                 log_exception($e);
             }
+        } catch (MissingRequiredParamaterException $e) {
 
-            return $res->withJson($resultOperation);
+            $resultOperation->setMessage($e->getMessage());
+            log_exception($e);
+        } catch (ParsedValueException $e) {
+
+            $resultOperation->setMessage($unknowErrorWithValuesMessage);
+            log_exception($e);
+        } catch (InvalidParameterValueException $e) {
+
+            $resultOperation->setMessage($e->getMessage());
+            log_exception($e);
         }
 
-        return $res;
+        return $res->withJson($resultOperation);
     }
 
     /**
@@ -1804,12 +1806,20 @@ class AppConfigController extends AdminPanelController
                 "{$startRoute}/email[/]",
                 $classname . ':email',
                 self::$baseRouteName . '-' . 'email',
-                'GET|POST',
+                'GET',
                 true,
                 null,
                 self::ROLES_EMAIL
             ),
-
+            new Route(
+                "{$startRoute}/email/save[/]",
+                $classname . ':saveEmailInfo',
+                self::$baseRouteName . '-' . 'save-email',
+                'POST',
+                true,
+                null,
+                self::ROLES_EMAIL
+            ),
             //OsTicket
             new Route(
                 "{$startRoute}/os-ticket[/]",

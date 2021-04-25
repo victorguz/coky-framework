@@ -3,7 +3,7 @@ defined("BASEPATH") or die("<h1>El script no puede ser accedido directamente</h1
 ?>
 <?php if (mb_strlen($actionSSLURL) > 0) : ?>
 
-    <form ssl-configuration-form action="<?= $actionSSLURL; ?>" method="POST" class="ui form">
+    <form ssl-configuration-form action="<?= $actionSSLURL; ?>" method="POST" class="ui segment form">
 
         <div class="field required">
             <label><?= __($langGroup, 'Dominio') ?></label>

@@ -8,17 +8,15 @@ $isFirstTitle = true;
 $isFirstItem = true;
 ?>
 
-<div class="container-medium">
 
-    <?php foreach ($tabsItems as $name => $content) : ?>
-        <?php if ($isFirstItem) : $isFirstItem = false; ?>
-            <?= $content; ?>
-        <?php else : ?>
-            <?= $content; ?>
-        <?php endif; ?>
-    <?php endforeach; ?>
+<?php foreach ($tabsItems as $name => $content) : ?>
+    <?php if ($isFirstItem) : $isFirstItem = false; ?>
+        <?= $content; ?>
+    <?php else : ?>
+        <?= $content; ?>
+    <?php endif; ?>
+<?php endforeach; ?>
 
-</div>
 
 <script>
     window.addEventListener('load', function(e) {
@@ -55,8 +53,3 @@ $isFirstItem = true;
 
     })
 </script>
-<style>
-    .ui.form {
-        max-width: 800px;
-    }
-</style>

@@ -5,3 +5,12 @@
     box-shadow: $shadow-fb !important;
     border: none !important;
 }
+
+.ui.top.attached.tabular.menu {
+    border: none;
+
+    .item.active {
+        border: none;
+        box-shadow: $shadow-fb;
+    }
+}

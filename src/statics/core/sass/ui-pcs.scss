@@ -52,3 +52,40 @@ a.ui.button,
 a.ui.label {
     text-decoration: none !important;
 }
+
+.color-square {
+    display: flex;
+
+    width: 60px;
+    height: 60px;
+    border-radius: $rounded;
+
+    box-shadow: $shadow-fb;
+
+    &.active {
+        box-shadow: $shadow-md;
+    }
+
+    //default colors:
+    div {
+        width: 33%;
+
+        &:last-child {
+            width: 34%;
+        }
+    }
+
+    .primary {
+        border-radius: $rounded 0 0 $rounded;
+        background-color: $primary-color;
+    }
+
+    .secondary {
+        background-color: $secondary-color;
+    }
+
+    .back {
+        border-radius: 0 $rounded $rounded 0;
+        background-color: $back-color;
+    }
+}
