@@ -20,7 +20,7 @@ $control = 'adjust';
 $settedControls[$control] = isset($controls[$control]) && is_bool($controls[$control]) ? $controls[$control] : $defaultControls[$control];
 
 ?>
-<div class="ui buttons fluid options" options>
+<div class="options" options>
 
     <?php if ($settedControls['rotate']) : ?>
         <div class="ui mini icon button option" option data-content="rotate" data-option="rotate">
@@ -116,3 +116,4 @@ $settedControls[$control] = isset($controls[$control]) && is_bool($controls[$con
     </div>
 
 </div>
+

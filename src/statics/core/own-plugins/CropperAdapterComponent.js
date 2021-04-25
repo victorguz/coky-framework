@@ -765,6 +765,7 @@ function CropperAdapterComponent(configurations = {}, prepareOnCreation = true) 
 		if (cancelButton instanceof $) {
 
 			cancelButton.click(function (e) {
+				editStep.modal('hide')
 
 				e.preventDefault()
 
@@ -818,7 +819,6 @@ function CropperAdapterComponent(configurations = {}, prepareOnCreation = true) 
 					}
 
 				}
-				editStep.modal('hide')
 				return false
 
 			})

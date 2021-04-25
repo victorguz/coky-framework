@@ -76,24 +76,9 @@
         }
     }
 
-
-
-    >.workspace>.main-buttons {
-        display: none;
-        grid-template-columns: auto auto;
-        justify-content: center;
-        align-content: center;
-        align-items: center;
-
-        &.active {
-            display: grid;
-        }
-
-        >.element {
-            padding: 0em 1em;
-        }
-    }
 }
+
+
 
 [cropper-step-edit] {
 
@@ -103,10 +88,21 @@
     }
 
     .actions {
-        background-color: red !important;
+        .main-buttons {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+
+            &.active {
+                display: flex;
+            }
+        }
 
         .controls {
             display: none;
+            width: 100%;
+            margin-bottom: 10px;
 
             &.active {
                 display: flex;
@@ -127,11 +123,10 @@
             >.sub-options {
                 display: none;
                 flex-wrap: wrap;
-                justify-content: space-around;
-                width: max-content;
-                max-width: 100%;
-                margin: 1em auto 0em auto;
-                padding: 0em 2em 1em 2em;
+                align-items: center;
+                justify-content: center;
+
+                width: 100%;
 
                 &.active {
                     display: flex;

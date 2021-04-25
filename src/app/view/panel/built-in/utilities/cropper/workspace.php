@@ -101,7 +101,7 @@ $referenceH = !is_int($referenceH) ? 1080 : $referenceH;
         </div>
 
         <div class="ui mini modal step edit" cropper-step-edit>
-            <i class="close icon"></i>
+            <i class="close icon" cancel></i>
             <?php $this->_render('panel/built-in/utilities/cropper/inc/notes.php', [
                 'notes' => isset($notes) && is_array($notes) ? $notes : null,
             ]); ?>
@@ -124,7 +124,6 @@ $referenceH = !is_int($referenceH) ? 1080 : $referenceH;
                     'controls' => isset($controls) && is_array($controls) ? $controls : null,
                 ]); ?>
                 <?php $this->_render('panel/built-in/utilities/cropper/main-buttons.php', [
-                    'cancelButtonText' => isset($cancelButtonText) && is_string($cancelButtonText) ? $cancelButtonText : __(CROPPER_ADAPTER_LANG_GROUP, 'Cancelar'),
                     'saveButtonText' => isset($saveButtonText) && is_string($saveButtonText) ? $saveButtonText : __(CROPPER_ADAPTER_LANG_GROUP, 'Guardar imagen'),
                 ]); ?>
             </div>
