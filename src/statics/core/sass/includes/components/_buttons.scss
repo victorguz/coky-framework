@@ -113,3 +113,11 @@ button,
         }
     }
 }
+
+.ui.button {
+    align-items: center;
+
+    .icon {
+        padding: 0 !important;
+    }
+}

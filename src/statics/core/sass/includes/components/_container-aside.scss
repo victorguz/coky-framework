@@ -131,7 +131,7 @@ $topPadding:2rem;
             position: absolute;
             left: -1000px;
             top: $navbar-height;
-            z-index: 9999;
+            z-index: 99;
 
             height: calc(100vh - var(--navbar-height));
             background-color: $sidebar-color;

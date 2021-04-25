@@ -1,196 +1,118 @@
 <?php
 
-    $defaultControls = [
-        'rotate' => true, 
-        'flip' => true, 
-        'adjust' => true, 
-    ];
+$defaultControls = [
+    'rotate' => true,
+    'flip' => true,
+    'adjust' => true,
+];
 
-    $controls = isset($controls) && is_array($controls) ? $controls : [];
+$controls = isset($controls) && is_array($controls) ? $controls : [];
 
-    $settedControls = [];
+$settedControls = [];
 
-    $control = 'rotate';
-    $settedControls[$control] = isset($controls[$control]) && is_bool($controls[$control]) ? $controls[$control] : $defaultControls[$control];
+$control = 'rotate';
+$settedControls[$control] = isset($controls[$control]) && is_bool($controls[$control]) ? $controls[$control] : $defaultControls[$control];
 
-    $control = 'flip';
-    $settedControls[$control] = isset($controls[$control]) && is_bool($controls[$control]) ? $controls[$control] : $defaultControls[$control];
+$control = 'flip';
+$settedControls[$control] = isset($controls[$control]) && is_bool($controls[$control]) ? $controls[$control] : $defaultControls[$control];
 
-    $control = 'adjust';
-    $settedControls[$control] = isset($controls[$control]) && is_bool($controls[$control]) ? $controls[$control] : $defaultControls[$control];
+$control = 'adjust';
+$settedControls[$control] = isset($controls[$control]) && is_bool($controls[$control]) ? $controls[$control] : $defaultControls[$control];
 
 ?>
-<div class="options">
+<div class="ui buttons fluid options" options>
 
-    <?php if($settedControls['rotate']): ?>
-    <div class="option" data-option="rotate">
+    <?php if ($settedControls['rotate']) : ?>
+        <div class="ui mini icon button option" option data-content="rotate" data-option="rotate">
 
-        <div class="icon">
-            <i class="sync alternate icon"></i>
+
+            <?= getIcon("sync-outline") ?>
+
         </div>
-        <div class="text"><?= __(CROPPER_ADAPTER_LANG_GROUP,'Girar'); ?></div>
-
-    </div>
     <?php endif; ?>
 
-    <?php if($settedControls['flip']): ?>
-    <div class="option" data-option="flip">
-
-        <div class="icon">
-            <i class="exchange alternate icon"></i>
+    <?php if ($settedControls['flip']) : ?>
+        <div class="ui mini icon button option" option data-content="flip" data-option="flip">
+            <?= getIcon("swap-horizontal-outline") ?>
         </div>
-        <div class="text"><?= __(CROPPER_ADAPTER_LANG_GROUP,'Voltear'); ?></div>
-
-    </div>
     <?php endif; ?>
 
-    <?php if($settedControls['adjust']): ?>
-    <div class="option" data-option="adjust">
+    <?php if ($settedControls['adjust']) : ?>
+        <div class="ui mini icon button option" option data-content="adjust" data-option="adjust">
 
-        <div class="icon">
-            <i class="expand icon"></i>
+            <?= getIcon("expand-outline") ?>
+
         </div>
-        <div class="text"><?= __(CROPPER_ADAPTER_LANG_GROUP,'Ajustar'); ?></div>
-
-    </div>
     <?php endif; ?>
 
-    <div class="option" load-image>
+    <div class="ui mini icon button option" option load-image>
 
-        <div class="icon">
-            <i class="image outline icon"></i>
-        </div>
-        <div class="text"><?= __(CROPPER_ADAPTER_LANG_GROUP,'Cambiar'); ?></div>
+        <?= getIcon("image-outline") ?>
 
     </div>
 
 </div>
 
-<div class="sub-options" data-name="rotate">
+<div class="sub-options active" data-name="rotate">
 
-    <div class="option" back-options>
-
-        <div class="icon">
-            <i class="arrow left icon"></i>
-        </div>
-        <div class="text"><?= __(CROPPER_ADAPTER_LANG_GROUP,'Atrás'); ?></div>
-
+    <div class="ui mini icon button option" option back-options data-content="<?= __(CROPPER_ADAPTER_LANG_GROUP, 'Atrás'); ?>">
+        <i class="arrow left icon"></i>
     </div>
 
-    <div class="option" action-rotate-left>
-
-        <div class="icon">
-            <i class="undo icon"></i>
-        </div>
-        <div class="text"><?= __(CROPPER_ADAPTER_LANG_GROUP,'Izquierda'); ?></div>
-
+    <div class="ui mini icon button option" option action-rotate-left data-content="<?= __(CROPPER_ADAPTER_LANG_GROUP, 'Izquierda'); ?>">
+        <i class="undo icon"></i>
     </div>
 
-    <div class="option" action-rotate-right>
-
-        <div class="icon">
-            <i class="redo icon"></i>
-        </div>
-        <div class="text"><?= __(CROPPER_ADAPTER_LANG_GROUP,'Derecha'); ?></div>
-
+    <div class="ui mini icon button option" option action-rotate-right data-content="<?= __(CROPPER_ADAPTER_LANG_GROUP, 'Derecha'); ?>">
+        <i class="redo icon"></i>
     </div>
 
 </div>
 
-<div class="sub-options" data-name="flip">
+<div class="sub-options active" data-name="flip">
 
-    <div class="option" back-options>
-
-        <div class="icon">
-            <i class="arrow left icon"></i>
-        </div>
-        <div class="text"><?= __(CROPPER_ADAPTER_LANG_GROUP,'Atrás'); ?></div>
-
+    <div class="ui mini icon button option" option back-options data-content="<?= __(CROPPER_ADAPTER_LANG_GROUP, 'Atrás'); ?>">
+        <i class="arrow left icon"></i>
     </div>
 
-    <div class="option" action-flip-horizontal>
-
-        <div class="icon">
-            <i class="arrows alternate horizontal icon"></i>
-        </div>
-        <div class="text"><?= __(CROPPER_ADAPTER_LANG_GROUP,'Horizontal'); ?></div>
-
+    <div class="ui mini icon button option" option action-flip-horizontal data-content="<?= __(CROPPER_ADAPTER_LANG_GROUP, 'Horizontal'); ?>">
+        <i class="arrows alternate horizontal icon"></i>
     </div>
 
-    <div class="option" action-flip-vertical>
-
-        <div class="icon">
-            <i class="arrows alternate vertical icon"></i>
-        </div>
-        <div class="text"><?= __(CROPPER_ADAPTER_LANG_GROUP,'Vertical'); ?></div>
-
+    <div class="ui mini icon button option" option action-flip-vertical data-content="<?= __(CROPPER_ADAPTER_LANG_GROUP, 'Vertical'); ?>">
+        <i class="arrows alternate vertical icon"></i>
     </div>
 
 </div>
 
-<div class="sub-options" data-name="adjust">
+<div class="sub-options active" data-name="adjust">
 
-    <div class="option" back-options>
-
-        <div class="icon">
-            <i class="arrow left icon"></i>
-        </div>
-        <div class="text"><?= __(CROPPER_ADAPTER_LANG_GROUP,'Atrás'); ?></div>
-
+    <div class="ui mini icon button option" option back-options data-content="<?= __(CROPPER_ADAPTER_LANG_GROUP, 'Atrás'); ?>">
+        <i class="arrow left icon"></i>
     </div>
 
-    <div class="option" action-move-up>
-
-        <div class="icon">
-            <i class="arrow alternate circle up outline icon"></i>
-        </div>
-        <div class="text"><?= __(CROPPER_ADAPTER_LANG_GROUP,'Arriba'); ?></div>
-
+    <div class="ui mini icon button option" option action-move-up data-content="<?= __(CROPPER_ADAPTER_LANG_GROUP, 'Arriba'); ?>">
+        <i class="arrow alternate circle up outline icon"></i>
     </div>
 
-    <div class="option" action-move-down>
-
-        <div class="icon">
-            <i class="arrow alternate circle down outline icon"></i>
-        </div>
-        <div class="text"><?= __(CROPPER_ADAPTER_LANG_GROUP,'Abajo'); ?></div>
-
+    <div class="ui mini icon button option" option action-move-down data-content="<?= __(CROPPER_ADAPTER_LANG_GROUP, 'Abajo'); ?>">
+        <i class="arrow alternate circle down outline icon"></i>
     </div>
 
-    <div class="option" action-move-left>
-
-        <div class="icon">
-            <i class="arrow alternate circle left outline icon"></i>
-        </div>
-        <div class="text"><?= __(CROPPER_ADAPTER_LANG_GROUP,'Izquierda'); ?></div>
-
+    <div class="ui mini icon button option" option action-move-left data-content="<?= __(CROPPER_ADAPTER_LANG_GROUP, 'Izquierda'); ?>">
+        <i class="arrow alternate circle left outline icon"></i>
     </div>
 
-    <div class="option" action-move-right>
-
-        <div class="icon">
-            <i class="arrow alternate circle right outline icon"></i>
-        </div>
-        <div class="text"><?= __(CROPPER_ADAPTER_LANG_GROUP,'Derecha'); ?></div>
-
+    <div class="ui mini icon button option" option action-move-right data-content="<?= __(CROPPER_ADAPTER_LANG_GROUP, 'Derecha'); ?>">
+        <i class="arrow alternate circle right outline icon"></i>
     </div>
 
-    <div class="option" action-zoom-out>
-
-        <div class="icon">
-            <i class="search minus icon"></i>
-        </div>
-        <div class="text"><?= __(CROPPER_ADAPTER_LANG_GROUP,'Alejar'); ?></div>
-
+    <div class="ui mini icon button option" option action-zoom-out data-content="<?= __(CROPPER_ADAPTER_LANG_GROUP, 'Alejar'); ?>">
+        <i class="search minus icon"></i>
     </div>
 
-    <div class="option" action-zoom-in>
-
-        <div class="icon">
-            <i class="search plus icon"></i>
-        </div>
-        <div class="text"><?= __(CROPPER_ADAPTER_LANG_GROUP,'Acercar'); ?></div>
-
+    <div class="ui mini icon button option" option action-zoom-in data-content="<?= __(CROPPER_ADAPTER_LANG_GROUP, 'Acercar'); ?>">
+        <i class="search plus icon"></i>
     </div>
 
 </div>

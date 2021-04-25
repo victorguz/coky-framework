@@ -1,63 +1,67 @@
 <?php
 defined("BASEPATH") or die("<h1>El script no puede ser accedido directamente</h1>");
+
 ?>
-
 <div class="ui header"><?= __($langGroup, 'Fondos'); ?></div>
-<div class="ui header small"><?= __($langGroup, 'Fondos del login'); ?></div>
 
-<div class="container-backgrounds">
+<div class="ui segment ">
+    <div class="ui header small"><?= __($langGroup, 'Fondos del login'); ?></div>
 
-    <?php foreach (get_config('backgrounds') as $index => $background) : ?>
 
-        <form bg="<?= ($index + 1); ?>" action="<?= $actionURL; ?>" method="POST" class="ui form">
+    <!-- <div style="width: 100%; height: 400px;">Cropper</div> -->
 
-            <div class="field required">
+    <div class="ui special cards flex gap-1 overflow-x">
 
-                <div class="ui card">
+        <?php foreach (get_config('backgrounds') as $index => $background) : ?>
 
-                    <div class="content">
-
-                        <div class="ui form cropper-adapter">
-
-                            <input type="file" accept="image/*" required>
-
-                            <?php $this->_render('panel/built-in/utilities/cropper/workspace.php', [
-                                'withTitle' => false,
-                                'image' => $background,
-                                'referenceW' => '1920',
-                                'referenceH' => '1080',
-                                'cancelButtonText' => null,
-                                'saveButtonText' => __($langGroup, 'Seleccionar imagen'),
-                                'controls' => [
-                                    'rotate' => false,
-                                    'flip' => false,
-                                    'adjust' => false,
-                                ],
-                            ]); ?>
-
-                        </div>
-
-                    </div>
-
-                    <div class="content">
-                        <label class="header"><?= __($langGroup, 'Fondo'); ?> #<?= ($index + 1); ?></label>
-                        <div class="meta">
-                            <span><?= strReplaceTemplate(__($langGroup, 'Tamaño de la imagen {dimensions}'), ['{dimensions}' => "1920x1080px",]) ?></span>
+            <!-- <div class="card">
+                <div class="blurring dimmable image" style="height: 100px; width: 200px;">
+                    <div class="ui dimmer">
+                        <div class="content">
+                            <div class="center">
+                                <div class="ui secondary mini button">Change image</div>
+                            </div>
                         </div>
                     </div>
+                    <img src="<?= $background ?>" alt="background<?= $index ?>" style="height: 100px; width: 200px;">
+                </div>
+            </div> -->
 
-                    <button class="ui bottom attached primary mini button" type="submit">
-                        <?= __($langGroup, 'Guardar imagen'); ?>
-                    </button>
 
+            <form bg="<?= ($index + 1); ?>" action="<?= $actionURL; ?>" method="POST">
+
+                <div class="ui form cropper-adapter">
+
+                    <input type="file" accept="image/*" required>
+                    <?php
+                    cropperAdapterWorkSpace([
+                        'withTitle' => false,
+                        'image' => $background,
+                        'containerW' => '200',
+                        'containerH' => '150',
+                        'objectFit' => 'cover',
+                        'radius' => true,
+                        'shadow' => true,
+                        'referenceW' => '1920',
+                        'referenceH' => '1080',
+                        'cancelButtonText' => null,
+                        'saveButtonText' => __($langGroup, 'Seleccionar imagen'),
+                        'submit' => __($langGroup, 'Guardar imagen'),
+                        'controls' => [
+                            'rotate' => true,
+                            'flip' => true,
+                            'adjust' => true,
+                        ],
+                    ]);
+                    ?>
                 </div>
 
-            </div>
 
-        </form>
 
-        <br><br>
 
-    <?php endforeach; ?>
+
+            </form>
+        <?php endforeach; ?>
+    </div>
 
 </div>

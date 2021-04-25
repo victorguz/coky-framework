@@ -62,10 +62,8 @@ $config['mailjet'] = [
     'secretKey' => 'SECRET_KEY',
 ];
 
-$config["mail_recipient"] = [
-    "mail" => "info@mtscorporation.site",
-    "name" => "MTS Corporation",
-];
+$config["mail_recipient"] = "info@mtscorporation.site";
+$config["mail_recipient_name"] = "info@mtscorporation.site";
 
 $config["recapcha"] = [
     "url" => "https://www.google.com/recaptcha/api/siteverify",

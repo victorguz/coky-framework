@@ -754,7 +754,7 @@ function CropperAdapterComponent(configurations = {}, prepareOnCreation = true) 
 					cutImage.src = instance.crop()
 
 				}
-
+				editStep.modal('hide')
 				return false
 
 			})
@@ -818,7 +818,7 @@ function CropperAdapterComponent(configurations = {}, prepareOnCreation = true) 
 					}
 
 				}
-
+				editStep.modal('hide')
 				return false
 
 			})
@@ -1180,7 +1180,10 @@ function CropperAdapterComponent(configurations = {}, prepareOnCreation = true) 
 
 			if (startButton instanceof HTMLElement) {
 				startButton = $(startButton)
-				startButton.click(initialize)
+				startButton.click(function (e) {
+
+					initialize(e)
+				})
 			} else {
 				console.warn('No hay ningún botón de inicio.')
 			}
@@ -1210,7 +1213,7 @@ function CropperAdapterComponent(configurations = {}, prepareOnCreation = true) 
 
 			//──────────────────────────────────────────────────────────────────────────────────
 
-			controls = document.querySelector(`${containerSelector} > .workspace > .controls`)
+			controls = document.querySelector(`${containerSelector} [cropper-controls]`)
 
 			if (controls instanceof HTMLElement) {
 
@@ -1416,7 +1419,7 @@ function CropperAdapterComponent(configurations = {}, prepareOnCreation = true) 
 	 */
 	function toEditStep() {
 		activateElement(editStep)
-		deactivateElement(previewContainer)
+		// deactivateElement(previewContainer)
 		deactivateElement(addStep)
 		enableActions()
 		enableOptions()
@@ -1522,7 +1525,12 @@ function CropperAdapterComponent(configurations = {}, prepareOnCreation = true) 
 			element = $(element)
 		}
 		if (element instanceof $) {
-			element.addClass('active')
+			if (element.hasClass("modal")) {
+				element.modal("show")
+				element.addClass('active')
+			} else {
+				element.addClass('active')
+			}
 		}
 	}
 

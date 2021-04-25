@@ -1,0 +1,48 @@
+$border-color:#e9e9e9;
+$shadow-color:#0000003B;
+
+
+//sizes
+$rounded-sm:10px;
+$rounded:5px;
+$border:1px solid $border-color;
+
+
+//effects
+$shadow-xs:1px 1px 2px 0px $shadow-color;
+$shadow-sm:3px 3px 4px 0px $shadow-color;
+$shadow-md:0px 5px 10px $shadow-color;
+$shadow:0px 10px 20px $shadow-color;
+$shadow-fb:0 1px 2px rgba(0, 0, 0, 0.2);
+
+//Public colors
+$back-color:unquote(var(--back-color));
+$navbar-color:unquote(var(--navbar-color));
+$navbar-hover-color:unquote(var(--navbar-hover-color));
+$navbar-height:unquote(var(--navbar-height));
+$navbar-icon-size:unquote(var(--navbar-icon-size));
+
+$white-color:#ffffff;
+$primary-color:unquote(var(--primary-color));
+$gray-color:unquote(var(--gray-color));
+$dark-color:unquote(var(--dark-color));
+$secondary-color:unquote(var(--secondary-color));
+
+$danger-color:unquote(var(--danger-color));
+$alert-color:unquote(var(--alert-color));
+$success-color:unquote(var(--success-color));
+$info-color:unquote(var(--info-color));
+
+$sidebar-color:unquote(var(--sidebar-color));
+$sidebar-icon-size:unquote(var(--sidebar-icon-size));
+$sidebar-text-color:unquote(var(--sidebar-text-color));
+$sidebar-text-hover-color:unquote(var(--sidebar-text-hover-color));
+$sidebar-button-hover-color:unquote(var(--sidebar-button-hover-color));
+$sidebar-button-selected-color:unquote(var(--sidebar-button-selected-color));
+
+
+
+$default-radius:unquote(var(--default-radius));
+$dropdown-radius:unquote(var(--dropdown-radius));
+$card-radius:unquote(var(--card-radius));
+$field-radius:unquote(var(--field-radius));

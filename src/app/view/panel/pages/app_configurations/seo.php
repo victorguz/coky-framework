@@ -2,13 +2,14 @@
 defined("BASEPATH") or die("<h1>El script no puede ser accedido directamente</h1>");
 ?>
 
-<div class="ui header"><?= __($langGroup, 'Ajustes SEO'); ?></div>
 
 <div class="container-seo">
 
+
     <form action="<?= $actionURL; ?>" method="POST" class="ui form seo">
 
-        <div class="field">
+        <div class="ui segment">
+            <div class="ui header no-margin"><?= __($langGroup, 'Ajustes SEO'); ?></div>
 
             <div class="two fields">
 
@@ -24,73 +25,68 @@ defined("BASEPATH") or die("<h1>El script no puede ser accedido directamente</h1
 
             </div>
 
-        </div>
-
-        <div class="field required">
-            <label><?= __($langGroup, 'Descripción'); ?></label>
-            <textarea required name="description" placeholder="<?= __($langGroup, 'Descripción de la página.'); ?>" required><?= $description; ?></textarea>
-        </div>
-
-        <div class="field">
-            <label><?= __($langGroup, 'Palabras clave'); ?></label>
-            <select name="keywords[]" multiple class="ui dropdown multiple search selection keywords">
-                <?= $keywords; ?>
-            </select>
-        </div>
-
-        <div class="field">
-            <label><?= __($langGroup, 'Scripts adicionales'); ?></label>
-            <textarea name="extraScripts" placeholder="<?= __($langGroup, "<script src='ejemplo.js'></script>"); ?>"><?= $extraScripts; ?></textarea>
-        </div>
-
-        <div class="field">
-
-            <div class="ui card">
-
-                <div class="content">
-
-                    <div class="ui form cropper-adapter">
-
-                        <input type="file" accept="image/*">
-                        <?php
-                        cropperAdapterWorkSpace([
-                            'withTitle' => false,
-                            'image' => $openGraph,
-                            'referenceW' => '1200',
-                            'referenceH' => '630',
-                            'cancelButtonText' => null,
-                            'saveButtonText' => __($langGroup, 'Seleccionar imagen'),
-                            'controls' => [
-                                'rotate' => false,
-                                'flip' => false,
-                                'adjust' => false,
-                            ],
-                        ]);
-                        ?>
-                    </div>
-
-                </div>
-
-                <div class="content">
-                    <label class="header"><?= __($langGroup, 'Imagen Open graph'); ?></label>
-
-                    <div class="meta">
-                        <span><?= strReplaceTemplate(__($langGroup, 'Tamaño de la imagen {dimensions}'), ['{dimensions}' => "1200x630px",]) ?></span>
-                    </div>
-
-                </div>
-
-            </div>
 
             <div class="field">
-
-                <button class="ui primary mini button" type="submit">
-                    <?= __($langGroup, 'Guardar'); ?>
-                </button>
-
+                <label><?= __($langGroup, 'Palabras clave'); ?></label>
+                <select name="keywords[]" multiple class="ui dropdown multiple search selection keywords">
+                    <?= $keywords; ?>
+                </select>
             </div>
 
+
+            <div class="two fields">
+                <div class="field">
+                    <label for="opengraph">Opengraph (Imagen de 1200x630px)</label>
+
+                    <div class="content">
+
+                        <div class="ui form cropper-adapter" style="height: 186px;">
+
+                            <input type="file" accept="image/*">
+
+                            <?php
+                            cropperAdapterWorkSpace([
+                                'withTitle' => false,
+                                'image' => $openGraph,
+                                'referenceW' => '1200',
+                                'referenceH' => '630',
+                                'cancelButtonText' => null,
+                                'saveButtonText' => __($langGroup, 'Seleccionar imagen'),
+                                'controls' => [
+                                    'rotate' => false,
+                                    'flip' => false,
+                                    'adjust' => false,
+                                ],
+                            ]);
+                            ?>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="field required">
+                    <label><?= __($langGroup, 'Descripción'); ?></label>
+                    <textarea required name="description" placeholder="<?= __($langGroup, 'Descripción de la página.'); ?>" required style="height: 186px;"><?= $description; ?></textarea>
+                </div>
+            </div>
         </div>
+
+
+        <div class="ui segment">
+            <div class="field">
+                <label><?= __($langGroup, 'Scripts adicionales'); ?></label>
+                <textarea name="extraScripts" placeholder="<?= __($langGroup, "<script src='ejemplo.js'></script>"); ?>"><?= $extraScripts; ?></textarea>
+            </div>
+        </div>
+
+
+        <div class="field">
+            <button class="ui primary mini fluid button" type="submit">
+                <?= __($langGroup, 'Guardar'); ?>
+            </button>
+        </div>
+
 
     </form>
 

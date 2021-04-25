@@ -9,6 +9,7 @@
  * @author      Vicsen Morantes <sir.vamb@gmail.com>
  * @copyright   Copyright (c) 2018
  */
+
 use App\Model\UsersModel;
 use PiecesPHP\Core\BaseController;
 use PiecesPHP\Core\Config;
@@ -65,13 +66,10 @@ function get_title(bool $appendTitleApp = false, string $separator = null, bool 
         if ($title_app !== false) {
 
             return $title_app;
-
         } else {
 
             return 'Web';
-
         }
-
     }
 }
 
@@ -165,7 +163,6 @@ function convert_lang_url($input_url, $current_lang = 'es', $target_lang = 'en')
         if ($input_url_end_slash && !$lang_url_end_slash) {
             $lang_url .= '/';
         }
-
     } else {
         $lang_url = $input_url;
     }
@@ -192,11 +189,9 @@ function get_current_langs_urls(string $url = null, bool $short_lang = false)
     foreach ($langs as $lang) {
 
         $urls[__($short_lang ? 'langShort' : 'lang', $lang)] = convert_lang_url($url, get_config('app_lang'), $lang);
-
     }
 
     return $urls;
-
 }
 
 /**
@@ -292,8 +287,8 @@ function load_js(array $config = array())
     foreach ($custom_assets['js'] as $script) {
 
         $base_url = array_key_exists("custom_url", $config) ?
-        $config['custom_url'] : (array_key_exists("base_url", $config) ?
-            $config['base_url'] : "");
+            $config['custom_url'] : (array_key_exists("base_url", $config) ?
+                $config['base_url'] : "");
 
         $ruta = $base_url . $script;
         echo "<script src='$ruta'></script>" . "\r\n";
@@ -364,7 +359,6 @@ function has_global_asset(string $asset, string $type)
     if ($type == 'js' || $type == 'css') {
 
         $index_asset = array_search($asset, $assets);
-
     }
 
     return $index_asset;
@@ -393,24 +387,19 @@ function add_global_asset(string $asset, string $type)
                 set_config('global_assets', $global_assets);
 
                 return true;
-
             } else if ($type == "css") {
 
                 $global_assets['css'][count($global_assets['css'])] = $asset;
                 set_config('global_assets', $global_assets);
 
                 return true;
-
             }
-
         }
 
         return true;
-
     } else {
         return false;
     }
-
 }
 
 /**
@@ -447,13 +436,10 @@ function index_global_required_asset(string $asset, string $type)
             if (in_array($asset, $assets)) {
                 $index = array_search($asset, $assets);
             }
-
         }
-
     }
 
     return $index;
-
 }
 
 /**
@@ -477,7 +463,6 @@ function add_global_required_asset(string $asset, string $type)
         $global_requireds_assets[$type][] = $asset;
         set_config('global_requireds_assets', $global_requireds_assets);
     }
-
 }
 
 /**
@@ -531,11 +516,9 @@ function remove_global_asset(string $asset, string $type)
         set_config('global_assets', $global_assets);
 
         return $index_asset;
-
     } else {
         return false;
     }
-
 }
 
 /**
@@ -554,7 +537,6 @@ function remove_global_required_asset(string $asset, string $type)
         unset($global_requireds_assets[$type][$index]);
         remove_global_asset($asset, $type);
     }
-
 }
 
 /**
@@ -648,9 +630,7 @@ function clear_assets_imports()
                     $jsFiles[] = $i;
                 }
             }
-
         }
-
     }
 
     foreach ($cssFiles as $i) {
@@ -684,7 +664,6 @@ function clear_global_assets()
         if (is_string($i) && mb_strlen($i) > 0) {
             remove_global_asset($i, 'css');
         }
-
     }
 
     foreach ($js as $i) {
@@ -692,9 +671,7 @@ function clear_global_assets()
         if (is_string($i) && mb_strlen($i) > 0) {
             remove_global_asset($i, 'js');
         }
-
     }
-
 }
 
 /**
@@ -820,9 +797,7 @@ function import_front_library(string $name = '', array $plugins = ['calendar'], 
             foreach ($plugin_js_files as $plugin_js_file) {
                 remove_global_asset($plugin_js_file, 'js');
             }
-
         }
-
     }
 }
 
@@ -1001,7 +976,6 @@ function register_routes($routes, &$router)
     foreach ($routes as $route) {
         register_route($route, $router);
     }
-
 }
 
 /**
@@ -1071,9 +1045,7 @@ function register_route(array $route, \Slim\App &$router)
         }
 
         set_config('_routes_', $routesSetted);
-
     }
-
 }
 
 /**
@@ -1589,7 +1561,6 @@ function log_exception($e)
 
     $handler = new \PiecesPHP\Core\CustomErrorsHandlers\GenericHandler($e);
     $handler->logging();
-
 }
 
 /**
@@ -1700,7 +1671,6 @@ function strReplaceTemplate(string $str, array $template)
  */
 function cropperAdapterWorkSpace(array $data = [], bool $echo = true)
 {
-
     $lockAssets = get_config('lock_assets');
 
     if ($lockAssets == false) {

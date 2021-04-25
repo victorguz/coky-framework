@@ -79,24 +79,57 @@ $element;
 
 </form>
 
-<div class="ui segment">
-    <div class="ui header small"><?= __($langGroup, 'Configuración extra de emails'); ?></div>
+<div class="ui form">
+    <div class="two fields">
 
-    <form pcs-generic-handler-js action="<?= $actionGenericURL; ?>" method="POST" class="ui form">
+        <div class="field">
+            <div class="ui segment">
+                <form pcs-generic-handler-js action="<?= $actionGenericURL; ?>" method="POST">
+                    <div class="ui header small"><?= __($langGroup, 'Configuración extra de emails'); ?></div>
+                    <strong><?= __($langGroup, 'Correo electrónico de recepción'); ?></strong>
+                    <div class="ui action input">
+                        <input type="text" name="value" value="<?= get_config("mail_recipient") ?>">
+                        <input type="hidden" name="name" value="mail_recipient">
+                        <input type="hidden" name="parse" value="lowercase">
+                        <button type="submit" class="ui primary button"><?= __($langGroup, 'Guardar'); ?></button>
+                    </div>
+                </form>
 
-        <div class="two fields">
-            <div class="field">
-                <label><?= __($langGroup, 'Correo electrónico de recepción'); ?></label>
-                <input type="text" name="user" value="<?= get_config("mail_recipient")["mail"] ?>">
-            </div>
-            <div class="field">
-                <label><?= __($langGroup, 'Nombre del receptor'); ?></label>
-                <input type="text" name="name" value="<?= get_config("mail_recipient")["name"] ?>">
-            </div>
-            <div class="field">
-                <label for="button"><?= __($langGroup, 'Guardar'); ?></label>
-                <button type="submit" class="ui primary fluid button"><?= __($langGroup, 'Guardar'); ?></button>
+                <form pcs-generic-handler-js action="<?= $actionGenericURL; ?>" method="POST">
+                    <strong><?= __($langGroup, 'Nombre de receptor'); ?></strong>
+                    <div class="ui action input">
+                        <input type="text" name="value" value="<?= get_config("mail_recipient_name") ?>">
+                        <input type="hidden" name="name" value="mail_recipient_name">
+                        <input type="hidden" name="parse" value="lowercase">
+                        <button type="submit" class="ui primary button"><?= __($langGroup, 'Guardar'); ?></button>
+                    </div>
+                </form>
             </div>
         </div>
-    </form>
+
+        <div class="field">
+            <div class="ui segment">
+                <form pcs-generic-handler-js action="<?= $actionGenericURL; ?>" method="POST">
+                    <div class="ui header small"><?= __($langGroup, 'Configuración extra de emails'); ?></div>
+                    <strong><?= __($langGroup, 'Correo electrónico de recepción'); ?></strong>
+                    <div class="ui action input">
+                        <input type="text" name="value" value="<?= get_config("mail_recipient") ?>">
+                        <input type="hidden" name="name" value="mail_recipient">
+                        <input type="hidden" name="parse" value="lowercase">
+                        <button type="submit" class="ui primary button"><?= __($langGroup, 'Guardar'); ?></button>
+                    </div>
+                </form>
+
+                <form pcs-generic-handler-js action="<?= $actionGenericURL; ?>" method="POST">
+                    <strong><?= __($langGroup, 'Nombre de receptor'); ?></strong>
+                    <div class="ui action input">
+                        <input type="text" name="value" value="<?= get_config("mail_recipient_name") ?>">
+                        <input type="hidden" name="name" value="mail_recipient_name">
+                        <input type="hidden" name="parse" value="lowercase">
+                        <button type="submit" class="ui primary button"><?= __($langGroup, 'Guardar'); ?></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>

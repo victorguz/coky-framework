@@ -1140,8 +1140,9 @@ class AppConfigController extends AdminPanelController
                 'reload',
                 null,
                 function ($value) {
-                    return is_bool($value) || is_string($value);
-                }
+                    return is_bool($value) || is_string($value) || is_null($value);
+                },
+                true //Significa que es opcional
             ),
         ]);
 

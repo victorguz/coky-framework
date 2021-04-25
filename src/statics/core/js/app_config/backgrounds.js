@@ -3,6 +3,10 @@
 showGenericLoader('backgrounds')
 window.addEventListener('load', () => {
 
+	$('.special.cards .image').dimmer({
+		on: 'hover'
+	});
+
 	let backgroundQty = 5
 	/**
 	 * @type {CropperAdapterComponent[]} croppers
