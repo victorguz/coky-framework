@@ -22,8 +22,18 @@ $settedControls[$control] = isset($controls[$control]) && is_bool($controls[$con
 ?>
 <div class="options" options>
 
+    <div class="text"></div>
+
+    <div class="text"></div>
+
+
+    <div class="text"></div>
+
+
+    <div class="text"></div>
+
     <?php if ($settedControls['rotate']) : ?>
-        <div class="ui mini icon button option" option data-content="rotate" data-option="rotate">
+        <div class="ui mini icon button option" option data-content="rotate" data-content="<?= __(CROPPER_ADAPTER_LANG_GROUP, 'Girar'); ?>" data-option="rotate">
 
 
             <?= getIcon("sync-outline") ?>
@@ -32,20 +42,20 @@ $settedControls[$control] = isset($controls[$control]) && is_bool($controls[$con
     <?php endif; ?>
 
     <?php if ($settedControls['flip']) : ?>
-        <div class="ui mini icon button option" option data-content="flip" data-option="flip">
+        <div class="ui mini icon button option" option data-content="flip" data-content="<?= __(CROPPER_ADAPTER_LANG_GROUP, 'Voltear'); ?>" data-option="flip">
             <?= getIcon("swap-horizontal-outline") ?>
         </div>
     <?php endif; ?>
 
     <?php if ($settedControls['adjust']) : ?>
-        <div class="ui mini icon button option" option data-content="adjust" data-option="adjust">
+        <div class="ui mini icon button option" option data-content="adjust" data-content="<?= __(CROPPER_ADAPTER_LANG_GROUP, 'Ajustar'); ?>" data-option="adjust">
 
             <?= getIcon("expand-outline") ?>
 
         </div>
     <?php endif; ?>
 
-    <div class="ui mini icon button option" option load-image>
+    <div class="ui mini icon button option" data-content="<?= __(CROPPER_ADAPTER_LANG_GROUP, 'Cambiar'); ?>" option load-image>
 
         <?= getIcon("image-outline") ?>
 
@@ -116,4 +126,3 @@ $settedControls[$control] = isset($controls[$control]) && is_bool($controls[$con
     </div>
 
 </div>
-

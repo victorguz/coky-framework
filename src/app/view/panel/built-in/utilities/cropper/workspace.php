@@ -7,12 +7,35 @@ if (isset($withTitle)) {
     $withTitle = true;
 }
 
+if (isset($backgroundColor)) {
+    if (is_bool($backgroundColor) && $backgroundColor) {
+        $backgroundColor = " background-color:white; ";
+    } else if (is_string($backgroundColor)  && mb_strlen($backgroundColor) > 0) {
+        $backgroundColor = " background-color:{$backgroundColor}; ";
+    }
+} else {
+    $backgroundColor = " background-color:transparent; ";
+}
+if (isset($padding)) {
+    if (is_bool($padding) && $padding) {
+        $padding = " padding:5px; ";
+    } else if (is_string($padding)) {
+        $padding = " padding:{$padding}; ";
+    }
+} else {
+    $padding = " padding:0; ";
+}
+
 if (isset($radius)) {
     if (is_bool($radius) && $radius) {
         $radius = " border-radius:5px; ";
     } else if (is_string($radius)  && ctype_digit($radius)) {
         $radius = " border-radius:{$radius}px; ";
+    } else {
+        $radius = " border-radius:0px; ";
     }
+} else {
+    $radius = " border-radius:5px; ";
 }
 
 if (isset($shadow)) {
@@ -21,6 +44,8 @@ if (isset($shadow)) {
     } else if (is_string($shadow)  && mb_strlen($shadow) > 0) {
         $shadow = " box-shadow:$shadow; ";
     }
+} else {
+    $shadow = " box-shadow:0 1px 2px rgba(0, 0, 0, 0.2); ";
 }
 
 if (isset($objectFit)) {
@@ -29,6 +54,8 @@ if (isset($objectFit)) {
     } else if (is_string($objectFit)  && mb_strlen($objectFit) > 0) {
         $objectFit = " object-fit:$objectFit; ";
     }
+} else {
+    $objectFit = " object-fit:cover; ";
 }
 
 if (isset($submit)) {
@@ -37,22 +64,26 @@ if (isset($submit)) {
     } else if (is_string($submit)  && mb_strlen($submit) > 0) {
         $submit = "<button type='submit' class='ui primary mini button'>$submit</button>";
     }
+} else {
+    $submit = "";
 }
 
 if (isset($containerW)) {
-    if (is_string($containerW) && is_numeric($containerW)) {
+    if (is_string($containerW) && ctype_digit($containerW)) {
         $containerW = (int) $containerW;
     }
+} else {
+    $containerW = 200;
 }
 
 if (isset($containerH)) {
-    if (is_string($containerH) && is_numeric($containerH)) {
+    if (is_string($containerH) && ctype_digit($containerH)) {
         $containerH = (int) $containerH;
     }
+} else {
+    $containerH = 150;
 }
 
-$containerW = !is_int($containerW) ? 200 : $containerW;
-$containerH = !is_int($containerH) ? 150 : $containerH;
 
 if (isset($referenceW)) {
     if (is_string($referenceW) && is_numeric($referenceW)) {
@@ -66,13 +97,18 @@ if (isset($referenceH)) {
     }
 }
 
-$referenceW = !is_int($referenceW) ? 1920 : $referenceW;
-$referenceH = !is_int($referenceH) ? 1080 : $referenceH;
+$referenceW = isset($referenceW) && is_int($referenceW) ?   $referenceW : 1920;
+$referenceH = isset($referenceH) && is_int($referenceH) ?   $referenceH : 1080;
 
+$containerBackW = $containerW + 5;
+$containerBackH = $containerH + 45;
+
+$backStyle = "style='width: {$containerBackW}px;height: {$containerBackH}px;'";
+$imageStyle = 'style="' . $padding .  $backgroundColor . $objectFit . $shadow . $radius . "width: {$containerW}px;height: {$containerH}px;" . '"';
 ?>
 
-<div class="preview" style="width: <?= $containerW ?>px;height: <?= $containerH ?>px;">
-    <img src="<?= "img-gen/$referenceW/$referenceH"; ?>" style="<?= isset($objectFit) ? $objectFit : "" ?> <?= isset($shadow) ? $shadow : "" ?> <?= isset($radius) ? $radius : "" ?> width: <?= $containerW ?>px;height: <?= $containerH ?>px;">
+<div class="preview" <?= $backStyle ?>>
+    <img src="<?= "img-gen/$referenceW/$referenceH"; ?>" <?= $imageStyle ?>>
     <div class="flex row-centered">
         <?= isset($submit) ? $submit : "" ?>
         <button class="ui secondary mini button" type="button" start></button>

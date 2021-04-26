@@ -4,7 +4,7 @@ defined("BASEPATH") or die("<h1>El script no puede ser accedido directamente</h1
 ?>
 <div class="ui header"><?= __($langGroup, 'Fondos'); ?></div>
 
-<div class="ui segment ">
+<div class="ui segment backgrounds-container">
     <div class="ui header small"><?= __($langGroup, 'Fondos del login'); ?></div>
 
     <div class="flex gap-1 overflow-x">
@@ -24,6 +24,7 @@ defined("BASEPATH") or die("<h1>El script no puede ser accedido directamente</h1
                         'containerW' => '200',
                         'containerH' => '150',
                         'objectFit' => 'cover',
+                        'backgroundColor' => 'white',
                         'radius' => true,
                         'shadow' => true,
                         'referenceW' => '1920',

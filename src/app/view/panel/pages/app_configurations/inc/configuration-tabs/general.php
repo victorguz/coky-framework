@@ -71,7 +71,7 @@ $colors = [
     ],
 ];
 ?>
-<?php if (mb_strlen($actionGenericURL) > 0) : ?>
+<?php if (mb_strlen($action) > 0) : ?>
 
 
 
@@ -102,7 +102,7 @@ $colors = [
         </div>
 
 
-        <form pcs-generic-handler-js action="<?= $actionGenericURL; ?>" method="POST">
+        <form pcs-generic-handler-js action="<?= $action; ?>" method="POST">
 
             <input type="hidden" name="reload" value="true">
 

@@ -24,42 +24,42 @@
     flex-wrap: nowrap !important;
 
     &.row-centered {
-        flex-direction: row;
+        flex-direction: row !important;
         align-items: center;
         justify-content: center;
         text-align: center;
     }
 
     &.row-left {
-        flex-direction: row;
+        flex-direction: row !important;
         align-items: center;
         justify-content: flex-start;
         text-align: left;
     }
 
     &.row-right {
-        flex-direction: row;
+        flex-direction: row !important;
         align-items: center;
         justify-content: flex-end;
         text-align: right;
     }
 
     &.column-centered {
-        flex-direction: column;
+        flex-direction: column !important;
         align-items: center;
         justify-content: center;
         text-align: center;
     }
 
     &.column-left {
-        flex-direction: column;
+        flex-direction: column !important;
         align-items: center;
         justify-content: flex-start;
         text-align: left;
     }
 
     &.column-right {
-        flex-direction: column;
+        flex-direction: column !important;
         align-items: center;
         justify-content: flex-end;
         text-align: right;
@@ -87,7 +87,7 @@
 .overflow-x {
     // width: 100%;
     overflow-y: hidden !important;
-    overflow-y: auto !important;
+    overflow-x: auto !important;
 }
 
 .gap {

@@ -55,6 +55,35 @@ if (is_object($user)) :
     ]);
 
 
+    $config_urls = [
+        AppConfigController::routeName('generals'),
+        AppConfigController::routeName('view-logos-favicons'),
+        AppConfigController::routeName('view-backgrounds'),
+        AppConfigController::routeName('seo'),
+        get_route('admin-error-log'),
+        get_route('configurations-routes'),
+        AppConfigController::routeName('generals-sitemap-create'),
+        AppConfigController::routeName('email'),
+        AppConfigController::routeName('os-ticket'),
+    ];
+
+    /**
+     * Buscar la url de configuración disponible para el usuario en sesión
+     */
+    foreach ($config_urls as $value) {
+        if (mb_strlen($value) > 0) {
+            $first_config_url = $value;
+            break; //detenerse al encontrarlo
+        }
+    }
+
+
+
+    /**
+     * Si hay alguna url de configuración disponible, se debe mostrar el botón de configuración
+     */
+    $there_are_config_url = mb_strlen($first_config_url) > 0;
+
     /**
      * Sidebar container
      */
@@ -163,8 +192,8 @@ if (is_object($user)) :
             ]),
             new MenuGroup([
                 'name' => __(AppConfigController::LANG_GROUP, 'Logotipos'),
-                'visible' => AppConfigController::allowedRoute('logos-favicons'),
-                'href' =>  AppConfigController::routeName('logos-favicons'),
+                'visible' => AppConfigController::allowedRoute('view-logos-favicons'),
+                'href' =>  AppConfigController::routeName('view-logos-favicons'),
                 'icon' => getIcon("heart-outline"),
                 'show_text' => $show_text,
                 'show_icon' => $show_icon,
@@ -173,8 +202,8 @@ if (is_object($user)) :
             ]),
             new MenuGroup([
                 'name' => __(AppConfigController::LANG_GROUP, 'Fondos del login'),
-                'visible' => AppConfigController::allowedRoute('backgrounds'),
-                'href' =>  AppConfigController::routeName('backgrounds'),
+                'visible' => AppConfigController::allowedRoute('view-backgrounds'),
+                'href' =>  AppConfigController::routeName('view-backgrounds'),
                 'icon' => getIcon("images-outline"),
                 'show_text' => $show_text,
                 'show_icon' => $show_icon,
@@ -321,21 +350,12 @@ if (is_object($user)) :
                 'icon' => getIcon("settings-outline"),
                 'show_text' => false,
                 'show_icon' => $topbar_show_icon,
-                'visible' =>
-                AppConfigController::allowedRoute('logos-favicons') ||
-                    AppConfigController::allowedRoute('backgrounds') ||
-                    AppConfigController::allowedRoute('generals') ||
-                    AppConfigController::allowedRoute('seo') ||
-                    Roles::hasPermissions('admin-error-log', $current_type_user) ||
-                    Roles::hasPermissions('configurations-routes', $current_type_user) ||
-                    AppConfigController::allowedRoute('generals-sitemap-create') ||
-                    AppConfigController::allowedRoute('email') ||
-                    AppConfigController::allowedRoute('os-ticket'),
-                'href' =>  AppConfigController::routeName('generals'),
+                'visible' => $there_are_config_url,
+                'href' =>  $first_config_url,
                 'asLink' => true
             ]),
             new MenuGroup([
-                // 'name' => __(ADMIN_MENU_LANG_GROUP, 'Configuraciones'),
+                'name' => __(ADMIN_MENU_LANG_GROUP, 'Perfil'),
                 'icon' => '<div class="avatar">' .
                     (is_object($user) && $user->hasAvatar ?
                         '<img src="<?= $user->avatar; ?>">'
