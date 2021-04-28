@@ -190,31 +190,51 @@ if (is_object($user)) :
                 'as_row' => $as_row,
                 'asLink' => true
             ]),
-            new MenuGroup([
-                'name' => __(AppConfigController::LANG_GROUP, 'Logotipos'),
-                'visible' => AppConfigController::allowedRoute('view-logos-favicons'),
-                'href' =>  AppConfigController::routeName('view-logos-favicons'),
-                'icon' => getIcon("heart-outline"),
-                'show_text' => $show_text,
-                'show_icon' => $show_icon,
-                'as_row' => $as_row,
-                'asLink' => true
-            ]),
-            new MenuGroup([
-                'name' => __(AppConfigController::LANG_GROUP, 'Fondos del login'),
-                'visible' => AppConfigController::allowedRoute('view-backgrounds'),
-                'href' =>  AppConfigController::routeName('view-backgrounds'),
-                'icon' => getIcon("images-outline"),
-                'show_text' => $show_text,
-                'show_icon' => $show_icon,
-                'as_row' => $as_row,
-                'asLink' => true
-            ]),
+            // new MenuGroup([
+            //     'name' => __(AppConfigController::LANG_GROUP, 'Logotipos'),
+            //     'visible' => AppConfigController::allowedRoute('view-logos-favicons'),
+            //     'href' =>  AppConfigController::routeName('view-logos-favicons'),
+            //     'icon' => getIcon("heart-outline"),
+            //     'show_text' => $show_text,
+            //     'show_icon' => $show_icon,
+            //     'as_row' => $as_row,
+            //     'asLink' => true
+            // ]),
+            // new MenuGroup([
+            //     'name' => __(AppConfigController::LANG_GROUP, 'Fondos del login'),
+            //     'visible' => AppConfigController::allowedRoute('view-backgrounds'),
+            //     'href' =>  AppConfigController::routeName('view-backgrounds'),
+            //     'icon' => getIcon("images-outline"),
+            //     'show_text' => $show_text,
+            //     'show_icon' => $show_icon,
+            //     'as_row' => $as_row,
+            //     'asLink' => true
+            // ]),
             new MenuGroup([
                 'name' => __(AppConfigController::LANG_GROUP, 'Ajustes SEO'),
                 'visible' => AppConfigController::allowedRoute('seo'),
                 'href' =>  AppConfigController::routeName('seo'),
                 'icon' => getIcon("search-outline"),
+                'show_text' => $show_text,
+                'show_icon' => $show_icon,
+                'as_row' => $as_row,
+                'asLink' => true
+            ]),
+            new MenuGroup([
+                'name' => __(AppConfigController::LANG_GROUP, 'Emails and SSL'),
+                'visible' => AppConfigController::allowedRoute('email-ssl'),
+                'href' =>  AppConfigController::routeName('email-ssl'),
+                'icon' => getIcon("mail-outline"),
+                'show_text' => $show_text,
+                'show_icon' => $show_icon,
+                'as_row' => $as_row,
+                'asLink' => true
+            ]),
+            new MenuGroup([
+                'name' => __(AppConfigController::LANG_GROUP, 'Rutas y permisos'),
+                'visible' => Roles::hasPermissions('configurations-routes', $current_type_user),
+                'href' =>  get_route('configurations-routes', [], true),
+                'icon' => getIcon("person-add-outline"),
                 'show_text' => $show_text,
                 'show_icon' => $show_icon,
                 'as_row' => $as_row,
@@ -227,26 +247,6 @@ if (is_object($user)) :
                     "data-url" => AppConfigController::routeName('generals-sitemap-create'), "sitemap-update-trigger" => ""
                 ],
                 'icon' => getIcon("location-outline"),
-                'show_text' => $show_text,
-                'show_icon' => $show_icon,
-                'as_row' => $as_row,
-                'asLink' => true
-            ]),
-            new MenuGroup([
-                'name' => __(AppConfigController::LANG_GROUP, 'Configuración de emails'),
-                'visible' => AppConfigController::allowedRoute('email'),
-                'href' =>  AppConfigController::routeName('email'),
-                'icon' => getIcon("mail-outline"),
-                'show_text' => $show_text,
-                'show_icon' => $show_icon,
-                'as_row' => $as_row,
-                'asLink' => true
-            ]),
-            new MenuGroup([
-                'name' => __(AppConfigController::LANG_GROUP, 'Rutas y permisos'),
-                'visible' => Roles::hasPermissions('configurations-routes', $current_type_user),
-                'href' =>  get_route('configurations-routes', [], true),
-                'icon' => getIcon("person-add-outline"),
                 'show_text' => $show_text,
                 'show_icon' => $show_icon,
                 'as_row' => $as_row,

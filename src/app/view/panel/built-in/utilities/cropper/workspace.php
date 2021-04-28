@@ -100,11 +100,14 @@ if (isset($referenceH)) {
 $referenceW = isset($referenceW) && is_int($referenceW) ?   $referenceW : 1920;
 $referenceH = isset($referenceH) && is_int($referenceH) ?   $referenceH : 1080;
 
-$containerBackW = $containerW + 5;
-$containerBackH = $containerH + 45;
+$containerBackW = is_numeric($containerW) ? ($containerW + 5) . "px" : $containerW;
+$containerBackH = is_numeric($containerH) ? ($containerH + 45) . "px" : $containerH;
 
-$backStyle = "style='width: {$containerBackW}px;height: {$containerBackH}px;'";
-$imageStyle = 'style="' . $padding .  $backgroundColor . $objectFit . $shadow . $radius . "width: {$containerW}px;height: {$containerH}px;" . '"';
+$containerImgW = is_numeric($containerW) ? $containerW . "px" : $containerW;
+$containerImgH = is_numeric($containerH) ? $containerH . "px" : $containerH;
+
+$backStyle = "style='width: $containerBackW;height: $containerBackH;min-height:fit-content;'";
+$imageStyle = 'style="' . $padding .  $backgroundColor . $objectFit . $shadow . $radius . "width: 100%;height: $containerImgH;" . '"';
 ?>
 
 <div class="preview" <?= $backStyle ?>>

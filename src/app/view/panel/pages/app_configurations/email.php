@@ -79,8 +79,9 @@ $element;
 
 </form>
 
-<div class="ui form">
-    <div class="two fields">
+<?php if (mb_strlen($actionGenericURL) > 0) : ?>
+
+    <div class="ui form">
 
         <div class="field">
             <div class="ui segment">
@@ -107,29 +108,5 @@ $element;
             </div>
         </div>
 
-        <div class="field">
-            <div class="ui segment">
-                <form pcs-generic-handler-js action="<?= $actionGenericURL; ?>" method="POST">
-                    <div class="ui header small"><?= __($langGroup, 'Configuración extra de emails'); ?></div>
-                    <strong><?= __($langGroup, 'Correo electrónico de recepción'); ?></strong>
-                    <div class="ui action input">
-                        <input type="text" name="value" value="<?= get_config("mail_recipient") ?>">
-                        <input type="hidden" name="name" value="mail_recipient">
-                        <input type="hidden" name="parse" value="lowercase">
-                        <button type="submit" class="ui primary button"><?= __($langGroup, 'Guardar'); ?></button>
-                    </div>
-                </form>
-
-                <form pcs-generic-handler-js action="<?= $actionGenericURL; ?>" method="POST">
-                    <strong><?= __($langGroup, 'Nombre de receptor'); ?></strong>
-                    <div class="ui action input">
-                        <input type="text" name="value" value="<?= get_config("mail_recipient_name") ?>">
-                        <input type="hidden" name="name" value="mail_recipient_name">
-                        <input type="hidden" name="parse" value="lowercase">
-                        <button type="submit" class="ui primary button"><?= __($langGroup, 'Guardar'); ?></button>
-                    </div>
-                </form>
-            </div>
-        </div>
     </div>
-</div>
+<?php endif; ?>

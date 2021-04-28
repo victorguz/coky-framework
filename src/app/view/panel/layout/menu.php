@@ -10,7 +10,7 @@ $config_urls = [
     get_route('admin-error-log'),
     get_route('configurations-routes'),
     AppConfigController::routeName('generals-sitemap-create'),
-    AppConfigController::routeName('email'),
+    AppConfigController::routeName('email-ssl'),
     AppConfigController::routeName('os-ticket'),
 ];
 

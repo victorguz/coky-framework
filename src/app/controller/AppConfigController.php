@@ -118,7 +118,6 @@ class AppConfigController extends AdminPanelController
      */
     public function viewStyles(Request $req, Response $res, array $args)
     {
-        import_spectrum();
 
         $langGroup = AppConfigController::LANG_GROUP;
 
@@ -144,6 +143,7 @@ class AppConfigController extends AdminPanelController
         if (isset($args["generic"]) && $args["generic"]) {
             $this->render("{$this->baseViewDir}/configurations", $data);
         } else {
+            import_spectrum();
             $this->render('panel/layout/header');
             $this->render("{$this->baseViewDir}/configurations", $data);
             $this->render('panel/layout/footer');
@@ -201,11 +201,6 @@ class AppConfigController extends AdminPanelController
         $langGroup = self::LANG_GROUP;
         set_title(__(self::LANG_GROUP, 'Personalización de fondos'));
 
-        import_cropper();
-
-        set_custom_assets([
-            'statics/core/js/app_config/backgrounds.js',
-        ], 'js');
 
         // set_custom_assets([
         //     'statics/core/css/app_config/backgrounds.css',
@@ -221,6 +216,12 @@ class AppConfigController extends AdminPanelController
         if (isset($args["generic"]) && $args["generic"]) {
             $this->render("{$this->baseViewDir}/backgrounds", $data);
         } else {
+            import_cropper();
+
+            set_custom_assets([
+                'statics/core/js/app_config/backgrounds.js',
+            ], 'js');
+
             $this->render('panel/layout/header');
             $this->render("{$this->baseViewDir}/backgrounds", $data);
             $this->render('panel/layout/footer');
@@ -334,11 +335,7 @@ class AppConfigController extends AdminPanelController
         $langGroup = self::LANG_GROUP;
         set_title(__(self::LANG_GROUP, 'Imágenes de marca'));
 
-        import_cropper();
 
-        set_custom_assets([
-            'statics/core/js/app_config/logos-favicons.js',
-        ], 'js');
 
         // set_custom_assets([
         //     'statics/core/css/app_config/logos-favicons.css',
@@ -358,6 +355,11 @@ class AppConfigController extends AdminPanelController
         if (isset($args["generic"]) && $args["generic"]) {
             $this->render("{$this->baseViewDir}/logos-favicons", $data);
         } else {
+            import_cropper();
+
+            set_custom_assets([
+                'statics/core/js/app_config/logos-favicons.js',
+            ], 'js');
             $this->render('panel/layout/header');
             $this->render("{$this->baseViewDir}/logos-favicons", $data);
             $this->render('panel/layout/footer');
@@ -716,7 +718,7 @@ class AppConfigController extends AdminPanelController
      * @param array $args
      * @return void
      */
-    public function email(Request $req, Response $res, array $args)
+    public function viewEmail(Request $req, Response $res, array $args)
     {
         $langGroup = self::LANG_GROUP;
 
@@ -742,9 +744,13 @@ class AppConfigController extends AdminPanelController
             'element' => $element,
         ];
 
-        $this->render('panel/layout/header');
-        $this->render("{$this->baseViewDir}/email", $data);
-        $this->render('panel/layout/footer');
+        if (isset($args["generic"]) && $args["generic"]) {
+            $this->render("{$this->baseViewDir}/email", $data);
+        } else {
+            $this->render('panel/layout/header');
+            $this->render("{$this->baseViewDir}/email", $data);
+            $this->render('panel/layout/footer');
+        }
     }
 
     /**
@@ -1113,8 +1119,9 @@ class AppConfigController extends AdminPanelController
         import_spectrum();
         import_cropper();
         set_custom_assets([
-            'statics/core/js/app_config/logos-favicons.js',
-            'statics/core/js/app_config/backgrounds.js',
+            // 'statics/core/js/app_config/logos-favicons.js',
+            // 'statics/core/js/app_config/backgrounds.js',
+            'statics/core/js/app_config/generals.js',
         ], 'js');
 
         //set views
@@ -1130,6 +1137,32 @@ class AppConfigController extends AdminPanelController
 
         if (in_array($currentUser->type, self::ROLES_BACKGROUND)) {
             $this->viewBackgrounds($req, $res, $args);
+        }
+
+        // if (in_array($currentUser->type, self::ROLES_SSL_ACTION)) {
+        //     $this->viewSSL($req, $res, $args);
+        // }
+
+        $this->render('panel/layout/footer');
+    }
+
+    /**
+     * @param Request $req
+     * @param Response $res
+     * @param array $args
+     * @return void
+     */
+    public function emailAndSSLViews(Request $req, Response $res, array $args)
+    {
+
+        set_title("Configuración general");
+        $currentUser = get_config('current_user');
+        $args["generic"] = true;
+
+        $this->render('panel/layout/header');
+
+        if (in_array($currentUser->type, self::ROLES_EMAIL)) {
+            $this->viewEmail($req, $res, $args);
         }
 
         if (in_array($currentUser->type, self::ROLES_SSL_ACTION)) {
@@ -1791,7 +1824,16 @@ class AppConfigController extends AdminPanelController
             new Route(
                 "{$startRoute}[/]",
                 $classname . ':genericViews',
-                'configurations-generals',
+                self::$baseRouteName . "-generals",
+                'GET',
+                true,
+                null,
+                $genericViewRoles
+            ),
+            new Route(
+                "{$startRoute}email-ssl[/]",
+                $classname . ':emailAndSSLViews',
+                self::$baseRouteName . "-email-ssl",
                 'GET',
                 true,
                 null,
@@ -1801,7 +1843,7 @@ class AppConfigController extends AdminPanelController
             new Route(
                 "{$startRoute}routes[/]",
                 $classname . ':routesView',
-                'configurations-routes',
+                self::$baseRouteName . "-routes",
                 'GET',
                 true,
                 null,
@@ -1879,7 +1921,7 @@ class AppConfigController extends AdminPanelController
             //Email
             new Route(
                 "{$startRoute}/view/email[/]",
-                $classname . ':email',
+                $classname . ':viewEmail',
                 self::$baseRouteName . '-' . 'email',
                 'GET',
                 true,

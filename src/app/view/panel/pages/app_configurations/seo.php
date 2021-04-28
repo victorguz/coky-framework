@@ -34,41 +34,46 @@ defined("BASEPATH") or die("<h1>El script no puede ser accedido directamente</h1
             </div>
 
 
-            <div class="two fields">
-                <div class="field">
-                    <label for="opengraph">Opengraph (Imagen de 1200x630px)</label>
+            <div class="field">
+                <label for="opengraph">Opengraph (Imagen de 1200x630px)</label>
 
-                    <div class="content">
+                <div class="content">
 
-                        <div class="ui form cropper-adapter" style="height: 186px;">
+                    <div class="ui form cropper-adapter">
 
-                            <input type="file" accept="image/*">
+                        <input type="file" accept="image/*">
 
-                            <?php
-                            cropperAdapterWorkSpace([
-                                'withTitle' => false,
-                                'image' => $openGraph,
-                                'referenceW' => '1200',
-                                'referenceH' => '630',
-                                'cancelButtonText' => null,
-                                'saveButtonText' => __($langGroup, 'Seleccionar imagen'),
-                                'controls' => [
-                                    'rotate' => false,
-                                    'flip' => false,
-                                    'adjust' => false,
-                                ],
-                            ]);
-                            ?>
-                        </div>
-
+                        <?php
+                        cropperAdapterWorkSpace([
+                            'withTitle' => false,
+                            'image' => $openGraph,
+                            'containerW' => '100%',
+                            'containerH' => '200',
+                            'fullWidth' => true,
+                            'objectFit' => 'cover',
+                            'backgroundColor' => 'white',
+                            'radius' => true,
+                            'shadow' => true,
+                            'referenceW' => '1200',
+                            'referenceH' => '630',
+                            'cancelButtonText' => null,
+                            'saveButtonText' => __($langGroup, 'Seleccionar imagen'),
+                            'controls' => [
+                                'rotate' => true,
+                                'flip' => true,
+                                'adjust' => true,
+                            ],
+                        ]);
+                        ?>
                     </div>
 
                 </div>
 
-                <div class="field required">
-                    <label><?= __($langGroup, 'Descripción'); ?></label>
-                    <textarea required name="description" placeholder="<?= __($langGroup, 'Descripción de la página.'); ?>" required style="height: 186px;"><?= $description; ?></textarea>
-                </div>
+            </div>
+
+            <div class="field required">
+                <label><?= __($langGroup, 'Descripción'); ?></label>
+                <textarea required name="description" placeholder="<?= __($langGroup, 'Descripción de la página.'); ?>" required rows="3"><?= $description; ?></textarea>
             </div>
         </div>
 
