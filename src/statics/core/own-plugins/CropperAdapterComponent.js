@@ -111,8 +111,8 @@ function CropperAdapterComponent(configurations = {}, prepareOnCreation = true) 
 	/** @type {$} Disparador de aumento */ let actionZoomIn
 
 	//──── Textos ────────────────────────────────────────────────────────────────────────────
-	/** @type {String} Texto agregar imagen */ let addImageText = _i18n(LANG_GROUP, 'Agregar imagen')
-	/** @type {String} Texto cambiar imagen */ let changeImageText = _i18n(LANG_GROUP, 'Cambiar imagen')
+	/** @type {String} Texto agregar imagen */ let addImageText = _i18n(LANG_GROUP, 'Agregar')
+	/** @type {String} Texto cambiar imagen */ let changeImageText = _i18n(LANG_GROUP, 'Cambiar')
 	/** @type {String} Texto título por defecto */ let title = _i18n(LANG_GROUP, 'imagen') + '_' + (Date.now().toString(36) + Math.random().toString(36).substr(2, 5)).toUpperCase()
 
 	//──── Elementos de interfaz ─────────────────────────────────────────────────────────────

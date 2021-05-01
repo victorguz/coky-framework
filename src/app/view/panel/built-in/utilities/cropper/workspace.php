@@ -124,14 +124,14 @@ $imageStyle = 'style="' . $padding .  $backgroundColor . $objectFit . $shadow . 
 
         <div class="step add" cropper-step-add>
 
-            <div class="ui header medium centered"><?= __(CROPPER_ADAPTER_LANG_GROUP, 'Agregar imagen'); ?></div>
+            <div class="ui header medium centered"><?= __(CROPPER_ADAPTER_LANG_GROUP, 'Agregar'); ?></div>
 
             <div class="placeholder">
 
                 <div class="content">
                     <div>
                         <i class="upload icon"></i>
-                        <button class="ui secondary mini button fluid" type="button" load-image><?= __(CROPPER_ADAPTER_LANG_GROUP, 'Seleccionar imagen'); ?></button>
+                        <button class="ui secondary mini button fluid" type="button" load-image><?= __(CROPPER_ADAPTER_LANG_GROUP, 'Seleccionar'); ?></button>
                     </div>
                 </div>
 
@@ -163,7 +163,7 @@ $imageStyle = 'style="' . $padding .  $backgroundColor . $objectFit . $shadow . 
                     'controls' => isset($controls) && is_array($controls) ? $controls : null,
                 ]); ?>
                 <?php $this->_render('panel/built-in/utilities/cropper/main-buttons.php', [
-                    'saveButtonText' => isset($saveButtonText) && is_string($saveButtonText) ? $saveButtonText : __(CROPPER_ADAPTER_LANG_GROUP, 'Guardar imagen'),
+                    'saveButtonText' => isset($saveButtonText) && is_string($saveButtonText) ? $saveButtonText : __(CROPPER_ADAPTER_LANG_GROUP, 'Guardar'),
                 ]); ?>
             </div>
 

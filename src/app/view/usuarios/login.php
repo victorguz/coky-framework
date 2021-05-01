@@ -34,7 +34,7 @@
                         <div>
                             <p class="message"></p>
 
-                            <span class="ui secondary mini button retry">
+                            <span class="ui secondary button retry">
                                 <?= __(USER_LOGIN_LANG_GROUP, 'Intentar nuevamente'); ?>
                             </span>
                         </div>
@@ -42,7 +42,7 @@
                         <div>
                             <p class="message-bottom"></p>
 
-                            <a href="<?= get_route('user-problems-list') ?>" class="ui danger mini button">
+                            <a href="<?= get_route('user-problems-list') ?>" class="ui danger button">
                                 <?= __(USER_LOGIN_LANG_GROUP, 'Ayuda para ingresar'); ?>
                             </a>
                         </div>

@@ -74,13 +74,17 @@ class AdminPanelController extends \PiecesPHP\Core\BaseController
      */
     public function indexView(Request $req, Response $res, array $args)
     {
+        $args["slide"] = true;
+
         if (BLACKBOARD_NEWS_ENABLED) {
             add_global_asset(BLACKBOARD_NEWS_PATH_JS . '/main.js', 'js');
             $this->render('panel/layout/header');
+            $this->multipleView($req, $res, $args);
             $this->render('panel/pages/main');
             $this->render('panel/layout/footer');
         } else {
             $this->render('panel/layout/header');
+            $this->multipleView($req, $res, $args);
             $this->render('panel/pages/dashboard');
             $this->render('panel/layout/footer');
         }
@@ -88,6 +92,36 @@ class AdminPanelController extends \PiecesPHP\Core\BaseController
         return $res;
     }
 
+    /**
+     * multipleView
+     *
+     * Vista principal
+     *
+     * @param Request $req
+     * @param Response $res
+     * @param array $args
+     * @return void
+     */
+    public function multipleView(Request $req, Response $res, array $args)
+    {
+        set_custom_assets([ADMIN_MODULES_CSS . "/multiple-view.css"], "css");
+        $links = get_config('menus')['multiple_links']->getHtml();
+        $data = [];
+
+        $data["links"] = $links;
+
+        $data["slide"] = isset($args["slide"]) ? $args["slide"] : false;
+
+        if ($data["slide"]) {
+            $this->render('panel/pages/multiple-view', $data);
+        } else {
+            $this->render('panel/layout/header');
+            $this->render('panel/pages/multiple-view', $data);
+            $this->render('panel/layout/footer');
+        }
+
+        return $res;
+    }
     /**
      * errorLog
      *
@@ -210,8 +244,8 @@ class AdminPanelController extends \PiecesPHP\Core\BaseController
                 true
             ),
             new Route(
-                $lastIsBar ? 'hola' : 'hola[/]',
-                self::class . ':indexView',
+                $lastIsBar ? 'multiple/view' : 'multiple/view[/]',
+                self::class . ':multipleView',
                 'admin-multiple-view',
                 'GET',
                 true

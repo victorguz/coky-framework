@@ -77,7 +77,6 @@ defined("BASEPATH") or die("<h1>El script no puede ser accedido directamente</h1
             </div>
         </div>
 
-
         <div class="ui segment">
             <div class="field">
                 <label><?= __($langGroup, 'Scripts adicionales'); ?></label>
@@ -87,7 +86,7 @@ defined("BASEPATH") or die("<h1>El script no puede ser accedido directamente</h1
 
 
         <div class="field">
-            <button class="ui primary mini fluid button" type="submit">
+            <button class="ui primary fluid button" type="submit">
                 <?= __($langGroup, 'Guardar'); ?>
             </button>
         </div>

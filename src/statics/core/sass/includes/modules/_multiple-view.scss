@@ -1,0 +1,54 @@
+.coky-multiple-view {
+
+    .buttons {
+        overflow: hidden;
+        width: 100%;
+        margin-bottom: 15px;
+
+        .content {
+            display: flex;
+            flex-direction: row;
+            flex-flow: wrap;
+
+            .item {
+                transition: all ease-in 0.2s;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+                background-color: $white-color;
+                border-radius: $rounded;
+
+                min-width: 200px;
+                width: 200px;
+                min-height: 100px;
+                height: 100px;
+                box-shadow: $shadow-fb;
+                margin: 5px;
+                margin-right: 15px;
+
+                color: $sidebar-text-color;
+
+                .ionicono {
+                    width: 50px;
+                    height: 50px;
+                    margin-bottom: 5px;
+                }
+
+                &:hover {
+                    transform: scale(1.05);
+                }
+            }
+        }
+
+
+        &.slider {
+            overflow-x: auto;
+
+            .content {
+                flex-flow: nowrap;
+            }
+        }
+    }
+}

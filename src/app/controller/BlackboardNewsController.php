@@ -31,7 +31,7 @@ class BlackboardNewsController extends AdminPanelController
 
     const UPLOAD_DIR = 'blackboard';
     const UPLOAD_DIR_TMP = 'blackboard/tmp';
-    const FORMAT_DATETIME = 'd-m-Y h:i A';
+    const FORMAT_DATETIME = 'Y-m-d h:i A';
 
     /**
      * $uploadDir
@@ -97,14 +97,14 @@ class BlackboardNewsController extends AdminPanelController
     }
 
     /**
-     * writeForm
+     * addForm
      *
      * @param Request $request
      * @param Response $response
      * @param array $args
      * @return Response
      */
-    public function writeForm(Request $request, Response $response, array $args)
+    public function addForm(Request $request, Response $response, array $args)
     {
 
         $types = Roles::getRolesIdentifiers(true);
@@ -187,7 +187,6 @@ class BlackboardNewsController extends AdminPanelController
                 ->setMessage($deleted ? __(self::LANG_GROUP, 'La noticia ha sido eliminada.') : __(self::LANG_GROUP, 'La noticia no pudo ser eliminada, intente luego.'))
                 ->operation('deleteNew')
                 ->setSuccess($deleted);
-
         } else {
             $result->setMessage(__(self::LANG_GROUP, 'La noticia no existe'));
         }
@@ -248,7 +247,6 @@ class BlackboardNewsController extends AdminPanelController
                 ->setMessage($saved ? __(self::LANG_GROUP, 'La noticia ha sido creada') : __(self::LANG_GROUP, 'No se ha podido crear la noticia, intente más tarde.'))
                 ->operation('registerNew')
                 ->setSuccess($saved);
-
         } else {
             $result
                 ->setMessage(__(self::LANG_GROUP, 'Los parámetros recibidos no son correctos'))
@@ -312,7 +310,6 @@ class BlackboardNewsController extends AdminPanelController
                 ->setMessage($updated ? __(self::LANG_GROUP, 'La noticia ha sido actualizada') : __(self::LANG_GROUP, 'No se ha podido actualizar la noticia, intente más tarde.'))
                 ->operation('editNew')
                 ->setSuccess($updated);
-
         } else {
             $result
                 ->setMessage(__(self::LANG_GROUP, 'Los parámetros recibidos no son correctos'))
@@ -371,14 +368,11 @@ class BlackboardNewsController extends AdminPanelController
                     $entity->text = str_replace($url, $_url, $entity->text);
 
                     $currentImagesOnText[] = $_url;
-
                 } elseif (mb_strpos($url, $this->uploadDirURL) !== false) {
 
                     $currentImagesOnText[] = $url;
-
                 }
             }
-
         }
 
         $updated = $entity->update();
@@ -401,10 +395,8 @@ class BlackboardNewsController extends AdminPanelController
                         if (file_exists($path)) {
                             unlink($path);
                         }
-
                     }
                 }
-
             }
         }
     }
@@ -481,7 +473,6 @@ class BlackboardNewsController extends AdminPanelController
             $element->text = $mapper->text;
 
             $filtered[] = $element;
-
         }
 
         return $response->withJson(
@@ -536,9 +527,7 @@ class BlackboardNewsController extends AdminPanelController
                             ->operation('uploadImage')
                             ->setMessage(__(self::LANG_GROUP, 'La imagen no pudo ser subida, intente después.'));
                     }
-
                 }
-
             }
         } else {
             $result
@@ -571,7 +560,7 @@ class BlackboardNewsController extends AdminPanelController
         //──── GET ─────────────────────────────────────────────────────────────────────────
         $routes[] = new Route(
             "{$startRoute}create[/]",
-            $classname . ':writeForm',
+            $classname . ':addForm',
             'blackboard-news-create-form',
             'GET',
             true,

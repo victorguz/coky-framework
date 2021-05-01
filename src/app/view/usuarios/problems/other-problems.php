@@ -60,7 +60,7 @@
                         <a href="<?= get_route('user-problems-list'); ?>" class="ui button">
                             <?= __(\App\Controller\UserProblemsController::LANG_GROUP, 'Atrás') ?>
                         </a>
-                        <button type="submit" class="ui secondary mini button">
+                        <button type="submit" class="ui secondary button">
                             <?= __(\App\Controller\UserProblemsController::LANG_GROUP, 'Enviar') ?>
                         </button>
                     </div>
@@ -73,7 +73,7 @@
 
                 <form class="ui form">
                     <div class="field">
-                        <a href="<?= get_route('users-form-login'); ?>" class="ui secondary mini button fuid">
+                        <a href="<?= get_route('users-form-login'); ?>" class="ui secondary button fuid">
                             <?= __(\App\Controller\UserProblemsController::LANG_GROUP, 'Ingresar') ?>
                         </a>
                     </div>

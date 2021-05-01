@@ -14,7 +14,7 @@ $langGroup = UsersController::LANG_GROUP;
 
     <div class="">
         <?php if (\PiecesPHP\Core\Roles::hasPermissions('users-selection-create', (int)get_config('current_user')->type, true)) : ?>
-            <a href="<?= get_route('users-selection-create'); ?>" class="ui primary mini button"><?= __($langGroup, 'Agregar'); ?></a>
+            <a href="<?= get_route('users-selection-create'); ?>" class="ui primary button"><?= __($langGroup, 'Agregar'); ?></a>
         <?php endif; ?>
     </div>
     <br>

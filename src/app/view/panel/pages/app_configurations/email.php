@@ -74,7 +74,7 @@ $element;
     </div>
     <br>
     <div class="field">
-        <button type="submit" class="ui primary fluid mini button"><?= __($langGroup, 'Guardar'); ?></button>
+        <button type="submit" class="ui primary fluid button"><?= __($langGroup, 'Guardar'); ?></button>
     </div>
 
 </form>

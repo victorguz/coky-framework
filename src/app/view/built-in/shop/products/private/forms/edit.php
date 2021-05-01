@@ -144,7 +144,7 @@ $subcategoryURL;
 
         <div class="ui tab" data-tab="images">
 
-            <button images-multiple-trigger-add class="ui labeled icon secondary mini button">
+            <button images-multiple-trigger-add class="ui labeled icon secondary button">
                 <?= __($langGroup, 'Agregar imagen'); ?>
                 <i class="icon image"></i>
             </button>
@@ -192,7 +192,7 @@ $subcategoryURL;
 
                                 <div>
 
-                                    <button delete class="ui labeled icon danger mini button">
+                                    <button delete class="ui labeled icon danger button">
                                         <?= __($langGroup, 'Borrar'); ?>
                                         <i class="icon trash"></i>
                                     </button>
@@ -213,7 +213,7 @@ $subcategoryURL;
         <br><br>
 
         <div class="field">
-            <button type="submit" class="ui primary mini button"><?= __($langGroup, 'Guardar'); ?></button>
+            <button type="submit" class="ui primary button"><?= __($langGroup, 'Guardar'); ?></button>
         </div>
 
     </form>
@@ -235,7 +235,7 @@ $subcategoryURL;
 
                 <div>
 
-                    <button delete class="ui labeled icon danger mini button">
+                    <button delete class="ui labeled icon danger button">
                         <?= __($langGroup, 'Borrar'); ?>
                         <i class="icon trash"></i>
                     </button>

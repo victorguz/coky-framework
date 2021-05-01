@@ -39,7 +39,7 @@ $langGroup = ImporterController::LANG_GROUP;
                 </div>
                 <div>
                     <br>
-                    <button view-detail class="ui mini primary mini button"><i class="icon eye"></i> <?= __($langGroup, 'Ver detalle'); ?></button>
+                    <button view-detail class="ui primary button"><i class="icon eye"></i> <?= __($langGroup, 'Ver detalle'); ?></button>
                     <br>
                 </div>
                 <div class="ui modal messages">
@@ -55,7 +55,7 @@ $langGroup = ImporterController::LANG_GROUP;
                     <input type="file" name="archivo" accept="application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,text/csv">
                 </div>
                 <div class="field">
-                    <button type="submit" class="ui primary mini button positive">
+                    <button type="submit" class="ui primary button positive">
                         <i class="upload icon"></i>
                         <?= __($langGroup, 'Subir'); ?>
                     </button>

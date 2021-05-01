@@ -20,7 +20,7 @@ $langGroup = UsersController::LANG_GROUP;
                         </div>
                     </div>
                     <div class="extra content">
-                        <a href="<?= $type['link']; ?>" class="ui secondary mini button"><?= __($langGroup, 'Agregar'); ?></a>
+                        <a href="<?= $type['link']; ?>" class="ui secondary button"><?= __($langGroup, 'Agregar'); ?></a>
                     </div>
                 </div>
             <?php endif; ?>

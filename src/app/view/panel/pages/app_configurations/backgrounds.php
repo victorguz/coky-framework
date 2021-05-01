@@ -30,8 +30,8 @@ defined("BASEPATH") or die("<h1>El script no puede ser accedido directamente</h1
                         'referenceW' => '1920',
                         'referenceH' => '1080',
                         'cancelButtonText' => null,
-                        'saveButtonText' => __($langGroup, 'Seleccionar imagen'),
-                        'submit' => __($langGroup, 'Guardar imagen'),
+                        'saveButtonText' => __($langGroup, 'Seleccionar'),
+                        'submit' => __($langGroup, 'Guardar'),
                         'controls' => [
                             'rotate' => true,
                             'flip' => true,

@@ -5,7 +5,10 @@
     <h3><?= __(LOCATIONS_LANG_GROUP, 'Agregar'); ?> <?= $title; ?></h3>
 
     <div class="">
-        <a href="<?= $back_link; ?>" class="ui secondary mini button"><i class="icon left arrow"></i></a>
+        <button class="ui icon secondary button" coky-go-back-button>
+            <i class="icon left arrow"></i>
+            <?= __("general", "Volver") ?>
+        </button>
     </div>
 
     <br><br>
@@ -39,9 +42,9 @@
         </div>
 
         <div class="field">
-            <button set-satelital-view class="ui mini danger mini button"><?= __(LOCATIONS_LANG_GROUP, 'Vista satelital'); ?></button>
-            <button set-draw-view class="ui mini danger mini button"><?= __(LOCATIONS_LANG_GROUP, 'Vista de dibujo'); ?></button>
-            <button set-center-view class="ui mini danger mini button"><?= __(LOCATIONS_LANG_GROUP, 'Centrar'); ?></button>
+            <button set-satelital-view class="ui danger button"><?= __(LOCATIONS_LANG_GROUP, 'Vista satelital'); ?></button>
+            <button set-draw-view class="ui danger button"><?= __(LOCATIONS_LANG_GROUP, 'Vista de dibujo'); ?></button>
+            <button set-center-view class="ui danger button"><?= __(LOCATIONS_LANG_GROUP, 'Centrar'); ?></button>
             <small><?= __(LOCATIONS_LANG_GROUP, '(para mayor precisión, puede mover el cursor de posición)'); ?></small>
         </div>
 
@@ -63,7 +66,7 @@
         </div>
 
         <div class="field">
-            <button type="submit" class="ui primary mini button"><?= __(LOCATIONS_LANG_GROUP, 'Guardar'); ?></button>
+            <button type="submit" class="ui primary button"><?= __(LOCATIONS_LANG_GROUP, 'Guardar'); ?></button>
         </div>
 
     </form>

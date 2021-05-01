@@ -86,10 +86,10 @@ $elements = array_map(function ($e) {
                     <div class="extra content">
                         <div class="ui two buttons">
                             <?php if (($element->has_list_permission)($element)) : ?>
-                                <a href="<?= get_route($element->route_list); ?>" class="ui secondary mini button"><?= __(LOCATIONS_LANG_GROUP, 'Ver'); ?></a>
+                                <a href="<?= get_route($element->route_list); ?>" class="ui secondary button"><?= __(LOCATIONS_LANG_GROUP, 'Ver'); ?></a>
                             <?php endif; ?>
                             <?php if (($element->has_add_permission)($element)) : ?>
-                                <a href="<?= get_route($element->route_add); ?>" class="ui primary mini button"><?= __(LOCATIONS_LANG_GROUP, 'Agregar'); ?></a>
+                                <a href="<?= get_route($element->route_add); ?>" class="ui primary button"><?= __(LOCATIONS_LANG_GROUP, 'Agregar'); ?></a>
                             <?php endif; ?>
                         </div>
                     </div>

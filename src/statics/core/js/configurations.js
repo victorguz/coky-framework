@@ -1,4 +1,4 @@
-$("[data-content]").popup()
+
 
 /**
  * Datos accesibles globalmente
@@ -259,8 +259,8 @@ pcsphpGlobals.messages.es = {
 		'No': 'No',
 	},
 	cropper: {
-		'Agregar imagen': 'Agregar imagen',
-		'Cambiar imagen': 'Cambiar imagen',
+		'Agregar': 'Agregar',
+		'Cambiar': 'Cambiar',
 		'imagen': 'imagen',
 		'Error': 'Error',
 		'Ha ocurrido un error al configurar CropperAdapterComponent': 'Ha ocurrido un error al configurar CropperAdapterComponent',
@@ -562,8 +562,8 @@ pcsphpGlobals.messages.en = {
 		'No': 'No',
 	},
 	cropper: {
-		'Agregar imagen': 'Add image',
-		'Cambiar imagen': 'Change image',
+		'Agregar': 'Add',
+		'Cambiar': 'Change',
 		'imagen': 'image',
 		'Error': 'Error',
 		'Ha ocurrido un error al configurar CropperAdapterComponent': 'An error occurred configuring CropperAdapterComponent',
@@ -706,12 +706,17 @@ pcsphpGlobals.configCropper = {
 if (typeof $ !== 'undefined') {
 	$(document).ready(function (e) {
 
+		//pieces
 		configCalendars()
 		configMessagesValidationsSemanticForm()
 		configDataTables()
 		configColorPickers()
 		pcsAdminSideBar('.coky.sidebar-menu')
 		genericFormHandler()
+
+		//coky
+		$("[data-content]").popup()
+		goBackOnHistory();
 
 		let toggleDevCSSMode = $('[toggle-dev-css-mode]')
 		let toggleDevCSSModeIsActive = typeof toggleDevCSSMode.attr('active') == 'string'
@@ -988,6 +993,7 @@ function pcsAdminSideBar(selector) {
 		}
 	}
 }
+
 /**
  * Activa los menus de la barra de navegación de la zona administrativa
  */

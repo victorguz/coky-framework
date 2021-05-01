@@ -120,9 +120,9 @@ $action;
 
         <div class="field">
             <div class="">
-                <button type="submit" class="ui primary mini button"><?= __($langGroup, 'Guardar'); ?></button>
+                <button type="submit" class="ui primary button"><?= __($langGroup, 'Guardar'); ?></button>
                 <?php if ($allowDelete) : ?>
-                    <button type="submit" class="ui danger mini button" delete-hero-image-button data-route="<?= $deleteRoute; ?>"><?= __($langGroup, 'Eliminar'); ?></button>
+                    <button type="submit" class="ui danger button" delete-hero-image-button data-route="<?= $deleteRoute; ?>"><?= __($langGroup, 'Eliminar'); ?></button>
                 <?php endif; ?>
             </div>
         </div>

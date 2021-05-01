@@ -70,7 +70,7 @@
             </div>
         </div>
 
-        <a class="ui primary mini button" routerLink="/services">Details</a>
+        <a class="ui primary button" routerLink="/services">Details</a>
 
     </div>
 
@@ -209,8 +209,8 @@
         <div class="end">
             <div class="title">Interested?</div>
             <div class="buttons">
-                <a class="ui primary mini button" [routerLink]="['/contact']">Contact us</a>
-                <a class="ui primary mini button" [routerLink]="['/plans']">Our plans</a>
+                <a class="ui primary button" [routerLink]="['/contact']">Contact us</a>
+                <a class="ui primary button" [routerLink]="['/plans']">Our plans</a>
             </div>
         </div>
 

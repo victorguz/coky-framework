@@ -21,7 +21,7 @@ defined("BASEPATH") or die("<h1>El script no puede ser accedido directamente</h1
         </div>
 
         <div class="field">
-            <button type="submit" class="ui primary mini button"><?= __($langGroup, 'Guardar'); ?></button>
+            <button type="submit" class="ui primary button"><?= __($langGroup, 'Guardar'); ?></button>
         </div>
 
     </form>

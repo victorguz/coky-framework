@@ -9,7 +9,7 @@ $langGroup = BlackboardNewsController::LANG_GROUP;
 <h3 class="ui dividing header">
 	<?= __($langGroup, 'Noticias'); ?>
 </h3>
-<a href="<?= get_route('blackboard-news-create-form'); ?>" class="ui mini primary mini button"><?= __($langGroup, 'Nueva noticia'); ?></a>
+<a href="<?= get_route('blackboard-news-create-form'); ?>" class="ui primary button"><?= __($langGroup, 'Nueva noticia'); ?></a>
 <br>
 <br>
 <div table blackboard-list='<?= get_route('blackboard-news-get'); ?>'>

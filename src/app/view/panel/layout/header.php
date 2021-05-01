@@ -65,7 +65,7 @@
                     <textarea name="comments"></textarea>
                 </div>
                 <div class="field">
-                    <button type="submit" class="ui primary mini button"><?= __(SUPPORT_FORM_ADMIN_LANG_GROUP, 'Enviar'); ?></button>
+                    <button type="submit" class="ui primary button"><?= __(SUPPORT_FORM_ADMIN_LANG_GROUP, 'Enviar'); ?></button>
                 </div>
             </form>
         </div>

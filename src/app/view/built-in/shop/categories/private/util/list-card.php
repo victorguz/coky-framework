@@ -53,7 +53,7 @@ $subCategoriesLink = SubCategoryController::routeName('list') . "?category={$map
                 <?php endif; ?>
 
                 <?php if (mb_strlen($subCategoriesLink) > 0) : ?>
-                    <a class="fluid ui secondary mini button icon" href="<?= $subCategoriesLink; ?>">
+                    <a class="fluid ui secondary button icon" href="<?= $subCategoriesLink; ?>">
                         <i class="icon search"></i> &nbsp; <?= __($langGroup, 'Subcategorías'); ?>
                     </a>
                 <?php endif; ?>

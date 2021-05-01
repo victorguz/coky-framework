@@ -16,9 +16,12 @@ $element;
             <?= strphrasecase(__('general', 'Editar') . " " . $title); ?>
         </h1>
         <div class="">
-            <a href="<?= $back_link; ?>" class="ui icon secondary mini button"><i class="icon left arrow"></i> <?= __("general", "Volver") ?></a>
+            <button class="ui icon secondary button" coky-go-back-button>
+                <i class="icon left arrow"></i>
+                <?= __("general", "Volver") ?>
+            </button>
             <?php if ($element->status != 1) : ?>
-                <button type="submit" class="ui icon primary mini button"><?= __("general", "Marcar como leído") ?></button>
+                <button type="submit" class="ui icon primary button"><?= __("general", "Marcar como leído") ?></button>
             <?php endif; ?>
         </div>
     </div>

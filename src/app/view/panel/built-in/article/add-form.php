@@ -30,8 +30,11 @@ $langGroup = ArticleController::LANG_GROUP;
 
         <div class="">
 
-            <a href="<?= $back_link; ?>" class="ui secondary mini button"><i class="icon left arrow"></i></a>
-            <button type="submit" class="ui primary mini button"><?= __($langGroup, 'Guardar'); ?></button>
+            <button class="ui icon secondary button" coky-go-back-button>
+                    <i class="icon left arrow"></i>
+                    <?= __("general", "Volver") ?>
+                </button>
+            <button type="submit" class="ui primary button"><?= __($langGroup, 'Guardar'); ?></button>
 
         </div>
 

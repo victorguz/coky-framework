@@ -64,3 +64,10 @@ define('LOGIN_REPORT_LANG_GROUP', 'loginReport');
 define('MAIL_TEMPLATES_LANG_GROUP', 'mailTemplates');
 define('USER_LOGIN_LANG_GROUP', 'userLogin');
 define('LANG_GROUP', 'public');
+
+//Coky
+
+//Modulos
+define('ADMIN_MODULES_CSS', 'statics/core/css/modules');
+define('ADMIN_MODULES_JS', 'statics/core/js/modules');
+define('ADMIN_MULTIPLE_VIEW_LANG', 'multiple-view');

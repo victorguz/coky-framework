@@ -130,7 +130,7 @@ $langGroup = UsersController::LANG_GROUP;
 
     <div class="field">
 
-        <button type="submit" class="ui primary mini button">
+        <button type="submit" class="ui primary button">
             <i class="save icon"></i>
             <?= __($langGroup, 'save'); ?>
         </button>

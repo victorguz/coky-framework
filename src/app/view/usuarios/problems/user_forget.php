@@ -73,13 +73,13 @@
                         <a href="<?= get_route('user-problems-list'); ?>" class="ui button">
                             <?= __(\App\Controller\UserProblemsController::LANG_GROUP, 'Atrás') ?>
                         </a>
-                        <button type="submit" class="ui secondary mini button">
+                        <button type="submit" class="ui secondary button">
                             <?= __(\App\Controller\UserProblemsController::LANG_GROUP, 'Siguiente') ?>
                         </button>
                     </div>
                     <p>
                         <strong>
-                            <a href="#" class="ui mini button" has-code><?= __(\App\Controller\UserProblemsController::LANG_GROUP, 'Ya tengo un código') ?></a>
+                            <a href="#" class="ui button" has-code><?= __(\App\Controller\UserProblemsController::LANG_GROUP, 'Ya tengo un código') ?></a>
                         </strong>
                     </p>
                 </form>
@@ -92,10 +92,10 @@
                     <div class="field required">
                         <input required type="text" name="code" placeholder="######">
                     </div>
-                    <div class="field"><button type="submit" class="ui secondary mini button fluid"><?= __(\App\Controller\UserProblemsController::LANG_GROUP, 'Enviar') ?></button></div>
+                    <div class="field"><button type="submit" class="ui secondary button fluid"><?= __(\App\Controller\UserProblemsController::LANG_GROUP, 'Enviar') ?></button></div>
                     <p>
                         <strong>
-                            <a href="#" class="ui mini button" repeat><?= __(\App\Controller\UserProblemsController::LANG_GROUP, 'Introducir un email diferente') ?></a>
+                            <a href="#" class="ui button" repeat><?= __(\App\Controller\UserProblemsController::LANG_GROUP, 'Introducir un email diferente') ?></a>
                         </strong>
                     </p>
                 </form>
@@ -107,10 +107,10 @@
                 <form class="ui form">
                     <div class="two fields">
                         <div class="field">
-                            <a href="#" class="ui mini button" repeat><?= __(\App\Controller\UserProblemsController::LANG_GROUP, 'Atrás') ?></a>
+                            <a href="#" class="ui button" repeat><?= __(\App\Controller\UserProblemsController::LANG_GROUP, 'Atrás') ?></a>
                         </div>
                         <div class="field">
-                            <a href="<?= get_route('other-problems-form'); ?>" class="ui secondary mini button">
+                            <a href="<?= get_route('other-problems-form'); ?>" class="ui secondary button">
                                 <?= __(\App\Controller\UserProblemsController::LANG_GROUP, 'Solicitud de soporte') ?>
                             </a>
                         </div>
@@ -123,7 +123,7 @@
 
                 <form class="ui form">
                     <div class="field">
-                        <a href="<?= get_route('users-form-login'); ?>" class="ui secondary mini button fuid">
+                        <a href="<?= get_route('users-form-login'); ?>" class="ui secondary button fuid">
                             <?= __(\App\Controller\UserProblemsController::LANG_GROUP, 'Ingresar') ?>
                         </a>
                     </div>

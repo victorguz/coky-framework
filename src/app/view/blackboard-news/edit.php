@@ -43,6 +43,6 @@ $langGroup = BlackboardNewsController::LANG_GROUP;
         </div>
     </div>
     <div class="field">
-        <button class="ui primary mini button" type="submit"><?= __($langGroup, 'Guardar'); ?></button>
+        <button class="ui primary button" type="submit"><?= __($langGroup, 'Guardar'); ?></button>
     </div>
 </form>

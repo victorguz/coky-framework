@@ -19,26 +19,26 @@
                         service
                         market
                     </p>
-                    <a class="ui primary mini button" href="<?= get_route("public-plans") ?>">Read more</a>
+                    <a class="ui primary button" href="<?= get_route("public-plans") ?>">Read more</a>
                 </div>
                 <div class=" item right">
                     <div class="title">Premium</div>
                     <p>Highly effective maintenance services that upgrade BASIC Coverage scope by including additional
                         assets of the Unit</p>
-                    <a class="ui primary mini button" href="<?= get_route("public-plans") ?>">Read more</a>
+                    <a class="ui primary button" href="<?= get_route("public-plans") ?>">Read more</a>
                 </div>
                 <div class=" item">
                     <div class="title">Standard</div>
                     <p>High profile maintenance services covering all the household appliances and equipment of the Unit
                     </p>
-                    <a class="ui primary mini button" href="<?= get_route("public-plans") ?>">Read more</a>
+                    <a class="ui primary button" href="<?= get_route("public-plans") ?>">Read more</a>
                 </div>
                 <div class=" item right">
                     <div class="title">Ultra</div>
                     <p>Broad and sustained service supported by semi-resident or resident personnel. This option
                         includes additional services
                         provided by the assigned domestic personnel</p>
-                    <a class="ui primary mini button" href="<?= get_route("public-plans") ?>">Read more</a>
+                    <a class="ui primary button" href="<?= get_route("public-plans") ?>">Read more</a>
                 </div>
             </div>
         </div>

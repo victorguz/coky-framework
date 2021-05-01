@@ -67,7 +67,7 @@ $editLink;
                 <?php endif; ?>
 
                 <?php if ($hasDelete) : ?>
-                    <a class="fluid ui danger mini button icon" delete-hero-image-button data-route="<?= $deleteRoute; ?>">
+                    <a class="fluid ui danger button icon" delete-hero-image-button data-route="<?= $deleteRoute; ?>">
                         <i class="icon trash"></i> &nbsp; <?= __($langGroup, 'Eliminar'); ?>
                     </a>
                 <?php endif; ?>

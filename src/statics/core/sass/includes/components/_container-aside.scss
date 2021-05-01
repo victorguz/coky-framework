@@ -47,6 +47,8 @@ $topPadding:2rem;
             // }
 
             .item {
+                transition: all ease-in 0.2s;
+
                 display: flex;
                 flex-flow: column;
                 justify-content: center;

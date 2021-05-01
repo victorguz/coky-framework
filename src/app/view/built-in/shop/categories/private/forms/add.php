@@ -56,7 +56,7 @@ $action;
         </div>
 
         <div class="field">
-            <button type="submit" class="ui primary mini button"><?= __($langGroup, 'Guardar'); ?></button>
+            <button type="submit" class="ui primary button"><?= __($langGroup, 'Guardar'); ?></button>
         </div>
 
     </form>

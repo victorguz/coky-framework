@@ -56,7 +56,7 @@ $langGroup = ArticleController::LANG_GROUP;
     <?php if (mb_strlen($editLink) > 0) : ?>
         <div class="extra content">
 
-            <a class="fluid ui primary mini button" href="<?= $editLink; ?>"><?= __($langGroup, 'Editar'); ?></a>
+            <a class="fluid ui primary button" href="<?= $editLink; ?>"><?= __($langGroup, 'Editar'); ?></a>
 
         </div>
     <?php endif; ?>

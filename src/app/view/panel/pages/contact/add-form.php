@@ -7,8 +7,11 @@
                 <?= strphrasecase(__('general', 'Agregar') . " " . $title); ?>
             </h1>
             <div class="">
-                <a href="<?= $back_link; ?>" class="ui icon secondary mini button"><i class="icon left arrow"></i> <?= __("general", "Volver") ?></a>
-                <button type="submit" class="ui primary mini button"><?= __('general', 'Guardar') ?></button>
+                <button class="ui icon secondary button" coky-go-back-button>
+                    <i class="icon left arrow"></i>
+                    <?= __("general", "Volver") ?>
+                </button>
+                <button type="submit" class="ui primary button"><?= __('general', 'Guardar') ?></button>
             </div>
         </div>
 

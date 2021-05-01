@@ -50,7 +50,7 @@ $onlyImage = isset($onlyImage) ? $onlyImage : false;
                     <br>
 
                     <div style="text-align:center;">
-                        <button type="submit" class="ui primary mini button"><?= __($langGroup, 'Guardar foto de perfil'); ?></button>
+                        <button type="submit" class="ui primary button"><?= __($langGroup, 'Guardar foto de perfil'); ?></button>
                     </div>
 
                 </div>

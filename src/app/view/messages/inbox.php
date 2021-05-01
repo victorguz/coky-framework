@@ -44,7 +44,7 @@ $langGroup = MessagesController::LANG_GROUP;
                                 </div>
 
                                 <div class="field">
-                                    <button type="submit" class="ui primary mini button"><?= __($langGroup, 'Enviar'); ?></button>
+                                    <button type="submit" class="ui primary button"><?= __($langGroup, 'Enviar'); ?></button>
                                 </div>
 
                             </form>
@@ -94,7 +94,7 @@ $langGroup = MessagesController::LANG_GROUP;
                                 </div>
 
                                 <div class="field">
-                                    <button type="submit" class="ui primary mini button"><?= __($langGroup, 'Enviar'); ?></button>
+                                    <button type="submit" class="ui primary button"><?= __($langGroup, 'Enviar'); ?></button>
                                 </div>
 
                             </form>
@@ -142,7 +142,7 @@ $langGroup = MessagesController::LANG_GROUP;
 
         <div class="details-container">
             <div class="top-bar">
-                <button message-component-close-conversation class="ui mini danger mini button"><?= __($langGroup, 'Cerrar'); ?></button>
+                <button message-component-close-conversation class="ui danger button"><?= __($langGroup, 'Cerrar'); ?></button>
             </div>
             <div emisor-details-container>
                 <div>
@@ -180,7 +180,7 @@ $langGroup = MessagesController::LANG_GROUP;
                 <textarea name="message" placeholder="<?= __($langGroup, 'Escriba su respuesta'); ?>"></textarea>
             </div>
             <div class="field">
-                <button class="ui secondary mini button" type="submit"><?= __($langGroup, 'Enviar'); ?>
+                <button class="ui secondary button" type="submit"><?= __($langGroup, 'Enviar'); ?>
             </div>
         </div>
     </form>

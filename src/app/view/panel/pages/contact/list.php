@@ -6,7 +6,10 @@
             <?= $title; ?>
         </h1>
         <div class="">
-            <a href="<?= $back_link; ?>" class="ui icon secondary mini button"><i class="icon left arrow"></i> <?= __("general", "Volver") ?></a>
+            <button class="ui icon secondary button" coky-go-back-button>
+                <i class="icon left arrow"></i>
+                <?= __("general", "Volver") ?>
+            </button>
         </div>
     </div>
 
@@ -25,11 +28,11 @@
 </div>
 
 <script>
-window.onload = () => {
+    window.onload = () => {
 
-    let table = $(`[process]`)
-    let processURL = table.attr('process')
-    dataTableServerProccesing(table, processURL, 10)
+        let table = $(`[process]`)
+        let processURL = table.attr('process')
+        dataTableServerProccesing(table, processURL, 10)
 
-}
+    }
 </script>

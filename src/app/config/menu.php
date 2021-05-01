@@ -21,6 +21,9 @@ use PiecesPHP\Core\Menu\MenuItemCollection;
 use PiecesPHP\Core\Roles;
 
 if (is_object($user)) :
+
+    // var_dump(get_route('admin-multiple-view'));
+    // exit;
     /**
      * Current role
      */
@@ -169,7 +172,7 @@ if (is_object($user)) :
                 'show_text' => $show_text,
                 'show_icon' => $show_icon,
                 'as_row' => $as_row,
-                'visible' => Roles::hasPermissions('admin', $current_type_user),
+                'visible' => Roles::hasPermissions('admin-multiple-view', $current_type_user),
                 'asLink' => true,
                 'href' => get_route('admin-multiple-view'),
                 'position' => 3000,
@@ -412,7 +415,24 @@ if (is_object($user)) :
         ]);
         $langsItem->addItem($langItem);
     }
-    // $home_button->setShowText(false);
+
+    /**
+     * Links de la vista múltiple y el carrusel de links
+     */
+    $multiple_links = new MenuGroupCollection([
+        'items' => [
+            new MenuGroup([
+                'name' => __(ADMIN_MULTIPLE_VIEW_LANG, 'Nuevo artículo'),
+                'icon' => getIcon("create-outline"),
+                'show_text' => true,
+                'show_icon' => true,
+                'visible' => $there_are_config_url,
+                'href' =>  $first_config_url,
+                'asLink' => true
+            ]),
+        ],
+    ]);
+
     //Añadir menús a la configuración global
     $config['menus']['header_dropdown'] = $headerDropdown;
     $config['menus']['sidebar'] = $sidebar;
@@ -420,5 +440,7 @@ if (is_object($user)) :
     $config['menus']['languages_link'] = $langsItem;
     $config['menus']['sidebar_config'] = $sidebar_config;
     $config['menus']['home_button'] = $home_button;
+    $config['menus']['multiple_links'] = $multiple_links;
+
 
 endif;

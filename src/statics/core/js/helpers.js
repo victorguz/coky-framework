@@ -1,4 +1,18 @@
 /**
+ * Ir atrás en una ruta al tocar el botón con el atributo "${prefix}-go-back-button"
+ * @param {String} prefix prefijo del atributo
+ */
+function goBackOnHistory(prefix = "coky") {
+
+	$(`[${prefix}-go-back-button]`).on("click", function (e) {
+		e.preventDefault()
+		window.history.back();
+	})
+
+}
+
+
+/**
  * @method successMessage
  * @description Mensaje modal con tipo success (iziToast|alert)
  * @param {String} title Título del mensaje
