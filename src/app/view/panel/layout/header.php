@@ -1,4 +1,12 @@
-<?php defined("BASEPATH") or die("<h1>El script no puede ser accedido directamente</h1>"); ?>
+<?php
+
+use App\Model\UsersModel;
+
+$user = get_config('current_user');
+$user = is_object($user) ? new UsersModel($user->id) : null;
+
+defined("BASEPATH") or die("<h1>El script no puede ser accedido directamente</h1>"); ?>
+
 <!DOCTYPE html>
 <html lang="<?= get_config('app_lang'); ?>" dlang="<?= get_config('default_lang'); ?>">
 
@@ -50,29 +58,8 @@
 
 <body>
 
-    <div class="ui modal" support-js>
-        <div class="header"><?= __(SUPPORT_FORM_ADMIN_LANG_GROUP, 'Soporte técnico'); ?></div>
-        <div class="content">
-            <form action="<?= get_route('tickets-create'); ?>" class="ui form">
-                <input type="hidden" name="name" value="<?= htmlentities(stripslashes(get_config('current_user')->firstname . ' ' . get_config('current_user')->first_lastname)); ?>">
-                <input type="hidden" name="email" value="<?= htmlentities(stripslashes(get_config('current_user')->email)); ?>">
-                <div class="field">
-                    <label><?= __(SUPPORT_FORM_ADMIN_LANG_GROUP, 'Asunto'); ?></label>
-                    <input type="text" name="subject">
-                </div>
-                <div class="field">
-                    <label><?= __(SUPPORT_FORM_ADMIN_LANG_GROUP, 'Mensaje'); ?></label>
-                    <textarea name="comments"></textarea>
-                </div>
-                <div class="field">
-                    <button type="submit" class="ui primary button"><?= __(SUPPORT_FORM_ADMIN_LANG_GROUP, 'Enviar'); ?></button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <?php if (ACTIVE_TIMER) : ?>
-        <div timer-platform-js="<?= base64_encode(json_encode(['user_id' => get_config('current_user')->id, 'url' => get_route('timing-add')])); ?>">
+    <?php if (ACTIVE_TIMER && !is_null($user)) : ?>
+        <div timer-platform-js="<?= base64_encode(json_encode(['user_id' => $user->id, 'url' => get_route('timing-add')])); ?>">
         </div>
     <?php endif; ?>
 
@@ -80,6 +67,5 @@
 
     <div class="ui-pcs container-sidebar">
 
-        <?php $this->render('panel/layout/menu'); ?>
 
         <div class="content super-content">

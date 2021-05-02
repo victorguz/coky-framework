@@ -29,61 +29,14 @@ function QuillAdapterComponent(quillAdapterOptions = {}, toolbar = null, silentE
 	 * @property {Array} toolbarDefault
 	 */
 	let toolbarDefault = [
-		[
-			'bold',
-			'italic',
-			'underline',
-			'strike',
-			'link',
-		],
-		[
-			{
-				'list': 'ordered'
-			},
-			{
-				'list': 'bullet'
-			},
-			'blockquote'
-		],
-		[
-			{
-				'header': [
-					1,
-					2,
-					3,
-					4,
-					5,
-					6,
-					false
-				]
-			},
-		],
-		[
-			{
-				'script': 'sub'
-			},
-			{
-				'script': 'super'
-			}
-		],
-		[
-			{
-				'color': []
-			}, {
-				'background': []
-			}
-		],
-		[
-			{
-				'align': []
-			}
-		],
-		[
-			'image',
-			'video',
-			'clean',
-			'show-source',
-		]
+		[{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+		[{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+		[{ 'align': [] }],
+		['bold', 'italic', 'underline', 'strike', 'link', 'code-block'],
+		[{ 'list': 'ordered' }, { 'list': 'bullet' }, 'blockquote'],
+		[{ 'color': [] }, { 'background': [] }],
+		[{ 'script': 'sub' }, { 'script': 'super' }],
+		['image', 'video', 'clean', 'show-source',]
 	]
 
 	/**
@@ -236,6 +189,7 @@ function QuillAdapterComponent(quillAdapterOptions = {}, toolbar = null, silentE
 
 		quillInstance = new Quill(component.get(0), {
 			theme: 'snow',
+			placeholder: textareaTarget.attr("placeholder"),
 			modules: {
 				toolbar: toolbarOptions,
 				imageUpload: imageUploadModuleOptions(),
@@ -245,7 +199,7 @@ function QuillAdapterComponent(quillAdapterOptions = {}, toolbar = null, silentE
 		})
 
 		let delta = quillInstance.clipboard.convert(textareaTarget.val())
-        quillInstance.setContents(delta, 'silent')
+		quillInstance.setContents(delta, 'silent')
 
 		//Evento para rellenar el textarea
 		quillInstance.on('editor-change', (delta, oldDelta, source) => {
@@ -267,8 +221,8 @@ function QuillAdapterComponent(quillAdapterOptions = {}, toolbar = null, silentE
 		//Aplicar estilos de tamaño al contenedor editable
 		let qlEditor = component.find('.ql-editor')
 		qlEditor.css({
-			minHeight: '500px',
-			maxHeight: '500px',
+			minHeight: textareaTarget.attr("height") ? textareaTarget.attr("height") : '200px',
+			maxHeight: textareaTarget.attr("height") ? textareaTarget.attr("height") : '200px',
 		})
 
 		let toolbarModule = quillInstance.getModule('toolbar')

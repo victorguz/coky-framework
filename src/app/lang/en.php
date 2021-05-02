@@ -236,10 +236,10 @@ $lang = [
         'Enviar'          => 'Send',
     ],
     'news' => [
-        'Tablero de noticias'                                       => 'News board',
+        'Últimas noticias'                                          => 'Last news',
         'Crear noticia'                                             => 'Create news',
         'Editar noticia'                                            => 'Edit news',
-        'Tipo de perfil para el que será visible'                   => 'Type of profile for which it will be visible',
+        'Visible para'                                              => 'Visible to',
         'Elija una opción'                                          => 'Choose an option',
         'Título'                                                    => 'Title',
         'Mensaje'                                                   => 'Message',

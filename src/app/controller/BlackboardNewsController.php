@@ -8,9 +8,11 @@ namespace App\Controller;
 
 use App\Model\BlackboardNewsModel;
 use App\Model\UsersModel;
+use PiecesPHP\Core\HTML\HtmlElement;
 use PiecesPHP\Core\Roles;
 use PiecesPHP\Core\Route;
 use PiecesPHP\Core\RouteGroup;
+use PiecesPHP\Core\Utilities\Helpers\DataTablesHelper;
 use PiecesPHP\Core\Utilities\ReturnTypes\Operation;
 use PiecesPHP\Core\Utilities\ReturnTypes\ResultOperations;
 use Slim\Exception\NotFoundException;
@@ -88,9 +90,10 @@ class BlackboardNewsController extends AdminPanelController
      */
     public function listView(Request $req, Response $res, array $args)
     {
-
+        $data = [];
+        $data["process_table"] = get_route('blackboard-datatables');;
         $this->render('panel/layout/header');
-        $this->render(BLACKBOARD_NEWS_PATH_VIEWS . '/list');
+        $this->render(BLACKBOARD_NEWS_PATH_VIEWS . '/list', $data);
         $this->render('panel/layout/footer');
 
         return $res;
@@ -114,6 +117,8 @@ class BlackboardNewsController extends AdminPanelController
         $this->render(ADMIN_PATH_VIEWS . '/layout/header');
         $this->render(BLACKBOARD_NEWS_PATH_VIEWS . '/create', [
             'types' => $types,
+            'action' => get_route('blackboard-news-create'),
+            'date_format' => self::FORMAT_DATETIME,
         ]);
         $this->render(ADMIN_PATH_VIEWS . '/layout/footer');
 
@@ -144,6 +149,8 @@ class BlackboardNewsController extends AdminPanelController
             $this->render(BLACKBOARD_NEWS_PATH_VIEWS . '/edit', [
                 'types' => $types,
                 'new' => $new,
+                'action' => get_route('blackboard-news-edit'),
+                'date_format' => self::FORMAT_DATETIME,
             ]);
             $this->render(ADMIN_PATH_VIEWS . '/layout/footer');
 
@@ -204,55 +211,74 @@ class BlackboardNewsController extends AdminPanelController
     public function registerNew(Request $request, Response $response, array $args)
     {
 
-        $type = $request->getParsedBodyParam('type', null);
+        $author = $request->getParsedBodyParam('author', null);
+        $types = $request->getParsedBodyParam('types', null);
         $title = $request->getParsedBodyParam('title', null);
         $text = $request->getParsedBodyParam('text', null);
         $start_date = $request->getParsedBodyParam('start_date', null);
         $end_date = $request->getParsedBodyParam('end_date', null);
 
+
         $start_date = mb_strlen(trim($start_date)) > 0 ? date_create_from_format(self::FORMAT_DATETIME, $start_date) : null;
         $end_date = mb_strlen(trim($end_date)) > 0 ? date_create_from_format(self::FORMAT_DATETIME, $end_date) : null;
 
-        $params_verify = !in_array(null, [
-            $type,
+        $valid_params = !in_array(null, [
+            $author,
+            $types,
             $title,
             $text,
         ]);
 
-        $result = (new ResultOperations([
-            'registerNew' => new Operation('registerNew'),
-        ]))->setValue('redirect', '');
+        $operation_name = "Añadir noticia";
 
-        if ($params_verify) {
+        $result = new ResultOperations(
+            [
+                new Operation($operation_name),
+            ],
+            $operation_name
+        );
 
-            $entity = new BlackboardNewsModel();
-            $entity->author = $this->user->id;
-            $entity->type = $type;
-            $entity->title = $title;
-            $entity->start_date = $start_date;
-            $entity->text = $text;
-            $entity->end_date = $end_date;
-            $saved = $entity->save();
-            $id = $entity->getLastInsertID();
-            $entity->id = $id;
+        $result->setValue('redirect', false);
 
-            $redirect = '';
-            if ($saved) {
-                $this->moveTemporaryImages($entity);
-                $redirect = get_route('blackboard-news-list');
+        $error_parameters_message = 'Los parámetros recibidos son erróneos.';
+        $not_exists_message = 'El registro que intenta modificar no existe';
+        $success_create_message = 'Registro guardado.';
+        $success_edit_message = 'Registro modificado.';
+        $unknow_error_message = 'Ha ocurrido un error desconocido.';
+
+        $redirect_url_on_create = get_route('blackboard-news-list');
+
+        if ($valid_params) {
+
+            try {
+                $entity = new BlackboardNewsModel();
+
+                $entity->author = $this->user->id;
+                $entity->types = json_encode($types);
+                $entity->title = $title;
+                $entity->text = $text;
+                $entity->start_date = $start_date;
+                $entity->end_date = $end_date;
+                $entity->created_date = date("Y-m-d H:i:s");
+                $saved = $entity->update();
+
+                if ($saved) {
+                    $result->setValue('redirect', true);
+                    $result->setValue('redirect_to', $redirect_url_on_create);
+
+                    $result->setMessage($success_edit_message)
+                        ->operation($operation_name)
+                        ->setSuccess(true);
+                } else {
+                    $result->setMessage($unknow_error_message);
+                }
+            } catch (\Exception $e) {
+                $result->setMessage($e->getMessage());
+                log_exception($e);
             }
-
-            $result
-                ->setValue('redirect', $redirect)
-                ->setMessage($saved ? __(self::LANG_GROUP, 'La noticia ha sido creada') : __(self::LANG_GROUP, 'No se ha podido crear la noticia, intente más tarde.'))
-                ->operation('registerNew')
-                ->setSuccess($saved);
         } else {
-            $result
-                ->setMessage(__(self::LANG_GROUP, 'Los parámetros recibidos no son correctos'))
-                ->operation('registerNew');
+            $result->setMessage($error_parameters_message);
         }
-
         return $response->withJson($result);
     }
 
@@ -268,57 +294,137 @@ class BlackboardNewsController extends AdminPanelController
     {
 
         $id = $request->getParsedBodyParam('id', null);
-        $id = ctype_digit($id) ? (int) $id : null;
         $author = $request->getParsedBodyParam('author', null);
-        $type = $request->getParsedBodyParam('type', null);
+        $types = $request->getParsedBodyParam('types', null);
         $title = $request->getParsedBodyParam('title', null);
         $text = $request->getParsedBodyParam('text', null);
         $start_date = $request->getParsedBodyParam('start_date', null);
         $end_date = $request->getParsedBodyParam('end_date', null);
 
+
         $start_date = mb_strlen(trim($start_date)) > 0 ? date_create_from_format(self::FORMAT_DATETIME, $start_date) : null;
         $end_date = mb_strlen(trim($end_date)) > 0 ? date_create_from_format(self::FORMAT_DATETIME, $end_date) : null;
 
-        $params_verify = !in_array(null, [
-            $id,
+        $valid_params = !in_array(null, [
             $author,
-            $type,
+            $types,
             $title,
             $text,
         ]);
 
-        $result = new ResultOperations([
-            'editNew' => new Operation('editNew'),
-        ]);
+        $operation_name = "Editar noticia";
 
-        if ($params_verify) {
+        $result = new ResultOperations(
+            [
+                new Operation($operation_name),
+            ],
+            $operation_name
+        );
 
-            $entity = new BlackboardNewsModel($id);
-            $entity->type = $type;
-            $entity->title = $title;
-            $entity->start_date = $start_date;
-            $oldText = $entity->text;
-            $entity->text = $text;
-            $entity->end_date = $end_date;
-            $updated = $entity->update();
+        $result->setValue('redirect', false);
 
-            if ($updated) {
-                $this->moveTemporaryImages($entity, $oldText);
+        $error_parameters_message = 'Los parámetros recibidos son erróneos.';
+        $not_exists_message = 'El registro que intenta modificar no existe';
+        $success_create_message = 'Registro guardado.';
+        $success_edit_message = 'Registro modificado.';
+        $unknow_error_message = 'Ha ocurrido un error desconocido.';
+
+        $redirect_url_on_create = get_route('blackboard-news-list');
+
+        if ($valid_params) {
+
+            try {
+                $entity = new BlackboardNewsModel($id);
+                $exist = !is_null($entity->id);
+                if ($exist) {
+
+                    $entity->author = $this->user->id;
+                    $entity->types = json_encode($types);
+                    $entity->title = $title;
+                    $entity->text = $text;
+                    $entity->start_date = $start_date;
+                    $entity->end_date = $end_date;
+                    $saved = $entity->update();
+
+                    if ($saved) {
+                        $result->setValue('reload', true);
+
+                        $result->setMessage($success_edit_message)
+                            ->operation($operation_name)
+                            ->setSuccess(true);
+                    } else {
+                        $result->setMessage($unknow_error_message);
+                    }
+                } else {
+                    $result->setMessage($not_exists_message);
+                }
+            } catch (\Exception $e) {
+                $result->setMessage($e->getMessage());
+                log_exception($e);
             }
-
-            $result
-                ->setMessage($updated ? __(self::LANG_GROUP, 'La noticia ha sido actualizada') : __(self::LANG_GROUP, 'No se ha podido actualizar la noticia, intente más tarde.'))
-                ->operation('editNew')
-                ->setSuccess($updated);
         } else {
-            $result
-                ->setMessage(__(self::LANG_GROUP, 'Los parámetros recibidos no son correctos'))
-                ->operation('editNew');
+            $result->setMessage($error_parameters_message);
         }
-
         return $response->withJson($result);
     }
 
+    /**
+     * dataTables
+     *
+     * @param Request $request
+     * @param Response $response
+     * @param array $args
+     * @return Response
+     */
+    public function dataTables(Request $request, Response $response, array $args)
+    {
+
+        if ($request->isXhr()) {
+
+            $columns_order = [
+                'id',
+                'title',
+                'start_date',
+                'end_date',
+            ];
+
+            $result = DataTablesHelper::process([
+                'columns_order' => $columns_order,
+                'custom_order' => ['id' => 'DESC'],
+                'mapper' => new BlackboardNewsModel(),
+                'request' => $request,
+                'on_set_data' => function ($e) {
+
+                    $mapper = new BlackboardNewsModel($e->id);
+
+                    $editButton = new HtmlElement('a', "<i class='edit icon'></i>");
+                    $editButton->setAttribute('class', "ui secondary icon button");
+                    $editButton->setAttribute('href', get_route('blackboard-news-edit-form', [
+                        'id' => $e->id,
+                    ]));
+
+                    if ($editButton->getAttributes(false)->offsetExists('href')) {
+                        $href = $editButton->getAttributes(false)->offsetGet('href');
+                        if (strlen(trim($href->getValue())) < 1) {
+                            $editButton = '';
+                        }
+                    }
+
+                    return [
+                        $mapper->id,
+                        $mapper->title,
+                        date_format($mapper->start_date, "Y-m-d H:i A"),
+                        date_format($mapper->end_date, "Y-m-d H:i A"),
+                        (string)$editButton
+                    ];
+                },
+            ]);
+
+            return $response->withJson($result->getValues());
+        } else {
+            throw new NotFoundException($request, $response);
+        }
+    }
     /**
      * moveTemporaryImages
      *
@@ -419,20 +525,10 @@ class BlackboardNewsController extends AdminPanelController
 
         $now = (new \DateTime())->format('Y-m-d h:s:i');
 
-        if ($isList) {
-            $where = trim(implode(' ', [
-                " author = " . $this->user->id . ' OR ',
-                " type = " . $this->user->type . ' AND ',
-                " (start_date <= '$now' AND end_date > '$now') OR ",
-                " (start_date IS NULL AND end_date IS NULL) ",
-            ]));
-        } else {
-            $where = trim(implode(' ', [
-                " type = " . $this->user->type . ' AND ',
-                " (start_date <= '$now' AND end_date > '$now') OR ",
-                " (start_date IS NULL AND end_date IS NULL) ",
-            ]));
-        }
+        $where = trim(implode(' ', [
+            " start_date <= '$now' OR end_date > '$now' OR ",
+            " start_date IS NULL OR end_date IS NULL",
+        ]));
 
         $query = $model->select()->where($where)->orderBy('start_date DESC, created_date DESC');
 
@@ -459,14 +555,18 @@ class BlackboardNewsController extends AdminPanelController
                 'email' => $mapper->author->email,
                 'meta' => $mapper->author->meta,
             ];
-            $element->type = [
-                'code' => $element->type,
-                'label' => UsersModel::getTypesUser()[$element->type],
+            $element->types = [
+                'codes' => is_string($mapper->types) ? json_decode($mapper->types) : $mapper->types,
+                'labels' => ["hola"],
             ];
 
+            foreach ($element->types["codes"] as  $value) {
+                array_push($element->types["labels"], UsersModel::TYPES_USERS[$value]);
+            }
+
             if (!is_null($element->start_date) && !is_null($element->end_date)) {
-                $element->start_date = $mapper->start_date->format('d-m-Y h:i A');
-                $element->end_date = $mapper->end_date->format('d-m-Y h:i A');
+                $element->start_date = $mapper->start_date->format('Y-m-d h:i A');
+                $element->end_date = $mapper->end_date->format('Y-m-d h:i A');
             }
 
             $element->title = $mapper->title;
@@ -596,6 +696,12 @@ class BlackboardNewsController extends AdminPanelController
         );
 
         //──── POST ─────────────────────────────────────────────────────────────────────────
+        $routes[] = new Route(
+            "{$startRoute}datatables[/]",
+            $classname . ':dataTables',
+            'blackboard-datatables',
+            'GET',
+        );
         $routes[] = new Route(
             "{$startRoute}create[/]",
             $classname . ':registerNew',

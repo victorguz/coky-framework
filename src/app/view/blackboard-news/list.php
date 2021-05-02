@@ -12,10 +12,26 @@ $langGroup = BlackboardNewsController::LANG_GROUP;
 <a href="<?= get_route('blackboard-news-create-form'); ?>" class="ui primary button"><?= __($langGroup, 'Nueva noticia'); ?></a>
 <br>
 <br>
-<div table blackboard-list='<?= get_route('blackboard-news-get'); ?>'>
-	<table content edit-route='<?= get_route('blackboard-news-edit-form', ['id' => '{{ID}}']); ?>' delete-route='<?= get_route('blackboard-news-delete', ['id' => '{{ID}}']); ?>' class="ui table stripped celled">
-		<thead></thead>
-		<tbody></tbody>
-	</table>
-	<div paginate></div>
-</div>
+
+<table process="<?= $process_table; ?>" style='width:100%;' class="ui table striped nowrap celled">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Start</th>
+			<th>End</th>
+			<th order='false'>Actions</th>
+		</tr>
+	</thead>
+</table>
+
+
+<script>
+	window.onload = () => {
+
+		let table = $(`[process]`)
+		let processURL = table.attr('process')
+		dataTableServerProccesing(table, processURL, 10)
+
+	}
+</script>

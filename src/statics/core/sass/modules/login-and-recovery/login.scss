@@ -1,0 +1,216 @@
+// @import '../../sass/core.scss';
+// @import 'import/variables';
+// @import 'import/reset';
+// @import 'import/fonts';
+
+// * {
+//     box-sizing: border-box;
+//     font-family: "Montserrat";
+// }
+
+// .primary {
+//     background-color: $primary-color-public !important;
+//     border-radius: 10px !important;
+
+//     &:hover,
+//     &:active,
+//     &:focus {
+//         background-color: rgba($primary-color-public, 0.9) !important;
+//     }
+// }
+
+// .login {
+//     display: grid;
+//     grid-template-columns: 50% 50%;
+
+//     background-color: var(--bg-color);
+//     position: relative;
+
+//     height: 100%;
+//     max-height: 100vh !important;
+
+//     @media screen and (max-width:992px) {
+//         grid-template-columns: 100%;
+//     }
+
+//     .container {
+//         width: 100%;
+//         min-height: 100vh;
+//         background-position: center center;
+//         background-size: cover;
+//         background-repeat: no-repeat;
+//         filter: brightness(70%);
+//     }
+
+//     >.overlay {
+//         // position: absolute;
+//         // top: 0px;
+//         // left: 0px;
+//         width: 100%;
+//         height: 100%;
+//         // background-color: $login-overlay-color;
+//     }
+
+//     .form-container {
+//         display: flex;
+//         align-items: center;
+//         justify-content: center;
+//         width: 100%;
+//         height: 100%;
+//         padding: 60px 0;
+
+//         @media screen and (max-width:992px) {
+//             position: absolute;
+//             top: 0;
+//         }
+
+//         .ui.form {
+//             width: 400px;
+//             height: fit-content;
+//             padding: 2rem;
+//             border-radius: 1rem;
+
+//             background-color: white;
+//             display: flex;
+//             flex-flow: column;
+//             align-items: center;
+//             justify-content: center;
+
+//             position: relative;
+
+//             @media screen and (max-width:480px) {
+//                 width: 90vw;
+//                 padding: 2rem 1rem;
+//             }
+
+//             .field {
+//                 width: 100%;
+//             }
+
+//         }
+
+//         .desc {
+//             // margin-top: -400px;
+//             // margin-bottom: 100px;
+//             position: absolute;
+//             bottom: 0px;
+
+//             @media screen and (max-width:480px) {
+//                 bottom: auto;
+//                 height: 100vh;
+
+//                 display: flex;
+//                 flex-flow: column;
+//                 justify-content: space-between;
+//                 padding: 40px 0;
+//             }
+
+//             .caption {
+//                 display: flex;
+//                 flex-flow: column;
+//                 align-items: center;
+//                 justify-content: space-between;
+//                 margin-bottom: 10px;
+//                 width: 100%;
+
+//                 img {
+//                     width: 60px;
+//                 }
+//             }
+
+//             .logo-developed {
+//                 display: flex;
+//                 flex-flow: column;
+//                 align-items: center;
+
+//                 text-align: center;
+//                 width: 100%;
+//                 padding: 15px;
+
+//                 small,
+//                 a {
+//                     color: white;
+//                     font-size: 0.7rem;
+//                     line-height: 1.3em;
+
+//                     @media (max-width:1440px) {
+//                         font-size: 0.5rem;
+//                     }
+//                 }
+//             }
+//         }
+
+//         .problems-message-container {
+//             display: none;
+//             position: absolute;
+//             top: 0px;
+//             left: 0px;
+//             z-index: 10;
+//             width: 100%;
+//             height: 100%;
+//             background-color: $login-form-problems-bg-color;
+
+//             .content {
+
+//                 display: grid;
+//                 justify-content: center;
+//                 align-items: center;
+//                 grid-template-columns: 100%;
+//                 height: 100%;
+//                 width: 100%;
+//                 margin: 0 auto;
+//                 padding: 6rem 2rem;
+//                 text-align: center;
+//                 color: $login-form-problems-font-color;
+//                 font-size: 1.1rem;
+
+//                 .title {
+//                     padding: 1.5rem 0rem;
+//                     font-size: 1.2rem;
+//                     text-transform: uppercase;
+
+//                     /* .text {} */
+
+//                     .mark {
+//                         display: block;
+//                         color: $login-form-problems-title-mark-color;
+//                     }
+//                 }
+
+//                 .message {
+//                     line-height: 1.8rem;
+//                 }
+
+//                 .ui.button.problem {
+//                     font-size: 0.8rem;
+//                 }
+//             }
+//         }
+
+//     }
+
+//     >.footer {
+//         position: absolute;
+//         bottom: 10px;
+//         left: 0px;
+//         width: 100%;
+//         height: 30px;
+//         text-align: center;
+//         color: $login-footer-font-color;
+//         font-size: 0.75rem;
+//     }
+// }
+
+// @media screen and (max-height:500px) {
+
+//     html {
+//         height: 600px;
+//     }
+
+//     .container {
+//         >.footer {
+//             bottom: 0px;
+//             height: 25px;
+//         }
+//     }
+// }

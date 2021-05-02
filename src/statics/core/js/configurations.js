@@ -655,7 +655,7 @@ pcsphpGlobals.configCalendar = {
 	formatter: {
 		date: function (date, settings) {
 			if (!(date instanceof Date)) return ''
-			return formatDate(date, 'd-m-Y')
+			return formatDate(date, 'Y-m-d')
 		}
 	},
 	text: {

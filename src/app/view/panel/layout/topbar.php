@@ -27,10 +27,6 @@ defined("BASEPATH") or die("<h1>El script no puede ser accedido directamente</h1
         <?= getIcon("menu-outline") ?>
     </a>
 
-    <?php if ($is_config) : ?>
-        <!-- <?= get_config('menus')['home_button']->getHTML() ?> -->
-    <?php endif; ?>
-
     <?= get_config('menus')['languages_link']->getHTML() ?>
 
     <div class="blanc right menu">

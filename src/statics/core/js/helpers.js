@@ -1,4 +1,51 @@
 /**
+ * @return "Hace cuanto" o "dentro de cuanto" tiempo se da esta fecha
+ */
+function timeAgo(date) {
+	if (typeof date == "string") {
+		date = new Date(date);
+	}
+
+	const DATE_UNITS = {
+		year: 31536000,
+		month: 2629800,
+		day: 86400,
+		hour: 3600,
+		minute: 60,
+		second: 1
+	}
+
+	const isMayor = timestamp => timestamp > Date.now()
+	const getSecondsDiff = timestamp => (Date.now() - timestamp) / 1000
+
+	const getUnitAndValueDate = (secondsElapsed) => {
+
+		secondsElapsed = Math.abs(secondsElapsed);
+
+		for (const [unit, secondsInUnit] of Object.entries(DATE_UNITS)) {
+
+			if (secondsElapsed >= secondsInUnit || unit === "second") {
+
+				const mayor = isMayor(date)
+
+				const value = Math.floor(secondsElapsed / secondsInUnit) * (mayor ? 1 : -1)
+
+
+				return { value, unit }
+			}
+
+		}
+
+	}
+
+	const rtf = new Intl.RelativeTimeFormat("es")
+
+	const secondsElapsed = getSecondsDiff(date)
+	const { value, unit } = getUnitAndValueDate(secondsElapsed)
+	return rtf.format(value, unit)
+}
+
+/**
  * Ir atrás en una ruta al tocar el botón con el atributo "${prefix}-go-back-button"
  * @param {String} prefix prefijo del atributo
  */

@@ -414,131 +414,32 @@ function BlackBoardComponent(page, perPage, attrSelectorForm, attrSelectorList) 
 
 		if (options.type == 'normal') {
 			if (items.length == 0) {
-				options.container.append('<h6><small>' + _i18n(LANG_GROUP, 'No hay noticias') + '</small></h6>')
+				options.container.append('<div class="ui segment">' + _i18n(LANG_GROUP, 'No hay noticias') + '</div>')
 			}
 			for (let item of items) {
 
 				let div = $(document.createElement('div'))
 				div.attr('data-id', item.id)
-				div.addClass('ui piled segments')
+				div.addClass('ui segment')
 
-				div.append(`<h3>${item.title}</h3>`)
-				div.append(`<small>${item.author.firstname} ${item.author.first_lastname}</small>`)
+				let meta = document.createElement("div");
+				let meta2 = document.createElement("div");
+				meta.className = "meta"
 
+				meta.innerHTML = `<small>Por ${item.author.firstname} ${item.author.first_lastname}</small>`;
 				if (item.start_date != null) {
-					div.append(`</br>`)
-					div.append(`<small>${item.start_date} - ${item.end_date}</small>`)
+					meta.innerHTML += `<small>${timeAgo(item.start_date)}`
 				}
 
-				div.append(`<p>${item.text}</p>`)
+				div.append(meta);
+
+
+
+				div.append(`<h3 class="ui header">${item.title}</h3>`)
+				div.append(`<p>${item.text.length > 100 ? item.text.substring(0, 99) + `... <a href="${item.url}">Ver mas.</a>` : item.text}</p>`)
 				options.container.append(div)
 			}
 
-		} else if (options.type == 'table') {
-
-			let thead = null
-			let tbody = null
-			let editURL = options.container.attr('edit-route')
-			let deleteURL = options.container.attr('delete-route')
-			if (options.container.find('thead').length < 1) {
-				thead = $(document.createElement('thead'))
-				tbody = $(document.createElement('tbody'))
-				options.container.append(thead)
-				options.container.append(tbody)
-			} else {
-				thead = options.container.find('thead')
-				tbody = options.container.find('tbody')
-			}
-
-			thead.html('')
-			thead.append(
-				$('<tr></tr>')
-					.append(`<th>${_i18n(LANG_GROUP, 'Nombre')}</th>`)
-					.append(`<th>${_i18n(LANG_GROUP, 'Inicio')}</th>`)
-					.append(`<th>${_i18n(LANG_GROUP, 'Fin')}</th>`)
-					.append(`<th>${_i18n(LANG_GROUP, 'Creado')}</th>`)
-					.append(`<th>${_i18n(LANG_GROUP, 'Dirigido a')}</th>`)
-					.append(`<th>${_i18n(LANG_GROUP, 'Acciones')}</th>`)
-			)
-
-
-			if (items.length == 0) {
-				tbody.append('<tr empty><td><strong>' + _i18n(LANG_GROUP, 'No hay noticias') + '</strong></td></tr>')
-			} else {
-				tbody.find('[empty]').remove()
-			}
-
-			for (let item of items) {
-				let tr = $(document.createElement('tr'))
-				tr.attr('data-id', item.id)
-
-				tr.append(`<td>${item.title}</td>`)
-
-				if (item.start_date != null) {
-					tr.append(`<td>${item.start_date}</td>`)
-					tr.append(`<td>${item.end_date}</td>`)
-				} else {
-					tr.append(`<td>-</td>`)
-					tr.append(`<td>-</td>`)
-				}
-
-				let editHref = editURL.replace('{{ID}}', item.id)
-				let deleteHref = deleteURL.replace('{{ID}}', item.id)
-				tr.append(`<td>${item.created_date}</td>`)
-				tr.append(`<td>${item.type.label}</td>`)
-				tr.append(
-					$(`<td></td>`)
-						.append(
-							$('<a>' + _i18n(LANG_GROUP, 'Editar') + '</a>')
-								.attr('href', editHref)
-								.addClass('ui mini button green')
-						)
-						.append(
-							$('<a>' + _i18n(LANG_GROUP, 'Eliminar') + '</a>')
-								.attr('href', deleteHref)
-								.addClass('ui mini button red')
-								.on('click', function (e) {
-									e.preventDefault()
-
-									let that = $(e.target)
-									let url = that.attr('href')
-
-									iziToast.question({
-										timeout: 20000,
-										close: false,
-										overlay: true,
-										displayMode: 'once',
-										id: 'question',
-										zindex: 999,
-										title: _i18n(LANG_GROUP, 'Confirmación'),
-										message: _i18n(LANG_GROUP, '¿Quiere eliminar la noticia?'),
-										position: 'center',
-										buttons: [
-											['<button><b>' + _i18n(LANG_GROUP, 'Sí') + '</b></button>', function (instance, toast) {
-
-												instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
-												postRequest(url).done((res) => {
-													if (res.success) {
-														that.parent().parent().remove()
-													} else {
-														errorMessage(res.name, res.message)
-													}
-												}).fail((res) => {
-													errorMessage(_i18n(LANG_GROUP, 'Error'), _i18n(LANG_GROUP, 'Ha ocurrido un error desconocido.'))
-													console.log(res)
-												})
-
-											}, true],
-											['<button>' + _i18n(LANG_GROUP, 'No') + '</button>', function (instance, toast) {
-												instance.hide({ transitionOut: 'fadeOut' }, toast, 'button')
-											}],
-										]
-									});
-								})
-						)
-				)
-				tbody.append(tr)
-			}
 		}
 	}
 

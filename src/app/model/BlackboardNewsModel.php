@@ -1,7 +1,9 @@
 <?php
+
 /**
  * BlackboardNewsModel.php
  */
+
 namespace App\Model;
 
 use PiecesPHP\Core\BaseEntityMapper;
@@ -41,8 +43,9 @@ class BlackboardNewsModel extends BaseEntityMapper
         'text' => [
             'type' => 'text',
         ],
-        'type' => [
-            'type' => 'int',
+        'types' => [
+            'types' => 'json',
+            'null' => false,
         ],
         'start_date' => [
             'type' => 'date',
@@ -77,4 +80,47 @@ class BlackboardNewsModel extends BaseEntityMapper
         parent::__construct($value, $field_compare);
     }
 
+    /**
+     * @inheritDoc
+     */
+    public function save()
+    {
+        return parent::save();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function update()
+    {
+        return parent::update();
+    }
+
+    /**
+     * all
+     *
+     * @param bool $as_mapper
+     *
+     * @return static[]|array
+     */
+    public static function all(bool $as_mapper = false, int $page = null, int $perPage = null)
+    {
+        $model = self::model();
+
+        $model->select()->execute(false, $page, $perPage);
+
+        $result = $model->result();
+
+        return $result;
+    }
+
+    /**
+     * model
+     *
+     * @return BaseModel
+     */
+    public static function model()
+    {
+        return (new static())->getModel();
+    }
 }

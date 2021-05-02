@@ -60,8 +60,7 @@ class PublicAreaController extends \PiecesPHP\Core\BaseController
 
         set_global_assets(
             [
-                'statics/css/style.css',
-                'statics/plugins/bootstrap/css/bootstrap.min.css',
+                baseurl('statics/css/public.css'),
             ],
             'css'
         );
@@ -69,7 +68,6 @@ class PublicAreaController extends \PiecesPHP\Core\BaseController
         set_global_assets(
             [
                 'statics/js/global.js',
-                'statics/plugins/bootstrap/js/bootstrap.min.js',
             ],
             'js'
         );
@@ -104,182 +102,48 @@ class PublicAreaController extends \PiecesPHP\Core\BaseController
     }
 
     /**
-     * @param Request $req
-     * @param Response $res
-     * @param array $args
-     * @return Response
+     * loginForm
+     *
+     * No espera parámetros.
+     *
+     * @param Request $request Petición
+     * @param Request $response Respuesta
+     * @param array $args Argumentos pasados por GET
+     * @return void
      */
-    public function servicesView(Request $req, Response $res, array $args)
+    public function loginForm(Request $request, Response $response, array $args)
     {
 
-        set_title(__(LANG_GROUP, 'Services'));
+        set_title(str_replace('.', '', __('general', 'loging')));
 
-        set_custom_assets(
-            [
-                'statics/css/services.css',
-                'statics/css/home.css',
-            ],
-            'css'
-        );
+        /* JQuery */
+        // import_jquery();
+        /* Semantic */
+        import_semantic();
+        /* NProgress */
+        // import_nprogress();
+        /* izitoast */
+        // import_izitoast();
+        /* Librerías de la aplicación */
+        // import_app_libraries();
 
-        $this->render('layout/header');
-        $this->render('pages/services');
-        $this->render('layout/footer');
+        // set_custom_assets([
+        //     baseurl('statics/css/public.css'),
+        //     // baseurl('statics/login-and-recovery/css/login.css'),
+        //     // baseurl('statics/css/modules/login.css'),
+        // ], 'css');
 
-        return $res;
+        // set_custom_assets([
+        //     baseurl('statics/login-and-recovery/js/login.js'),
+        // ], 'js');
+
+        // $this->render('layout/header');
+        // $this->render('usuarios/login');
+        // $this->render('layout/footer');
+
+        // return $response;
     }
 
-    /**
-     * @param Request $req
-     * @param Response $res
-     * @param array $args
-     * @return Response
-     */
-    public function plansView(Request $req, Response $res, array $args)
-    {
-
-        set_title(__(LANG_GROUP, 'Plans'));
-
-        set_custom_assets(
-            [
-                'statics/css/plans.css',
-                'statics/css/home.css',
-            ],
-            'css'
-        );
-
-        $plans = ["basic", "standard", "premium", "ultra"];
-
-        $microservices = [
-            ["name" => "General cleaning", "basic" => true, "standard" => true, "premium" => true, "ultra" => true],
-            ["name" => "Painting", "basic" => true, "standard" => true, "premium" => true, "ultra" => true],
-            ["name" => "Electricity", "basic" => true, "standard" => true, "premium" => true, "ultra" => true],
-            ["name" => "Plumbing", "basic" => true, "standard" => true, "premium" => true, "ultra" => true],
-            ["name" => "Cleaning consumables", "basic" => true, "standard" => true, "premium" => true, "ultra" => true],
-            ["name" => "Sanitary Consumables", "basic" => true, "standard" => true, "premium" => true, "ultra" => true],
-            ["name" => "Laundry service for sheets and towels", "basic" => true, "standard" => true, "premium" => true, "ultra" => true],
-            ["name" => "Civil works and bricklaying", "basic" => false, "standard" => true, "premium" => true, "ultra" => true],
-            ["name" => "Locksmith", "basic" => false, "standard" => true, "premium" => true, "ultra" => true],
-            ["name" => "Access control", "basic" => false, "standard" => true, "premium" => true, "ultra" => true],
-            ["name" => "Fire Detection System", "basic" => false, "standard" => true, "premium" => true, "ultra" => true],
-            ["name" => "Automation in general", "basic" => false, "standard" => true, "premium" => true, "ultra" => true],
-            ["name" => "Gardening", "basic" => false, "standard" => true, "premium" => true, "ultra" => true],
-            ["name" => "Fumigation", "basic" => false, "standard" => false, "premium" => true, "ultra" => true],
-            ["name" => "Resident personnel for VIP attention", "basic" => false, "standard" => false, "premium" => true, "ultra" => true],
-            ["name" => "AA Units, pumps, electrical generators and frequently used equipament are covered up to total loss", "basic" => false, "standard" => false, "premium" => true, "ultra" => true],
-        ];
-
-        $this->render('layout/header');
-        $this->render('pages/plans', ["plans" => $plans, "microservices" => $microservices]);
-        $this->render('layout/footer');
-
-        return $res;
-    }
-
-    /**
-     * @param Request $req
-     * @param Response $res
-     * @param array $args
-     * @return Response
-     */
-    public function aboutView(Request $req, Response $res, array $args)
-    {
-
-        set_title(__(LANG_GROUP, 'About'));
-
-        set_custom_assets(
-            [
-                'statics/css/about.css',
-                'statics/css/home.css',
-            ],
-            'css'
-        );
-
-        $this->render('layout/header');
-        $this->render('pages/about');
-        $this->render('layout/footer');
-
-        return $res;
-    }
-
-    /**
-     * @param Request $req
-     * @param Response $res
-     * @param array $args
-     * @return Response
-     */
-    public function contactView(Request $req, Response $res, array $args)
-    {
-
-        set_title(__(LANG_GROUP, 'Contact us'));
-
-        set_custom_assets(
-            [
-                'https://www.google.com/recaptcha/api.js?render=' . get_config("recapcha")["site_key"],
-                'statics/js/contact.js',
-            ],
-            'js'
-        );
-        set_custom_assets(
-            [
-                'statics/css/contact.css',
-            ],
-            'css'
-        );
-
-
-
-        $this->render('layout/header');
-        $this->render('pages/contact', [
-            "action" => ContactsController::routeName("actions-add"),
-            "is_local" => is_local()
-        ]);
-        $this->render('layout/footer');
-
-        return $res;
-    }
-    /**
-     * @param Request $req
-     * @param Response $res
-     * @param array $args
-     * @return Response
-     */
-    public function termsView(Request $req, Response $res, array $args)
-    {
-
-        set_title(__(LANG_GROUP, 'Terms'));
-
-        set_custom_assets([
-            'statics/css/terms.css',
-        ], 'css');
-
-        $this->render('layout/header');
-        $this->render('pages/home');
-        $this->render('layout/footer');
-
-        return $res;
-    }
-    /**
-     * @param Request $req
-     * @param Response $res
-     * @param array $args
-     * @return Response
-     */
-    public function policyView(Request $req, Response $res, array $args)
-    {
-
-        set_title(__(LANG_GROUP, 'Policy'));
-
-        set_custom_assets([
-            'statics/css/policy.css',
-        ], 'css');
-
-        $this->render('layout/header');
-        $this->render('pages/home');
-        $this->render('layout/footer');
-
-        return $res;
-    }
     /**
      * @param Request $req
      * @param Response $res

@@ -239,20 +239,20 @@ class UsersController extends AdminPanelController
 
         set_title(str_replace('.', '', __('general', 'loging')));
 
-        /* JQuery */
-        import_jquery();
-        /* Semantic */
+        // /* JQuery */
+        // import_jquery();
+        // /* Semantic */
         // import_semantic();
-        /* NProgress */
-        import_nprogress();
-        /* izitoast */
-        import_izitoast();
-        /* Librerías de la aplicación */
-        import_app_libraries();
+        // /* NProgress */
+        // import_nprogress();
+        // /* izitoast */
+        // import_izitoast();
+        // /* Librerías de la aplicación */
+        // import_app_libraries();
 
         set_custom_assets([
-            // baseurl('statics/css/style.css'),
-            baseurl('statics/login-and-recovery/css/login.css'),
+            // baseurl('statics/core/css/modules/login-and-recovery/public.css'),
+            baseurl('statics/core/css/modules/login-and-recovery/css/login.css'),
             // baseurl('statics/css/modules/login.css'),
         ], 'css');
 
@@ -260,11 +260,11 @@ class UsersController extends AdminPanelController
             baseurl('statics/login-and-recovery/js/login.js'),
         ], 'js');
 
-        // $this->render('layout/header');
+        // $this->render('panel/layout/header');
         $this->render('usuarios/login');
-        // $this->render('layout/footer');
+        // $this->render('panel/layout/footer');
 
-        return $response;
+        // return $response;
     }
 
     /**
