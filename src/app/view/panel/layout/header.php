@@ -20,28 +20,48 @@ defined("BASEPATH") or die("<h1>El script no puede ser accedido directamente</h1
     <?php load_css(['base_url' => "", 'custom_url' => ""]) ?>
     <style>
         :root {
-            --primary-color: <?= get_config("primary_color"); ?>;
-            --secondary-color: <?= get_config("secondary_color"); ?>;
 
-            --back-color: <?= get_config("back_color"); ?>;
 
             --navbar-color: <?= get_config("navbar_color"); ?>;
             --navbar-hover-color: <?= get_config("navbar_hover_color"); ?>;
             --navbar-height: <?= get_config("navbar_height"); ?>;
             --navbar-icon-size: <?= get_config("navbar_icon_size"); ?>;
 
+            --primary-color: <?= get_config("primary_color"); ?>;
+            --primary-color-hover: <?= get_config("primary_color_hover"); ?>;
+            --primary-color-opacity: <?= get_config("primary_color") . "a3"; ?>;
+            --secondary-color: <?= get_config("secondary_color"); ?>;
+            --secondary-color-hover: <?= get_config("secondary_color_hover"); ?>;
+            --secondary-color-opacity: <?= get_config("secondary_color") . "a3"; ?>;
+            --back-color: <?= get_config("back_color"); ?>;
+            --back-color-hover: <?= get_config("back_color_hover"); ?>;
+            --back-color-opacity: <?= get_config("back_color") . "a3"; ?>;
             --gray-color: <?= get_config("gray_color"); ?>;
+            --gray-color-hover: <?= get_config("gray_color_hover"); ?>;
+            --gray-color-opacity: <?= get_config("gray_color") . "a3"; ?>;
             --dark-color: <?= get_config("dark_color"); ?>;
-
+            --dark-color-hover: <?= get_config("dark_color_hover"); ?>;
+            --dark-color-opacity: <?= get_config("dark_color") . "a3"; ?>;
             --danger-color: <?= get_config("danger_color"); ?>;
+            --danger-color-hover: <?= get_config("danger_color_hover"); ?>;
+            --danger-color-opacity: <?= get_config("danger_color") . "a3"; ?>;
             --alert-color: <?= get_config("alert_color"); ?>;
+            --alert-color-hover: <?= get_config("alert_color_hover"); ?>;
+            --alert-color-opacity: <?= get_config("alert_color") . "a3"; ?>;
             --success-color: <?= get_config("success_color"); ?>;
+            --success-color-hover: <?= get_config("success_color_hover"); ?>;
+            --success-color-opacity: <?= get_config("success_color") . "a3"; ?>;
             --info-color: <?= get_config("info_color"); ?>;
+            --info-color-hover: <?= get_config("info_color_hover"); ?>;
+            --info-color-opacity: <?= get_config("info_color") . "a3"; ?>;
 
             --default-radius: <?= get_config("default_radius"); ?>;
             --dropdown-radius: <?= get_config("dropdown_radius"); ?>;
             --card-radius: <?= get_config("card_radius"); ?>;
             --field-radius: <?= get_config("field_radius"); ?>;
+            --button-radius: <?= get_config("button_radius"); ?>;
+
+            --statics-url: <?= base_url("statics"); ?>;
 
 
             --sidebar-color: <?= get_config("sidebar_color"); ?>;
@@ -67,5 +87,6 @@ defined("BASEPATH") or die("<h1>El script no puede ser accedido directamente</h1
 
     <div class="ui-pcs container-sidebar">
 
+        <?php $this->render('panel/layout/menu'); ?>
 
         <div class="content super-content">

@@ -9,37 +9,73 @@ $colors = [
         'name' => 'primary_color',
         'value' => htmlentities(get_config('primary_color'))
     ],
+    "primary hv" => [
+        'name' => 'primary_color_hover',
+        'value' => htmlentities(get_config('primary_color_hover'))
+    ],
     "secondary" => [
         'name' => 'secondary_color',
         'value' => htmlentities(get_config('secondary_color'))
+    ],
+    "secondary hv" => [
+        'name' => 'secondary_color_hover',
+        'value' => htmlentities(get_config('secondary_color_hover'))
     ],
     "back" => [
         'name' => 'back_color',
         'value' => htmlentities(get_config('back_color'))
     ],
+    "back hv" => [
+        'name' => 'back_color_hover',
+        'value' => htmlentities(get_config('back_color_hover'))
+    ],
     "dark" => [
         'name' => 'dark_color',
         'value' => htmlentities(get_config('dark_color'))
+    ],
+    "dark hv" => [
+        'name' => 'dark_color_hover',
+        'value' => htmlentities(get_config('dark_color_hover'))
     ],
     "gray" => [
         'name' => 'gray_color',
         'value' => htmlentities(get_config('gray_color'))
     ],
+    "gray hv" => [
+        'name' => 'gray_color_hover',
+        'value' => htmlentities(get_config('gray_color_hover'))
+    ],
     "danger" => [
         'name' => 'danger_color',
         'value' => htmlentities(get_config('danger_color'))
+    ],
+    "danger hv" => [
+        'name' => 'danger_color_hover',
+        'value' => htmlentities(get_config('danger_color_hover'))
     ],
     "success" => [
         'name' => 'success_color',
         'value' => htmlentities(get_config('success_color'))
     ],
+    "success hv" => [
+        'name' => 'success_color_hover',
+        'value' => htmlentities(get_config('success_color_hover'))
+    ],
     "alert" => [
         'name' => 'alert_color',
         'value' => htmlentities(get_config('alert_color'))
     ],
+    "alert hv" => [
+        'name' => 'alert_color_hover',
+        'value' => htmlentities(get_config('alert_color_hover'))
+    ],
     "info" => [
         'name' => 'info_color',
         'value' => htmlentities(get_config('info_color'))
+    ],
+    "info hv" => [
+        'name' => 'info_color_hover',
+        'value' => htmlentities(get_config('info_color_hover'))
     ],
     "sb" => [
         'name' => 'sidebar_color',
