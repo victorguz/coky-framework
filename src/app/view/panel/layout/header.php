@@ -71,6 +71,25 @@ defined("BASEPATH") or die("<h1>El script no puede ser accedido directamente</h1
             --sidebar-button-hover-color: <?= get_config("sidebar_button_hover_color"); ?>;
             --sidebar-button-selected-color: <?= get_config("sidebar_button_selected_color"); ?>;
 
+            /* FONTS */
+
+            --Montserrat-Thin: <?= base_url("statics/fonts/Montserrat/Montserrat-Thin.ttf") ?>;
+            --Montserrat-ThinItalic: <?= base_url("statics/fonts/Montserrat/Montserrat-ThinItalic.ttf") ?>;
+            --Montserrat-ExtraLight: <?= base_url("statics/fonts/Montserrat/Montserrat-ExtraLight.ttf") ?>;
+            --Montserrat-ExtraLightItalic: <?= base_url("statics/fonts/Montserrat/Montserrat-ExtraLightItalic.ttf") ?>;
+            --Montserrat-Light: <?= base_url("statics/fonts/Montserrat/Montserrat-Light.ttf") ?>;
+            --Montserrat-LightItalic: <?= base_url("statics/fonts/Montserrat/Montserrat-LightItalic.ttf") ?>;
+            --Montserrat-Regular: <?= base_url("statics/fonts/Montserrat/Montserrat-Regular.ttf") ?>;
+            --Montserrat-Italic: <?= base_url("statics/fonts/Montserrat/Montserrat-Italic.ttf") ?>;
+            --Montserrat-SemiBold: <?= base_url("statics/fonts/Montserrat/Montserrat-SemiBold.ttf") ?>;
+            --Montserrat-SemiBoldItalic: <?= base_url("statics/fonts/Montserrat/Montserrat-SemiBoldItalic.ttf") ?>;
+            --Montserrat-Bold: <?= base_url("statics/fonts/Montserrat/Montserrat-Bold.ttf") ?>;
+            --Montserrat-BoldItalic: <?= base_url("statics/fonts/Montserrat/Montserrat-BoldItalic.ttf") ?>;
+            --Montserrat-ExtraBold: <?= base_url("statics/fonts/Montserrat/Montserrat-ExtraBold.ttf") ?>;
+            --Montserrat-ExtraBoldItalic: <?= base_url("statics/fonts/Montserrat/Montserrat-ExtraBoldItalic.ttf") ?>;
+            --Montserrat-Black: <?= base_url("statics/fonts/Montserrat/Montserrat-Black.ttf") ?>;
+            --Montserrat-BlackItalic: <?= base_url("statics/fonts/Montserrat/Montserrat-BlackItalic.ttf") ?>;
+
         }
     </style>
 

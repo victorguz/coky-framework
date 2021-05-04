@@ -2,22 +2,23 @@
 
 * {
     box-sizing: border-box;
-    font-size: $htmlFontSize;
+    font-size: $default-font-size;
 }
 
 
 //Generals
 html,
 body {
-    font-family: $fontFamilyFirst !important;
-    font-weight: 400;
+    font-family: $secondary-font, $primary-font, $last-font, "Arial", "Helvetica", serif, sans-serif !important;
+    font-weight: $font-regular;
     height: 100%;
     width: 100%;
     overflow: hidden;
+    font-size: $default-font-size;
 }
 
 .#{$globalClassPcs} {
-    font-size: $htmlFontSize;
+    font-size: $default-font-size;
 }
 
 p,
@@ -34,17 +35,20 @@ a,
 mark,
 q,
 blockquote h1,
+input,
+select,
+textarea,
+label {
+    font-family: $last-font, $primary-font, $secondary-font, "Arial", "Helvetica", serif, sans-serif !important;
+}
+
 h1,
 h2,
 h3,
 h4,
 h5,
-h6,
-input,
-select,
-textarea,
-label {
-    font-family: $fontFamilyFirst !important;
+h6 {
+    font-family: $secondary-font, $primary-font, $last-font, "Arial", "Helvetica", serif, sans-serif !important;
 }
 
 a.ui.button,

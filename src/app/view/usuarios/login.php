@@ -12,6 +12,8 @@
     <?php load_css(['base_url' => "", 'custom_url' => ""]) ?>
     <style>
         :root {
+
+
             --navbar-color: <?= get_config("navbar_color"); ?>;
             --navbar-hover-color: <?= get_config("navbar_hover_color"); ?>;
             --navbar-height: <?= get_config("navbar_height"); ?>;
@@ -19,28 +21,39 @@
 
             --primary-color: <?= get_config("primary_color"); ?>;
             --primary-color-hover: <?= get_config("primary_color_hover"); ?>;
+            --primary-color-opacity: <?= get_config("primary_color") . "a3"; ?>;
             --secondary-color: <?= get_config("secondary_color"); ?>;
             --secondary-color-hover: <?= get_config("secondary_color_hover"); ?>;
+            --secondary-color-opacity: <?= get_config("secondary_color") . "a3"; ?>;
             --back-color: <?= get_config("back_color"); ?>;
             --back-color-hover: <?= get_config("back_color_hover"); ?>;
+            --back-color-opacity: <?= get_config("back_color") . "a3"; ?>;
             --gray-color: <?= get_config("gray_color"); ?>;
             --gray-color-hover: <?= get_config("gray_color_hover"); ?>;
+            --gray-color-opacity: <?= get_config("gray_color") . "a3"; ?>;
             --dark-color: <?= get_config("dark_color"); ?>;
             --dark-color-hover: <?= get_config("dark_color_hover"); ?>;
+            --dark-color-opacity: <?= get_config("dark_color") . "a3"; ?>;
             --danger-color: <?= get_config("danger_color"); ?>;
             --danger-color-hover: <?= get_config("danger_color_hover"); ?>;
+            --danger-color-opacity: <?= get_config("danger_color") . "a3"; ?>;
             --alert-color: <?= get_config("alert_color"); ?>;
             --alert-color-hover: <?= get_config("alert_color_hover"); ?>;
+            --alert-color-opacity: <?= get_config("alert_color") . "a3"; ?>;
             --success-color: <?= get_config("success_color"); ?>;
             --success-color-hover: <?= get_config("success_color_hover"); ?>;
+            --success-color-opacity: <?= get_config("success_color") . "a3"; ?>;
             --info-color: <?= get_config("info_color"); ?>;
             --info-color-hover: <?= get_config("info_color_hover"); ?>;
+            --info-color-opacity: <?= get_config("info_color") . "a3"; ?>;
 
             --default-radius: <?= get_config("default_radius"); ?>;
             --dropdown-radius: <?= get_config("dropdown_radius"); ?>;
             --card-radius: <?= get_config("card_radius"); ?>;
             --field-radius: <?= get_config("field_radius"); ?>;
             --button-radius: <?= get_config("button_radius"); ?>;
+
+            --statics-url: <?= base_url("statics"); ?>;
 
 
             --sidebar-color: <?= get_config("sidebar_color"); ?>;
@@ -50,7 +63,6 @@
             --sidebar-button-hover-color: <?= get_config("sidebar_button_hover_color"); ?>;
             --sidebar-button-selected-color: <?= get_config("sidebar_button_selected_color"); ?>;
 
-            --statics-url: <?= base_url("statics"); ?>;
         }
     </style>
 </head>
@@ -84,16 +96,14 @@
             <form login-form-js last-uri='<?= $requested_uri; ?>' class="ui form login-form">
 
                 <div class="desc">
-                    <h1 class="ui header">Log in</h1>
+                    <h1 class="ui header"><?= $title ?></h1>
                     <a href="<?= base_url() ?>" class="logo" vanilla-tilt data-tilt-max="30" data-tilt-scale="1.4" ilt-speed="300" data-tilt-perspective="500">
                         <img src="<?= get_config('favicon'); ?>" alt="logo <?= get_config("title_app") ?>">
                     </a>
                 </div>
 
                 <div class="actions">
-                    <h1 class="ui header">Log in</h1>
-
-                    <!-- <p class="message">No hay errores</p>   -->
+                    <h1 class="ui header"><?= $title ?></h1>
 
                     <div class="field">
                         <label><?= __(USER_LOGIN_LANG_GROUP, 'Usuario'); ?></label>
@@ -111,12 +121,10 @@
 
                     <br>
 
-                    <a href="<?= get_route('user-problems-list') ?>">
+                    <a href="<?= get_route('user-problems-select') ?>">
                         <?= __(USER_LOGIN_LANG_GROUP, 'Ayuda para ingresar'); ?>
                     </a>
                 </div>
-
-
 
                 <div class="desc">
                     <div class="caption">

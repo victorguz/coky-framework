@@ -123,7 +123,7 @@
 
                 <form class="ui form">
                     <div class="field">
-                        <a href="<?= get_route('users-form-login'); ?>" class="ui secondary button fuid">
+                        <a href="<?= get_route('users-login-form'); ?>" class="ui secondary button fuid">
                             <?= __(\App\Controller\UserProblemsController::LANG_GROUP, 'Ingresar') ?>
                         </a>
                     </div>

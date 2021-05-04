@@ -102,49 +102,6 @@ class PublicAreaController extends \PiecesPHP\Core\BaseController
     }
 
     /**
-     * loginForm
-     *
-     * No espera parámetros.
-     *
-     * @param Request $request Petición
-     * @param Request $response Respuesta
-     * @param array $args Argumentos pasados por GET
-     * @return void
-     */
-    public function loginForm(Request $request, Response $response, array $args)
-    {
-
-        set_title(str_replace('.', '', __('general', 'loging')));
-
-        /* JQuery */
-        // import_jquery();
-        /* Semantic */
-        import_semantic();
-        /* NProgress */
-        // import_nprogress();
-        /* izitoast */
-        // import_izitoast();
-        /* Librerías de la aplicación */
-        // import_app_libraries();
-
-        // set_custom_assets([
-        //     baseurl('statics/css/public.css'),
-        //     // baseurl('statics/login-and-recovery/css/login.css'),
-        //     // baseurl('statics/css/modules/login.css'),
-        // ], 'css');
-
-        // set_custom_assets([
-        //     baseurl('statics/login-and-recovery/js/login.js'),
-        // ], 'js');
-
-        // $this->render('layout/header');
-        // $this->render('usuarios/login');
-        // $this->render('layout/footer');
-
-        // return $response;
-    }
-
-    /**
      * @param Request $req
      * @param Response $res
      * @param array $args

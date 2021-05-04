@@ -236,24 +236,14 @@ class UsersController extends AdminPanelController
      */
     public function loginForm(Request $request, Response $response, array $args)
     {
+        set_title(__('general', 'Iniciar sesión'));
 
-        set_title(str_replace('.', '', __('general', 'loging')));
 
-        // /* JQuery */
-        // import_jquery();
-        // /* Semantic */
-        // import_semantic();
-        // /* NProgress */
-        // import_nprogress();
-        // /* izitoast */
-        // import_izitoast();
-        // /* Librerías de la aplicación */
-        // import_app_libraries();
+        $title = __('general', 'Iniciar sesión');
+        $data["title"] = $title;
 
         set_custom_assets([
-            // baseurl('statics/core/css/modules/login-and-recovery/public.css'),
             baseurl(ADMIN_MODULES_CSS . '/login-and-recovery/login.css'),
-            // baseurl('statics/css/modules/login.css'),
         ], 'css');
 
         set_custom_assets([
@@ -261,11 +251,7 @@ class UsersController extends AdminPanelController
             baseurl(ADMIN_MODULES_JS . '/login-and-recovery/login.js'),
         ], 'js');
 
-        // $this->render('panel/layout/header');
-        $this->render('usuarios/login');
-        // $this->render('panel/layout/footer');
-
-        // return $response;
+        $this->render('usuarios/login', $data);
     }
 
     /**
@@ -1363,43 +1349,43 @@ class UsersController extends AdminPanelController
         //Inicio, cierre, registro y edición
         $group->register([
             new Route(
-                "{$startRoute}login[/]",
+                "{$startRoute}login/form[/]",
                 $users . ':loginForm',
-                'users-form-login'
+                'users-login-form'
             ),
         ]);
 
         //Problemas
         $group->register([
             new Route(
-                "{$startRoute}recovery[/]",
+                "{$startRoute}recovery/password/form[/]",
                 $recovery . ':recoveryPasswordForm',
-                'recovery-form'
+                'user-recovery-password-form'
             ),
             new Route(
-                "{$startRoute}recovery/{url_token}[/]",
+                "{$startRoute}recovery/password/{url_token}[/]",
                 $recovery . ':newPasswordCreate',
                 'new-password-create'
             ),
             new Route(
-                "{$startRoute}user-forget[/]",
+                "{$startRoute}recovery/user/form[/]",
                 $users_problems . ':userForgetForm',
-                'user-forget-form'
+                'user-recovery-username-form'
             ),
             new Route(
-                "{$startRoute}user-blocked[/]",
+                "{$startRoute}blocked/form[/]",
                 $users_problems . ':userBlockedForm',
                 'user-blocked-form'
             ),
             new Route(
-                "{$startRoute}other-problems[/]",
+                "{$startRoute}other/form[/]",
                 $users_problems . ':otherProblemsForm',
-                'other-problems-form'
+                'user-other-problems-form'
             ),
             new Route(
-                "{$startRoute}problems[/]",
+                "{$startRoute}problems/select[/]",
                 $users_problems . ':userProblemsList',
-                'user-problems-list'
+                'user-problems-select'
             ),
         ]);
 
@@ -1438,25 +1424,25 @@ class UsersController extends AdminPanelController
             new Route(
                 "{$startRoute}recovery[/]",
                 $recovery . ':recoveryPasswordRequest',
-                'recovery-password-request',
+                'user-recovery-password-request',
                 'POST'
             ),
             new Route(
                 "{$startRoute}recovery-code[/]",
                 $recovery . ':recoveryPasswordRequestCode',
-                'recovery-password-request-code',
+                'user-recovery-password-request-code',
                 'POST'
             ),
             new Route(
                 "{$startRoute}create-password-code[/]",
                 $recovery . ':newPasswordCreateCode',
-                'new-password-create-code',
+                'user-new-password-create-code',
                 'POST'
             ),
             new Route(
                 "{$startRoute}verify-create-password-code[/]",
                 $recovery . ':verifyCode',
-                'new-password-verify-code',
+                'user-new-password-verify-code',
                 'POST'
             ),
             new Route(
@@ -1486,7 +1472,7 @@ class UsersController extends AdminPanelController
             new Route(
                 "{$startRoute}other-problems[/]",
                 $users_problems . ':sendMailOtherProblems',
-                'other-problems-send',
+                'user-other-problems-send',
                 'POST'
             ),
         ]);

@@ -6,12 +6,12 @@
     <div class="header">
 
         <div class="logo">
-            <img src="<?=get_config('white-logo');?>">
+            <img src="<?= get_config('white-logo'); ?>">
         </div>
 
         <div class="back">
 
-            <a href="<?=get_route('users-form-login')?>" class="ui button white inverted icon">
+            <a href="<?= get_route('users-login-form') ?>" class="ui button white inverted icon">
                 <i class="icon user"></i>
                 <span><?= __(\App\Controller\UserProblemsController::LANG_GROUP, 'Iniciar sesión'); ?></span>
             </a>

@@ -109,13 +109,14 @@ $config["info_color_hover"] = "#1999c0";
 
 
 
+
+
 $config["sidebar_color"] = "#F0F2F5";
 $config["sidebar_icon_size"] = "25px";
 $config["sidebar_button_selected_color"] = "#ffffff";
 $config["sidebar_button_hover_color"] = "#dadde1";
 $config["sidebar_text_color"] = "#000000";
 $config["sidebar_text_hover_color"] = "#000000";
-
 
 
 $config["default_radius"] = "5px";

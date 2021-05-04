@@ -1,271 +1,269 @@
+// $(document).ready(function (e) {
 
+// 	let delayHide = 500
+// 	let delayShow = 500
 
-$(document).ready(function (e) {
+// 	let queryURL = window.location.search
+// 	let paramsURL = new URLSearchParams(queryURL)
 
-	let delayHide = 500
-	let delayShow = 500
+// 	let container = $('.form-container')
 
-	let queryURL = window.location.search
-	let paramsURL = new URLSearchParams(queryURL)
+// 	let systemMail = container.attr('data-system-mail')
 
-	let container = $('.form-container')
+// 	if (typeof systemMail == 'string' && systemMail.trim().length > 0) {
+// 		systemMail = systemMail.trim()
+// 	} else {
+// 		systemMail = 'sample@sample.com'
+// 	}
 
-	let systemMail = container.attr('data-system-mail')
+// 	let recoveryContainer = container.find('[recovery]')
+// 	let codeContainer = container.find('[code]')
+// 	let changePasswordContainer = container.find('[change-password]')
+// 	let errorContainer = container.find('[error]')
+// 	let finishContainer = container.find('[finish]')
+// 	let hasCode = container.find('[has-code]')
+// 	let repeat = container.find('[repeat]')
+// 	let messageBox = container.find('[message]')
 
-	if (typeof systemMail == 'string' && systemMail.trim().length > 0) {
-		systemMail = systemMail.trim()
-	} else {
-		systemMail = 'sample@sample.com'
-	}
+// 	let headerMain = $('.container .topbar.one')
+// 	let headerCode = $('.container .topbar.two')
+// 	let headerChangePassword = $('.container .topbar.two-two')
+// 	let headerWrongMail = $('.container .topbar.three')
+// 	let headerWrongCode = $('.container .topbar.four')
+// 	let headerFinish = $('.container .topbar.five')
 
-	let recoveryContainer = container.find('[recovery]')
-	let codeContainer = container.find('[code]')
-	let changePasswordContainer = container.find('[change-password]')
-	let errorContainer = container.find('[error]')
-	let finishContainer = container.find('[finish]')
-	let hasCode = container.find('[has-code]')
-	let repeat = container.find('[repeat]')
-	let messageBox = container.find('[message]')
+// 	let lang = pcsphpGlobals.lang == pcsphpGlobals.defaultLang ? '' : pcsphpGlobals.lang + '/'
 
-	let headerMain = $('.container .topbar.one')
-	let headerCode = $('.container .topbar.two')
-	let headerChangePassword = $('.container .topbar.two-two')
-	let headerWrongMail = $('.container .topbar.three')
-	let headerWrongCode = $('.container .topbar.four')
-	let headerFinish = $('.container .topbar.five')
+// 	let recoveryForm = recoveryContainer.find('form')
+// 	let codeForm = codeContainer.find('form')
+// 	let changePasswordForm = changePasswordContainer.find('form')
 
-	let lang = pcsphpGlobals.lang == pcsphpGlobals.defaultLang ? '' : pcsphpGlobals.lang + '/'
+// 	codeContainer.hide()
+// 	changePasswordContainer.hide()
+// 	errorContainer.hide()
+// 	finishContainer.hide()
 
-	let recoveryForm = recoveryContainer.find('form')
-	let codeForm = codeContainer.find('form')
-	let changePasswordForm = changePasswordContainer.find('form')
+// 	recoveryForm.on('submit', function (e) {
 
-	codeContainer.hide()
-	changePasswordContainer.hide()
-	errorContainer.hide()
-	finishContainer.hide()
+// 		e.preventDefault()
 
-	recoveryForm.on('submit', function (e) {
+// 		let recovery = postRequest(lang + 'users/recovery-code', new FormData(recoveryForm[0]))
 
-		e.preventDefault()
+// 		recoveryForm.find('.field').addClass('disabled')
 
-		let recovery = postRequest(lang + 'users/recovery-code', new FormData(recoveryForm[0]))
+// 		recovery.done(function (res) {
 
-		recoveryForm.find('.field').addClass('disabled')
+// 			if (res.send_mail === true) {
 
-		recovery.done(function (res) {
+// 				recoveryContainer.hide(delayHide)
+// 				codeContainer.show(delayShow)
 
-			if (res.send_mail === true) {
+// 				headerMain.hide(delayHide)
+// 				headerCode.show(delayShow)
 
-				recoveryContainer.hide(delayHide)
-				codeContainer.show(delayShow)
+// 				messageBox.html(
+// 					formatStr(
+// 						_i18n('userProblems', 'Ingrese el código enviado a su correo, el correo puede estar en "No deseado", por favor revise la carpeta de Spam. El remitente del correo es <strong>%r</strong>.'),
+// 						[
+// 							systemMail,
+// 						]
+// 					)
+// 				)
 
-				headerMain.hide(delayHide)
-				headerCode.show(delayShow)
+// 				recoveryForm[0].reset()
 
-				messageBox.html(
-					formatStr(
-						_i18n('userProblems', 'Ingrese el código enviado a su correo, el correo puede estar en "No deseado", por favor revise la carpeta de Spam. El remitente del correo es <strong>%r</strong>.'),
-						[
-							systemMail,
-						]
-					)
-				)
+// 			} else {
 
-				recoveryForm[0].reset()
+// 				if (res.error == 'USER_NO_EXISTS') {
 
-			} else {
+// 					headerMain.hide(delayHide)
+// 					headerWrongMail.show(delayShow)
 
-				if (res.error == 'USER_NO_EXISTS') {
+// 					recoveryContainer.hide(delayHide)
+// 					errorContainer.show(delayShow)
 
-					headerMain.hide(delayHide)
-					headerWrongMail.show(delayShow)
+// 					messageBox.html(_i18n('userProblems', 'El correo ingresado no está asociado a ningún usuario, por favor ingrese otra cuenta de correo o puede crear una solicitud de soporte para asociar ese correo a su cuenta.'))
 
-					recoveryContainer.hide(delayHide)
-					errorContainer.show(delayShow)
+// 					recoveryForm[0].reset()
 
-					messageBox.html(_i18n('userProblems', 'El correo ingresado no está asociado a ningún usuario, por favor ingrese otra cuenta de correo o puede crear una solicitud de soporte para asociar ese correo a su cuenta.'))
+// 				} else {
+// 					messageBox.html(res.message)
+// 				}
 
-					recoveryForm[0].reset()
+// 			}
 
-				} else {
-					messageBox.html(res.message)
-				}
+// 		})
 
-			}
+// 		recovery.fail(function (jqXHR) {
 
-		})
+// 			console.error(jqXHR)
+// 			messageBox.html(_i18n('errors', 'unexpected_error_try_later'))
 
-		recovery.fail(function (jqXHR) {
+// 		})
 
-			console.error(jqXHR)
-			messageBox.html(_i18n('errors', 'unexpected_error_try_later'))
+// 		recovery.always(function () {
 
-		})
+// 			recoveryForm.find('.field').removeClass('disabled')
 
-		recovery.always(function () {
+// 		})
 
-			recoveryForm.find('.field').removeClass('disabled')
+// 		return false
+// 	})
 
-		})
+// 	codeForm.on('submit', function (e) {
 
-		return false
-	})
+// 		e.preventDefault()
 
-	codeForm.on('submit', function (e) {
+// 		let recovery = postRequest(lang + 'users/verify-create-password-code', new FormData(codeForm[0]))
 
-		e.preventDefault()
+// 		codeForm.find('.field').addClass('disabled')
 
-		let recovery = postRequest(lang + 'users/verify-create-password-code', new FormData(codeForm[0]))
+// 		recovery.done(function (res) {
 
-		codeForm.find('.field').addClass('disabled')
+// 			if (res.success === true) {
 
-		recovery.done(function (res) {
+// 				headerCode.hide(delayHide)
+// 				codeContainer.hide(delayHide)
 
-			if (res.success === true) {
+// 				headerChangePassword.show(delayShow)
+// 				changePasswordContainer.show(delayShow)
 
-				headerCode.hide(delayHide)
-				codeContainer.hide(delayHide)
+// 				messageBox.html(``)
+// 				changePasswordForm.find("[name='code']").val(codeForm.find("[name='code']").val())
+// 				codeForm[0].reset()
 
-				headerChangePassword.show(delayShow)
-				changePasswordContainer.show(delayShow)
+// 			} else {
 
-				messageBox.html(``)
-				changePasswordForm.find("[name='code']").val(codeForm.find("[name='code']").val())
-				codeForm[0].reset()
+// 				if (res.error == 'EXPIRED_OR_NOT_EXIST_CODE') {
 
-			} else {
+// 					headerCode.hide(delayHide)
+// 					codeContainer.hide(delayHide)
 
-				if (res.error == 'EXPIRED_OR_NOT_EXIST_CODE') {
+// 					headerWrongCode.show(delayShow)
+// 					errorContainer.show(delayShow)
 
-					headerCode.hide(delayHide)
-					codeContainer.hide(delayHide)
+// 					messageBox.html(_i18n('userProblems', 'El código ingresado está errado, por favor vuelva a ingresar el código, solicite uno nuevo o cree una solicitud de soporte para informar del error.'))
 
-					headerWrongCode.show(delayShow)
-					errorContainer.show(delayShow)
+// 					recoveryForm[0].reset()
 
-					messageBox.html(_i18n('userProblems', 'El código ingresado está errado, por favor vuelva a ingresar el código, solicite uno nuevo o cree una solicitud de soporte para informar del error.'))
+// 				} else {
+// 					messageBox.html(res.message)
+// 				}
 
-					recoveryForm[0].reset()
+// 			}
 
-				} else {
-					messageBox.html(res.message)
-				}
+// 		})
 
-			}
+// 		recovery.fail(function (jqXHR) {
 
-		})
+// 			console.error(jqXHR)
+// 			messageBox.html(_i18n('errors', 'unexpected_error_try_later'))
 
-		recovery.fail(function (jqXHR) {
+// 		})
 
-			console.error(jqXHR)
-			messageBox.html(_i18n('errors', 'unexpected_error_try_later'))
+// 		recovery.always(function () {
 
-		})
+// 			codeForm.find('.field').removeClass('disabled')
 
-		recovery.always(function () {
+// 		})
 
-			codeForm.find('.field').removeClass('disabled')
+// 		return false
+// 	})
 
-		})
+// 	changePasswordForm.on('submit', function (e) {
 
-		return false
-	})
+// 		e.preventDefault()
 
-	changePasswordForm.on('submit', function (e) {
+// 		let recovery = postRequest(lang + 'users/create-password-code', new FormData(changePasswordForm[0]))
 
-		e.preventDefault()
+// 		codeForm.find('.field').addClass('disabled')
 
-		let recovery = postRequest(lang + 'users/create-password-code', new FormData(changePasswordForm[0]))
+// 		recovery.done(function (res) {
 
-		codeForm.find('.field').addClass('disabled')
+// 			if (res.success === true) {
 
-		recovery.done(function (res) {
+// 				headerChangePassword.hide(delayHide)
+// 				changePasswordContainer.hide(delayHide)
 
-			if (res.success === true) {
+// 				headerFinish.show(delayShow)
+// 				finishContainer.show(delayShow)
 
-				headerChangePassword.hide(delayHide)
-				changePasswordContainer.hide(delayHide)
+// 				messageBox.html(`<h1>${_i18n('userProblems', 'Ingrese con su usuario y la nueva contraseña')}</h1>`)
 
-				headerFinish.show(delayShow)
-				finishContainer.show(delayShow)
+// 				changePasswordForm[0].reset()
 
-				messageBox.html(`<h1>${_i18n('userProblems', 'Ingrese con su usuario y la nueva contraseña')}</h1>`)
+// 			} else {
 
-				changePasswordForm[0].reset()
+// 				if (res.error == 'NOT_MATCH_PASSWORDS') {
 
-			} else {
+// 					messageBox.html(_i18n('userProblems', 'Las contraseñas no coinciden'))
+// 					codeForm.find("[type='password']").parent().addClass('error')
 
-				if (res.error == 'NOT_MATCH_PASSWORDS') {
+// 				} else {
 
-					messageBox.html(_i18n('userProblems', 'Las contraseñas no coinciden'))
-					codeForm.find("[type='password']").parent().addClass('error')
+// 					codeForm.find("[type='password']").parent().removeClass('error')
+// 					messageBox.html(res.message)
 
-				} else {
+// 				}
 
-					codeForm.find("[type='password']").parent().removeClass('error')
-					messageBox.html(res.message)
+// 			}
 
-				}
+// 		})
 
-			}
+// 		recovery.fail(function (jqXHR) {
 
-		})
+// 			console.error(jqXHR)
+// 			messageBox.html(_i18n('errors', 'unexpected_error_try_later'))
 
-		recovery.fail(function (jqXHR) {
+// 		})
 
-			console.error(jqXHR)
-			messageBox.html(_i18n('errors', 'unexpected_error_try_later'))
+// 		recovery.always(function () {
 
-		})
+// 			changePasswordForm.find('.field').removeClass('disabled')
 
-		recovery.always(function () {
+// 		})
 
-			changePasswordForm.find('.field').removeClass('disabled')
+// 		return false
+// 	})
 
-		})
+// 	hasCode.on('click', function (e) {
+// 		e.preventDefault()
 
-		return false
-	})
+// 		headerMain.hide(delayHide)
+// 		recoveryContainer.hide(delayHide)
 
-	hasCode.on('click', function (e) {
-		e.preventDefault()
+// 		headerCode.show(delayShow)
+// 		codeContainer.show(delayShow)
 
-		headerMain.hide(delayHide)
-		recoveryContainer.hide(delayHide)
+// 		return false
+// 	})
 
-		headerCode.show(delayShow)
-		codeContainer.show(delayShow)
+// 	repeat.on('click', function (e) {
+// 		e.preventDefault()
+// 		recoveryContainer.show(delayShow)
+// 		headerMain.show(delayShow)
 
-		return false
-	})
+// 		headerCode.hide(delayHide)
+// 		codeContainer.hide(delayHide)
 
-	repeat.on('click', function (e) {
-		e.preventDefault()
-		recoveryContainer.show(delayShow)
-		headerMain.show(delayShow)
+// 		headerChangePassword.hide(delayHide)
+// 		changePasswordContainer.hide(delayHide)
 
-		headerCode.hide(delayHide)
-		codeContainer.hide(delayHide)
+// 		headerWrongMail.hide(delayHide)
+// 		headerWrongCode.hide(delayHide)
 
-		headerChangePassword.hide(delayHide)
-		changePasswordContainer.hide(delayHide)
+// 		errorContainer.hide(delayHide)
+// 		finishContainer.hide(delayHide)
 
-		headerWrongMail.hide(delayHide)
-		headerWrongCode.hide(delayHide)
+// 		messageBox.html('')
+// 		return false
+// 	})
 
-		errorContainer.hide(delayHide)
-		finishContainer.hide(delayHide)
-
-		messageBox.html('')
-		return false
-	})
-
-	if (paramsURL.has('code')) {
-		let code = paramsURL.get('code').trim()
-		if (code.length > 0) {
-			codeForm.find("[name='code']").val(code)
-			hasCode.click()
-		}
-	}
-})
+// 	if (paramsURL.has('code')) {
+// 		let code = paramsURL.get('code').trim()
+// 		if (code.length > 0) {
+// 			codeForm.find("[name='code']").val(code)
+// 			hasCode.click()
+// 		}
+// 	}
+// })

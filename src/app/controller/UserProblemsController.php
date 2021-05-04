@@ -30,7 +30,7 @@ class UserProblemsController extends UsersController
     const TYPE_USER_BLOCKED = 'TYPE_USER_BLOCKED';
     const LANG_GROUP = 'usersProblems';
 
-    const EMAIL_ON_FAILED_OS_TICKET = 'sir.vamb@gmail.com';
+    const EMAIL_ON_FAILED_OS_TICKET = 'victorguzber@gmail.com';
 
     /**
      * $userMapper
@@ -59,19 +59,45 @@ class UserProblemsController extends UsersController
     public function userProblemsList(Request $request, Response $response, array $args)
     {
 
-        set_title(__(self::LANG_GROUP, 'Solución a problemas de ingreso'));
+        set_title(__(self::LANG_GROUP, 'Ayuda para ingresar'));
 
-        /* JQuery */
-        import_jquery();
-        /* Semantic */
-        import_semantic();
-        /* Librerías de la aplicación */
-        import_app_libraries();
+        $lang_title = __(self::LANG_GROUP, 'Ayuda para ingresar');
+        $lang_dont_remember = __(self::LANG_GROUP, 'No recuerdo');
+        $lang_user = __(self::LANG_GROUP, 'Usuario');
+        $lang_password = __(self::LANG_GROUP, 'Contraseña');
+        $lang_blocked_user = __(self::LANG_GROUP, 'Usuario bloqueado');
+        $lang_other = __(self::LANG_GROUP, 'Otro problema');
+        $lang_login = __("general", 'Iniciar sesión');
+
+        $link_other = get_route("user-other-problems-form");
+        $link_blocked = get_route("user-blocked-form");
+        $link_password = get_route("user-recovery-password-form");
+        $link_user = get_route("user-recovery-username-form");
+        $link_login = get_route("users-login-form");
+
+        $data["lang_title"] = $lang_title;
+        $data["lang_dont_remember"] = $lang_dont_remember;
+        $data["lang_user"] = $lang_user;
+        $data["lang_password"] = $lang_password;
+        $data["lang_blocked_user"] = $lang_blocked_user;
+        $data["lang_other"] = $lang_other;
+        $data["lang_login"] = $lang_login;
+
+        $data["link_other"] = $link_other;
+        $data["link_blocked"] = $link_blocked;
+        $data["link_password"] = $link_password;
+        $data["link_user"] = $link_user;
+        $data["link_login"] = $link_login;
 
         set_custom_assets([
-            base_url('statics/login-and-recovery/css/problems.css'),
+            baseurl(ADMIN_MODULES_CSS . '/login-and-recovery/login.css'),
         ], 'css');
-        $this->render('usuarios/problems/problems-list');
+
+        set_custom_assets([
+            baseurl(ADMIN_MODULES_JS . '/login-and-recovery/login.js'),
+        ], 'js');
+
+        $this->render('usuarios/problems/problems-list', $data);
 
         return $response;
     }

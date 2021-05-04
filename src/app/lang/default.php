@@ -67,7 +67,7 @@ $lang = [
         'enter_the_code'             => 'Ingresar el código',
         'click_for_restore_password' => 'Click para restablecer su contraseña',
         'new_password_is'            => 'Su nueva contraseña es: ',
-        'loging'                     => 'Iniciar sesión.',
+        'login'                     => 'Iniciar sesión',
         'Bienvenido(a)'              => 'Bienvenido(a)',
     ],
     'errors' => [

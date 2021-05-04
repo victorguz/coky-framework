@@ -356,6 +356,16 @@ class AdminPanelController extends \PiecesPHP\Core\BaseController
 
         add_global_asset(base_url(ADMIN_AREA_PATH_JS . '/main.js'), 'js');
 
+        // FUENTES
+        // Montserrat
+        add_global_asset('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap', 'css');
+        // Karla
+        add_global_asset('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap', 'css');
+        // Popins
+        add_global_asset('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap', 'css');
+
+
+
         if (MESSAGES_ENABLED) {
             if (get_current_url() != get_route('messages-inbox') && REFRESH_MESSAGES_STATUS) {
                 add_global_asset(MESSAGES_PATH_JS . '/unread.js', 'js');

@@ -68,6 +68,7 @@ define('LANG_GROUP', 'public');
 //Coky
 
 //Modulos
+define('ADMIN_CORE_CSS', 'statics/core/css');
 define('ADMIN_MODULES_CSS', 'statics/core/css/modules');
 define('ADMIN_MODULES_JS', 'statics/core/js/modules');
 define('ADMIN_MULTIPLE_VIEW_LANG', 'multiple-view');

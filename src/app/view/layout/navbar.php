@@ -11,14 +11,14 @@
             <a class="link" href="<?= get_route("public-contact", ["type" => "all"]) ?>">Contact</a>
         </div>
         <div class=" not-dispose">
-            <a class="ui button link primary" href="<?= base_url("users/login") ?>">Sign
+            <a class="ui button link primary" href="<?= get_route("users-login-form") ?>">Sign
                 in</a>
         </div>
     </div>
     <div class="content content-2">
         <div class="dispose">
             <a class="link" href="<?= get_route("public-contact", ["type" => "all"]) ?>">Contact</a>
-            <a class="ui button link primary" href="<?= base_url("users/login") ?>">Sign
+            <a class="ui button link primary" href="<?= get_route("users-login-form") ?>">Sign
                 in</a>
         </div>
     </div>

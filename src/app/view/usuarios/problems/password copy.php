@@ -35,6 +35,14 @@
         <?= $this->render('usuarios/problems/inc/topbar', [
             'defaultImage' => base_url('statics/login-and-recovery/images/problems/problems.svg'),
             'altImage' => base_url('statics/login-and-recovery/images/problems/problems-alt.svg'),
+            'text' => __(\App\Controller\UserProblemsController::LANG_GROUP, 'Paso') . ' 4',
+            'classesCSS' => "two-two",
+            'active' => false,
+        ]); ?>
+
+        <?= $this->render('usuarios/problems/inc/topbar', [
+            'defaultImage' => base_url('statics/login-and-recovery/images/problems/problems.svg'),
+            'altImage' => base_url('statics/login-and-recovery/images/problems/problems-alt.svg'),
             'text' => __(\App\Controller\UserProblemsController::LANG_GROUP, 'Correo no registrado'),
             'classesCSS' => "three",
             'active' => true,
@@ -51,9 +59,9 @@
         <?= $this->render('usuarios/problems/inc/topbar', [
             'defaultImage' => base_url('statics/login-and-recovery/images/problems/problems.svg'),
             'altImage' => base_url('statics/login-and-recovery/images/problems/problems-alt.svg'),
-            'text' => __(\App\Controller\UserProblemsController::LANG_GROUP, 'Usuario recuperado'),
+            'text' => __(\App\Controller\UserProblemsController::LANG_GROUP, 'Su contraseña ha sido cambiada'),
             'classesCSS' => "five",
-            'active' => false,
+            'active' => true,
         ]); ?>
 
         <div class="form-container" data-system-mail="<?= \PiecesPHP\Core\ConfigHelpers\MailConfig::getValue('user'); ?>">
@@ -70,7 +78,7 @@
                     </div>
 
                     <div class="field buttons">
-                        <a href="<?= get_route('user-problems-list'); ?>" class="ui button">
+                        <a href="<?= get_route('user-problems-select'); ?>" class="ui button">
                             <?= __(\App\Controller\UserProblemsController::LANG_GROUP, 'Atrás') ?>
                         </a>
                         <button type="submit" class="ui secondary button">
@@ -102,6 +110,25 @@
 
             </div>
 
+            <div change-password>
+
+                <form class="ui form">
+                    <input required type="hidden" name="code">
+                    <div class="field required">
+                        <input required type="password" name="password" placeholder="<?= __(\App\Controller\UserProblemsController::LANG_GROUP, 'Ingrese su nueva contraseña'); ?>">
+                    </div>
+                    <div class="field required">
+                        <input required type="password" name="repassword" placeholder="<?= __(\App\Controller\UserProblemsController::LANG_GROUP, 'Confirme su nueva contraseña'); ?>">
+                    </div>
+                    <div class="field">
+                        <button type="submit" class="ui secondary button fluid">
+                            <?= __(\App\Controller\UserProblemsController::LANG_GROUP, 'Restablecer contraseña'); ?>
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+
             <div error>
 
                 <form class="ui form">
@@ -110,7 +137,7 @@
                             <a href="#" class="ui button" repeat><?= __(\App\Controller\UserProblemsController::LANG_GROUP, 'Atrás') ?></a>
                         </div>
                         <div class="field">
-                            <a href="<?= get_route('other-problems-form'); ?>" class="ui secondary button">
+                            <a href="<?= get_route('user-other-problems-form'); ?>" class="ui secondary button">
                                 <?= __(\App\Controller\UserProblemsController::LANG_GROUP, 'Solicitud de soporte') ?>
                             </a>
                         </div>

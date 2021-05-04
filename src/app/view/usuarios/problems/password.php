@@ -10,159 +10,125 @@
     <?= \PiecesPHP\Core\Utilities\Helpers\MetaTags::getMetaTagsGeneric(); ?>
     <link rel="shortcut icon" href="<?= get_config('favicon-back'); ?>" type="image/x-icon">
     <?php load_css(['base_url' => "", 'custom_url' => ""]) ?>
+    <style>
+        :root {
+            --navbar-color: <?= get_config("navbar_color"); ?>;
+            --navbar-hover-color: <?= get_config("navbar_hover_color"); ?>;
+            --navbar-height: <?= get_config("navbar_height"); ?>;
+            --navbar-icon-size: <?= get_config("navbar_icon_size"); ?>;
+
+            --primary-color: <?= get_config("primary_color"); ?>;
+            --primary-color-hover: <?= get_config("primary_color_hover"); ?>;
+            --secondary-color: <?= get_config("secondary_color"); ?>;
+            --secondary-color-hover: <?= get_config("secondary_color_hover"); ?>;
+            --back-color: <?= get_config("back_color"); ?>;
+            --back-color-hover: <?= get_config("back_color_hover"); ?>;
+            --gray-color: <?= get_config("gray_color"); ?>;
+            --gray-color-hover: <?= get_config("gray_color_hover"); ?>;
+            --dark-color: <?= get_config("dark_color"); ?>;
+            --dark-color-hover: <?= get_config("dark_color_hover"); ?>;
+            --danger-color: <?= get_config("danger_color"); ?>;
+            --danger-color-hover: <?= get_config("danger_color_hover"); ?>;
+            --alert-color: <?= get_config("alert_color"); ?>;
+            --alert-color-hover: <?= get_config("alert_color_hover"); ?>;
+            --success-color: <?= get_config("success_color"); ?>;
+            --success-color-hover: <?= get_config("success_color_hover"); ?>;
+            --info-color: <?= get_config("info_color"); ?>;
+            --info-color-hover: <?= get_config("info_color_hover"); ?>;
+
+            --default-radius: <?= get_config("default_radius"); ?>;
+            --dropdown-radius: <?= get_config("dropdown_radius"); ?>;
+            --card-radius: <?= get_config("card_radius"); ?>;
+            --field-radius: <?= get_config("field_radius"); ?>;
+            --button-radius: <?= get_config("button_radius"); ?>;
+
+
+            --sidebar-color: <?= get_config("sidebar_color"); ?>;
+            --sidebar-icon-size: <?= get_config("sidebar_icon_size"); ?>;
+            --sidebar-text-color: <?= get_config("sidebar_text_color"); ?>;
+            --sidebar-text-hover-color: <?= get_config("sidebar_text-hover_color"); ?>;
+            --sidebar-button-hover-color: <?= get_config("sidebar_button_hover_color"); ?>;
+            --sidebar-button-selected-color: <?= get_config("sidebar_button_selected_color"); ?>;
+
+            --statics-url: <?= base_url("statics"); ?>;
+        }
+    </style>
 </head>
 
 <body>
 
-    <section class="container">
+    <div class="login">
+        <section class="container backgrounds-container" bg-js="<?= base64_encode(json_encode(get_config('backgrounds'))); ?>">
+            <div class="overlay">
+                <div class="gradient"></div>
+            </div>
 
-        <?= $this->render('usuarios/problems/inc/topbar', [
-            'defaultImage' => base_url('statics/login-and-recovery/images/problems/problems.svg'),
-            'altImage' => base_url('statics/login-and-recovery/images/problems/problems-alt.svg'),
-            'text' => __(\App\Controller\UserProblemsController::LANG_GROUP, 'Paso') . ' 2',
-            'classesCSS' => "one",
-            'active' => false,
-        ]); ?>
+        </section>
 
-        <?= $this->render('usuarios/problems/inc/topbar', [
-            'defaultImage' => base_url('statics/login-and-recovery/images/problems/problems.svg'),
-            'altImage' => base_url('statics/login-and-recovery/images/problems/problems-alt.svg'),
-            'text' => __(\App\Controller\UserProblemsController::LANG_GROUP, 'Paso') . ' 3',
-            'classesCSS' => "two",
-            'active' => false,
-        ]); ?>
+        <div class="login-container">
 
-        <?= $this->render('usuarios/problems/inc/topbar', [
-            'defaultImage' => base_url('statics/login-and-recovery/images/problems/problems.svg'),
-            'altImage' => base_url('statics/login-and-recovery/images/problems/problems-alt.svg'),
-            'text' => __(\App\Controller\UserProblemsController::LANG_GROUP, 'Paso') . ' 4',
-            'classesCSS' => "two-two",
-            'active' => false,
-        ]); ?>
+            <div class="desc">
+                <a href="<?= base_url() ?>" class="logo" vanilla-tilt data-tilt-max="30" data-tilt-scale="1.4" ilt-speed="300" data-tilt-perspective="500">
+                    <img src="<?= get_config('logo'); ?>" alt="logo <?= get_config("title_app") ?>">
+                </a>
 
-        <?= $this->render('usuarios/problems/inc/topbar', [
-            'defaultImage' => base_url('statics/login-and-recovery/images/problems/problems.svg'),
-            'altImage' => base_url('statics/login-and-recovery/images/problems/problems-alt.svg'),
-            'text' => __(\App\Controller\UserProblemsController::LANG_GROUP, 'Correo no registrado'),
-            'classesCSS' => "three",
-            'active' => true,
-        ]); ?>
+                <div class="caption">
+                    <small class="version"><?= strReplaceTemplate(__('general', 'Versión {ver}'), ['{ver}' => get_config("app_version"),]) ?></small>
+                    <small>All rights reserved to <strong><?= get_config("title_app") ?></strong></small>
+                    <a href="<?= get_config('developer_link'); ?>"><?= __('general', 'Desarrollado por'); ?> <?= get_config('developer'); ?></a>
+                </div>
+            </div>
 
-        <?= $this->render('usuarios/problems/inc/topbar', [
-            'defaultImage' => base_url('statics/login-and-recovery/images/problems/problems.svg'),
-            'altImage' => base_url('statics/login-and-recovery/images/problems/problems-alt.svg'),
-            'text' => __(\App\Controller\UserProblemsController::LANG_GROUP, 'Código incorrecto'),
-            'classesCSS' => "four",
-            'active' => true,
-        ]); ?>
 
-        <?= $this->render('usuarios/problems/inc/topbar', [
-            'defaultImage' => base_url('statics/login-and-recovery/images/problems/problems.svg'),
-            'altImage' => base_url('statics/login-and-recovery/images/problems/problems-alt.svg'),
-            'text' => __(\App\Controller\UserProblemsController::LANG_GROUP, 'Su contraseña ha sido cambiada'),
-            'classesCSS' => "five",
-            'active' => true,
-        ]); ?>
 
-        <div class="form-container" data-system-mail="<?= \PiecesPHP\Core\ConfigHelpers\MailConfig::getValue('user'); ?>">
+            <form pcs-generic-handler-js method="POST" action='<?= $send_email_action ?>' class="ui form login-form">
 
-            <div message class="message"></div>
+                <div class="desc">
+                    <h1 class="ui header"><?= $lang_title ?></h1>
+                    <a href="<?= base_url() ?>" class="logo" vanilla-tilt data-tilt-max="30" data-tilt-scale="1.4" ilt-speed="300" data-tilt-perspective="500">
+                        <img src="<?= get_config('favicon'); ?>" alt="logo <?= get_config("title_app") ?>">
+                    </a>
+                </div>
 
-            <div recovery>
-
-                <form class="ui form">
-
+                <div class="actions">
+                    <h1 class="ui header"><?= $lang_title ?></h1>
+                    <br>
+                    <br>
                     <div class="field">
                         <label><?= __(\App\Controller\UserProblemsController::LANG_GROUP, 'Ingrese su correo electrónico') ?></label>
-                        <input required type="email" name="username" placeholder="<?= __(\App\Controller\UserProblemsController::LANG_GROUP, 'name@domain.com') ?>">
+                        <input required type="email" name="email" placeholder="<?= __(\App\Controller\UserProblemsController::LANG_GROUP, 'name@domain.com') ?>">
                     </div>
+                    <br>
 
-                    <div class="field buttons">
-                        <a href="<?= get_route('user-problems-list'); ?>" class="ui button">
-                            <?= __(\App\Controller\UserProblemsController::LANG_GROUP, 'Atrás') ?>
-                        </a>
-                        <button type="submit" class="ui secondary button">
-                            <?= __(\App\Controller\UserProblemsController::LANG_GROUP, 'Siguiente') ?>
-                        </button>
+                    <button type="submit" class="ui primary fluid button">
+                        <?= __(\App\Controller\UserProblemsController::LANG_GROUP, 'Siguiente') ?>
+                    </button>
+
+                    <br>
+
+                    <a href="<?= get_route('user-problems-select'); ?>">
+                        <?= __(\App\Controller\UserProblemsController::LANG_GROUP, 'Atrás') ?>
+                    </a>
+                </div>
+
+
+
+                <div class="desc">
+                    <div class="caption">
+                        <small class="version"><?= strReplaceTemplate(__('general', 'Versión {ver}'), ['{ver}' => get_config("app_version"),]) ?></small>
+                        <small>All rights reserved to <strong><?= get_config("title_app") ?></strong></small>
+                        <a href="<?= get_config('developer_link'); ?>"><?= __('general', 'Desarrollado por'); ?> <?= get_config('developer'); ?></a>
                     </div>
-                    <p>
-                        <strong>
-                            <a href="#" class="ui button" has-code><?= __(\App\Controller\UserProblemsController::LANG_GROUP, 'Ya tengo un código') ?></a>
-                        </strong>
-                    </p>
-                </form>
+                </div>
 
-            </div>
-
-            <div code>
-
-                <form class="ui form">
-                    <div class="field required">
-                        <input required type="text" name="code" placeholder="######">
-                    </div>
-                    <div class="field"><button type="submit" class="ui secondary button fluid"><?= __(\App\Controller\UserProblemsController::LANG_GROUP, 'Enviar') ?></button></div>
-                    <p>
-                        <strong>
-                            <a href="#" class="ui button" repeat><?= __(\App\Controller\UserProblemsController::LANG_GROUP, 'Introducir un email diferente') ?></a>
-                        </strong>
-                    </p>
-                </form>
-
-            </div>
-
-            <div change-password>
-
-                <form class="ui form">
-                    <input required type="hidden" name="code">
-                    <div class="field required">
-                        <input required type="password" name="password" placeholder="<?= __(\App\Controller\UserProblemsController::LANG_GROUP, 'Ingrese su nueva contraseña'); ?>">
-                    </div>
-                    <div class="field required">
-                        <input required type="password" name="repassword" placeholder="<?= __(\App\Controller\UserProblemsController::LANG_GROUP, 'Confirme su nueva contraseña'); ?>">
-                    </div>
-                    <div class="field">
-                        <button type="submit" class="ui secondary button fluid">
-                            <?= __(\App\Controller\UserProblemsController::LANG_GROUP, 'Restablecer contraseña'); ?>
-                        </button>
-                    </div>
-                </form>
-
-            </div>
-
-            <div error>
-
-                <form class="ui form">
-                    <div class="two fields">
-                        <div class="field">
-                            <a href="#" class="ui button" repeat><?= __(\App\Controller\UserProblemsController::LANG_GROUP, 'Atrás') ?></a>
-                        </div>
-                        <div class="field">
-                            <a href="<?= get_route('other-problems-form'); ?>" class="ui secondary button">
-                                <?= __(\App\Controller\UserProblemsController::LANG_GROUP, 'Solicitud de soporte') ?>
-                            </a>
-                        </div>
-                    </div>
-                </form>
-
-            </div>
-
-            <div finish>
-
-                <form class="ui form">
-                    <div class="field">
-                        <a href="<?= get_route('users-form-login'); ?>" class="ui secondary button fuid">
-                            <?= __(\App\Controller\UserProblemsController::LANG_GROUP, 'Ingresar') ?>
-                        </a>
-                    </div>
-                </form>
-
-            </div>
-
+            </form>
         </div>
 
-    </section>
+
+    </div>
 
     <?php load_js(['base_url' => "", 'custom_url' => ""]) ?>
+
 </body>
 
 </html>

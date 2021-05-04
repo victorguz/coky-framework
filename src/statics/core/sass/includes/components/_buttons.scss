@@ -3,6 +3,10 @@ button,
 .button,
 .label {
 
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px;
     border-radius: $button-radius !important;
 
     &.white,
@@ -121,5 +125,10 @@ button,
 
     .icon {
         padding: 0 !important;
+    }
+
+    .ionicono {
+        width: 1.5em !important;
+        height: 1.5em !important;
     }
 }

@@ -13,6 +13,8 @@ use PiecesPHP\Core\BaseToken;
 use PiecesPHP\Core\ConfigHelpers\MailConfig;
 use PiecesPHP\Core\Mailer;
 use PiecesPHP\Core\StringManipulate;
+use PiecesPHP\Core\Utilities\ReturnTypes\Operation;
+use PiecesPHP\Core\Utilities\ReturnTypes\ResultOperations;
 use \Slim\Http\Request as Request;
 use \Slim\Http\Response as Response;
 
@@ -56,26 +58,37 @@ class RecoveryPasswordController extends UsersController
     public function recoveryPasswordForm(Request $request, Response $response, array $args)
     {
 
-        set_title(__(self::LANG_GROUP, 'Recuperación de contraseña'));
+        $lang_title = __(self::LANG_GROUP, 'Recuperación de contraseña');
 
-        /* JQuery */
-        import_jquery();
-        /* Semantic */
-        import_semantic();
-        /* izitoast */
-        import_izitoast();
-        /* Librerías de la aplicación */
-        import_app_libraries();
+        set_title($lang_title);
+
+        $lang_title = __(self::LANG_GROUP, 'Recuperación de contraseña');
+        $lang_title = __(self::LANG_GROUP, 'Recuperación de contraseña');
+        $lang_title = __(self::LANG_GROUP, 'Recuperación de contraseña');
+
+        $send_email_action = get_route("user-recovery-password-request");
+
+
+        $data["lang_title"] = $lang_title;
+        $data["send_email_action"] = $send_email_action;
+
+        // set_custom_assets([
+        //     base_url('statics/login-and-recovery/css/problems-form.css'),
+        // ], 'css');
+
+        // set_custom_assets([
+        //     baseurl('statics/login-and-recovery/js/recovery-password.js'),
+        // ], 'js');
 
         set_custom_assets([
-            base_url('statics/login-and-recovery/css/problems-form.css'),
+            baseurl(ADMIN_MODULES_CSS . '/login-and-recovery/login.css'),
         ], 'css');
 
         set_custom_assets([
-            baseurl('statics/login-and-recovery/js/recovery-password.js'),
+            baseurl(ADMIN_MODULES_JS . '/login-and-recovery/login.js'),
         ], 'js');
 
-        $this->render('usuarios/problems/password');
+        $this->render('usuarios/problems/password', $data);
 
         return $response;
     }
@@ -94,15 +107,29 @@ class RecoveryPasswordController extends UsersController
     {
 
         //Parámetros
-        $params = $request->getParsedBody();
+        $email = $request->getParsedBodyParam("email", null);
 
-        //Conjunto posible de datos para autenticación
-        $requerido = [
-            'username',
-        ];
 
         //Verificar que el grupo de datos para solicitados esté completo
-        $parametros_ok = require_keys($requerido, $params) === true && count($requerido) === count($params);
+        $valid_params = !in_array(null, [
+            $email,
+        ]);
+
+        $operation_name = __(self::LANG_GROUP, 'Recuperación de contraseña');
+
+        $result = new ResultOperations([
+            new Operation($operation_name),
+        ], $operation_name);
+
+        $result->setValue('redirect', false);
+
+        $error_parameters_message = 'Los parámetros recibidos son erróneos.';
+        $not_exists_message = 'El contacto que intenta modificar no existe';
+        $success_create_message = 'Message sent.';
+        $success_edit_message = 'Marked as read.';
+        $unknow_error_message = 'Ha ocurrido un error desconocido.';
+
+        $redirect_url_on_create = get_route('user-recovery-password-request-code');
 
         //Cuerpo de la respuesta
         $json_response = [
@@ -112,25 +139,13 @@ class RecoveryPasswordController extends UsersController
         ];
 
         //Si los parámetros son válidos en nombre y en cantidad se inicia el proceso de recuperación
-        if ($parametros_ok) {
+        if ($valid_params) {
 
             //Se selecciona un elemento que concuerde con el usuario
-            $usuario = null;
-
-            $username = $params['username'];
-
-            $usuario = $this->userMapper->getWhere([
-                'username' => [
-                    '=' => $username,
-                    'and_or' => 'OR',
-                ],
-                'email' => [
-                    '=' => $username,
-                ],
-            ]);
+            $usuario = (new UsersModel())->getByEmail($email);
 
             //Verificación de existencia
-            if ($usuario !== -1) {
+            if ($usuario->id !== null) {
 
                 //Datos del toke de recuperación
                 $created_at = time(); //Fecha de creación del token
@@ -155,7 +170,7 @@ class RecoveryPasswordController extends UsersController
             } else {
 
                 $json_response['error'] = self::USER_NO_EXISTS;
-                $json_response['message'] = vsprintf($this->getMessage($json_response['error']), [$username]);
+                $json_response['message'] = vsprintf($this->getMessage($json_response['error']), [$email]);
             }
         } else {
 
@@ -345,7 +360,7 @@ class RecoveryPasswordController extends UsersController
         if ($request->isXhr()) {
             return $response->withJson($json_response);
         } else {
-            return $response->withRedirect(get_route('users-form-login'));
+            return $response->withRedirect(get_route('users-login-form'));
         }
     }
 
@@ -481,13 +496,11 @@ class RecoveryPasswordController extends UsersController
             if ($exist) {
 
                 $json_response['success'] = true;
-
             } else {
 
                 $json_response['error'] = self::EXPIRED_OR_NOT_EXIST_CODE;
                 $json_response['message'] = $this->getMessage($json_response['error']);
             }
-
         } else {
             $json_response['error'] = self::MISSING_OR_UNEXPECTED_PARAMS;
             $json_response['message'] = $this->getMessage($json_response['error']);
@@ -530,7 +543,6 @@ class RecoveryPasswordController extends UsersController
         }
 
         return $mail->send();
-
     }
 
     /**
