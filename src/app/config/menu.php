@@ -371,7 +371,7 @@ if (is_object($user)) :
                         'href' =>  get_route('users-form-profile') . '?onlyProfile=yes',
                         'icon' => '<div class="avatar">' .
                             (is_object($user) && $user->hasAvatar ?
-                                '<img src="<?= $user->avatar; ?>">'
+                                '<img src="' . $user->avatar . '">'
                                 : '<img src="statics/images/default-avatar.png">') .
                             '</div>',
                         'text' => is_object($user) ? $user->fullName  .
