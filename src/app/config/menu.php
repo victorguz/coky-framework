@@ -374,7 +374,7 @@ if (is_object($user)) :
                                 '<img src="' . $user->avatar . '">'
                                 : '<img src="statics/images/default-avatar.png">') .
                             '</div>',
-                        'text' => is_object($user) ? $user->fullName  .
+                        'text' =>  is_object($user) ? '<strong>' . $user->fullName  . '</strong>' .
                             "<small>$user->email</small>" .
                             "<small>" . UsersModel::TYPES_USERS[$user->type] . "</small>" : "",
                         'show_icon' => $topbar_show_icon,
