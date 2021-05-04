@@ -98,11 +98,14 @@
                         <label><?= __(\App\Controller\UserProblemsController::LANG_GROUP, 'Ingrese su correo electrónico') ?></label>
                         <input required type="email" name="email" placeholder="<?= __(\App\Controller\UserProblemsController::LANG_GROUP, 'name@domain.com') ?>">
                     </div>
-                    <br>
 
-                    <button type="submit" class="ui primary fluid button">
+                    <button type="submit" class="ui secondary fluid button">
                         <?= __(\App\Controller\UserProblemsController::LANG_GROUP, 'Siguiente') ?>
                     </button>
+
+                    <a href="<?= get_route('users-login-form') ?>" class="ui primary fluid icon button">
+                        <?= __('general', 'Iniciar sesión') ?>
+                    </a>
 
                     <br>
 

@@ -87,7 +87,7 @@ class UsersController extends AdminPanelController
      *
      * @var string
      */
-    public $url_recovery = 'users/recovery/';
+    public $url_recovery = 'recovery/password/';
 
     /**
      * $requested_uri

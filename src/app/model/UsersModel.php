@@ -266,16 +266,21 @@ class UsersModel extends BaseEntityMapper
      * getByEmail
      *
      * @param mixed $email
-     * @return object|bool
+     * @return static
      */
     public function getByEmail($email)
     {
         $model = $this->getModel();
         $model->resetAll();
-        return $model
-            ->select()
-            ->where(['email' => $email])
-            ->row();
+        $model->select()->where(['email' => $email])->execute();
+        $result = $model->result();
+        if (is_array($result) && count($result) > 0) {
+            $result = new static($result[0]->id);
+        } else {
+            $result = new static();
+        }
+
+        return $result;
     }
 
     /**

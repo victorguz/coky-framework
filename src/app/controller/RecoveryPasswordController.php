@@ -9,6 +9,7 @@ namespace App\Controller;
 use App\Model\RecoveryPasswordModel;
 use App\Model\TicketsLogModel;
 use App\Model\UsersModel;
+use Exception;
 use PiecesPHP\Core\BaseToken;
 use PiecesPHP\Core\ConfigHelpers\MailConfig;
 use PiecesPHP\Core\Mailer;
@@ -109,7 +110,6 @@ class RecoveryPasswordController extends UsersController
         //Parámetros
         $email = $request->getParsedBodyParam("email", null);
 
-
         //Verificar que el grupo de datos para solicitados esté completo
         $valid_params = !in_array(null, [
             $email,
@@ -125,60 +125,60 @@ class RecoveryPasswordController extends UsersController
 
         $error_parameters_message = 'Los parámetros recibidos son erróneos.';
         $not_exists_message = 'El contacto que intenta modificar no existe';
-        $success_create_message = 'Message sent.';
+        $success_create_message = __(self::LANG_GROUP, 'Se ha enviado un mensaje al correo proporcionado.');
         $success_edit_message = 'Marked as read.';
         $unknow_error_message = 'Ha ocurrido un error desconocido.';
 
         $redirect_url_on_create = get_route('user-recovery-password-request-code');
 
         //Cuerpo de la respuesta
-        $json_response = [
-            'send_mail' => false,
-            'error' => self::NO_ERROR,
-            'message' => '',
-        ];
+        $result->setValue('send_mail', false);
+        $result->setValue('error', self::NO_ERROR);
 
         //Si los parámetros son válidos en nombre y en cantidad se inicia el proceso de recuperación
         if ($valid_params) {
 
-            //Se selecciona un elemento que concuerde con el usuario
-            $usuario = (new UsersModel())->getByEmail($email);
+            try {
+                //Se selecciona un elemento que concuerde con el usuario
+                $usuario = (new UsersModel())->getByEmail($email);
 
-            //Verificación de existencia
-            if ($usuario->id !== null) {
+                //Verificación de existencia
+                if ($usuario->id !== null) {
 
-                //Datos del toke de recuperación
-                $created_at = time(); //Fecha de creación del token
-                $expire_at = $created_at + ((60 * 60) * 24); //Fecha de expiración del token
-                $token = BaseToken::setToken($usuario->email, null, $created_at, $expire_at); //Token
+                    //Datos del toke de recuperación
+                    $created_at = time(); //Fecha de creación del token
+                    $expire_at = $created_at + ((60 * 60) * 24); //Fecha de expiración del token
+                    $token = BaseToken::setToken($usuario->email, null, $created_at, $expire_at); //Token
 
-                //Codificación de datos de la url de recuperación
-                $toke_url = $this->encodeURL([
-                    'action' => TokenController::TOKEN_PASSWORD_RECOVERY,
-                    'token' => $token,
-                ]);
+                    //Codificación de datos de la url de recuperación
+                    $toke_url = $this->encodeURL([
+                        'action' => TokenController::TOKEN_PASSWORD_RECOVERY,
+                        'token' => $token,
+                    ]);
 
-                //Inserción de token en la base de datos
-                $this->token_controller->newToken($toke_url, TokenController::TOKEN_PASSWORD_RECOVERY);
+                    //Inserción de token en la base de datos
+                    $this->token_controller->newToken($toke_url, TokenController::TOKEN_PASSWORD_RECOVERY);
 
-                //Url de recuperación
-                $toke_url = baseurl($this->url_recovery . $toke_url);
 
-                //Envío de correo de recuperación
-                $json_response['send_mail'] = $this->mailRecoveryPassword($toke_url, $usuario);
-                $json_response['message'] = __(self::LANG_GROUP, 'Se ha enviado un mensaje al correo proporcionado.');
-            } else {
+                    //Url de recuperación
+                    $toke_url = baseurl($this->url_recovery . $toke_url);
 
-                $json_response['error'] = self::USER_NO_EXISTS;
-                $json_response['message'] = vsprintf($this->getMessage($json_response['error']), [$email]);
+                    //Envío de correo de recuperación
+                    $result->setValue('send_mail', $this->mailRecoveryPassword($toke_url, $usuario));
+                    $result->setMessage($success_create_message)->setValue("redirect", true)->setValue("redirect_to", $redirect_url_on_create);
+                } else {
+                    $result->setValue('error', self::USER_NO_EXISTS);
+                    $result->setMessage(vsprintf($this->getMessage($result->getValue('error')), [$email]));
+                }
+            } catch (Exception $e) {
+                log_exception($e);
+                $result->setMessage(is_local() ? $e : $e->getMessage());
             }
         } else {
-
-            $json_response['error'] = self::MISSING_OR_UNEXPECTED_PARAMS;
-            $json_response['message'] = $this->getMessage($json_response['error']);
+            $result->setValue('error', self::MISSING_OR_UNEXPECTED_PARAMS);
+            $result->setMessage($this->getMessage($result->getValue('error')));
         }
-
-        return $response->withJson($json_response);
+        return $response->withJson($result);
     }
 
     /**
@@ -517,32 +517,41 @@ class RecoveryPasswordController extends UsersController
      *
      * @return bool true si se envió, false si no
      */
-    private function mailRecoveryPassword(string $url, \stdClass $usuario)
+    private function mailRecoveryPassword(string $url, UsersModel $usuario)
     {
-
         $mail = new Mailer();
         $mailConfig = new MailConfig;
+        $success = false;
 
-        $to = $usuario->email;
+        try {
 
-        $to_name = $usuario->username;
+            $to = $usuario->email;
 
-        $subject = __(self::LANG_GROUP, 'Recuperación de contraseña');
+            $to_name = $usuario->username;
 
-        $message = $this->render('usuarios/mail/recovery_password', ['url' => $url], false);
+            $subject = __(self::LANG_GROUP, 'Recuperación de contraseña');
 
-        $mail->setFrom($mailConfig->user(), $mailConfig->name());
-        $mail->addAddress($to, $to_name);
-        $mail->isHTML(true);
-        $mail->Subject = $subject;
-        $mail->Body = $message;
-        $mail->AltBody = strip_tags($message);
+            $message = $this->render('usuarios/mail/recovery_password', ['url' => $url], false);
 
-        if (!$mail->checkSettedSMTP()) {
-            $mail->asGoDaddy();
+            $mail->SMTPDebug = 2;
+            $mail->setFrom($mailConfig->user(), $mailConfig->name());
+            $mail->addAddress($to, $to_name);
+            $mail->isHTML(true);
+            $mail->Subject = utf8_decode($subject);
+            $mail->Body = utf8_decode($message);
+            $mail->AltBody = strip_tags($message);
+
+            if (!$mail->checkSettedSMTP()) {
+                $mail->asGoDaddy();
+            }
+
+            $success = $mail->send();
+        } catch (Exception $e) {
+            log_exception($e);
+            throw $e;
         }
 
-        return $mail->send();
+        return  $success;
     }
 
     /**
@@ -591,7 +600,7 @@ class RecoveryPasswordController extends UsersController
      *
      * @return bool true si se envió, false si no
      */
-    private function mailNewPassword(string $password, \stdClass $usuario)
+    private function mailNewPassword(string $password, UsersModel $usuario)
     {
         $mail = new Mailer();
         $mailConfig = new MailConfig;
