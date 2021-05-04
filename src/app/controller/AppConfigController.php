@@ -341,7 +341,7 @@ class AppConfigController extends AdminPanelController
         //     'statics/core/css/app_config/logos-favicons.css',
         // ], 'css');
 
-        $actionURL = self::routeName('logos-favicons');
+        $actionURL = self::routeName('save-logos-favicons');
 
         $data = [
             'langGroup' => $langGroup,

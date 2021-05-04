@@ -361,7 +361,7 @@ if (is_object($user)) :
                 'name' => __(ADMIN_MENU_LANG_GROUP, 'Perfil'),
                 'icon' => '<div class="avatar">' .
                     (is_object($user) && $user->hasAvatar ?
-                        '<img src="<?= $user->avatar; ?>">'
+                        '<img src="' . $user->avatar . '">'
                         : '<img src="statics/images/default-avatar.png">') .
                     '</div>',
                 'show_text' => false,
