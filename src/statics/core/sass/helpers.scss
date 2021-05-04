@@ -1,4 +1,5 @@
-// @import 'includes/variables';
+@import 'includes/variables';
+
 // // Colors
 // // $colorSecond: rgb(40, 100, 133);
 // // $colorThird: rgb(150, 150, 150);
@@ -60,3 +61,64 @@
 //     }
 
 // }
+
+
+.iziToast {
+    background: none;
+    border: none;
+    border-radius: $button-radius;
+    box-shadow: none !important;
+
+    &::after {
+        box-shadow: $shadow;
+        border-radius: $button-radius;
+    }
+
+    &.iziToast-color-green {
+        background-color: $success-color;
+    }
+
+    &.iziToast-color-blue {
+        background-color: $info-color;
+    }
+
+    &.iziToast-color-orange {
+        background-color: $alert-color;
+    }
+
+    &.iziToast-color-red {
+        background-color: $danger-color;
+    }
+
+    &.iziToast-color-white {
+        background-color: $white-color;
+    }
+
+    &.iziToast-color-dark {
+        * {
+            color: white !important;
+        }
+
+        background-color: $dark-color;
+    }
+
+    .iziToast-body {
+        display: flex;
+        align-items: center;
+
+        .iziToast-texts {
+            display: flex !important;
+            flex-direction: column !important;
+
+            margin: 0 !important;
+
+            .iziToast-message {
+                margin: 0;
+            }
+        }
+    }
+
+    .iziToast-progressbar {
+        display: none;
+    }
+}

@@ -78,6 +78,8 @@ $config["recapcha"] = [
 
 //Desarrollador
 $config['developer'] = 'Victorguz and Ivanlnd';
+$config['developer_link'] = 'mailto:victorguzber@gmail.com';
+$config['app_version'] = '1.0';
 
 
 //New Styles -- Sizes are PX
@@ -87,23 +89,30 @@ $config["navbar_height"] = "48px";
 $config["navbar_icon_size"] = "25px";
 
 $config["back_color"] = "#F0F2F5";
-
+$config["back_color_hover"] = "#F0F2F5";
 $config["primary_color"] = "#A6C634";
+$config["primary_color_hover"] = "#A6C634";
 $config["secondary_color"] = "#343a40";
-
+$config["secondary_color_hover"] = "#343a40";
 $config["gray_color"] = "#DBE0DC";
+$config["gray_color_hover"] = "#DBE0DC";
 $config["dark_color"] = "#15214B";
-
+$config["dark_color_hover"] = "#15214B";
 $config["danger_color"] = "#FA6F6F";
+$config["danger_color_hover"] = "#FA6F6F";
 $config["alert_color"] = "#f1bc2a";
+$config["alert_color_hover"] = "#f1bc2a";
 $config["success_color"] = "#4cca79";
+$config["success_color_hover"] = "#4cca79";
 $config["info_color"] = "#1999c0";
+$config["info_color_hover"] = "#1999c0";
+
+
 
 $config["sidebar_color"] = "#F0F2F5";
 $config["sidebar_icon_size"] = "25px";
 $config["sidebar_button_selected_color"] = "#ffffff";
 $config["sidebar_button_hover_color"] = "#dadde1";
-
 $config["sidebar_text_color"] = "#000000";
 $config["sidebar_text_hover_color"] = "#000000";
 
@@ -112,8 +121,8 @@ $config["sidebar_text_hover_color"] = "#000000";
 $config["default_radius"] = "5px";
 $config["dropdown_radius"] = "5px";
 $config["card_radius"] = "5px";
-$config["field_radius"] = "5px";
-
+$config["field_radius"] = "8px";
+$config["button_radius"] = "50px";
 
 //Old styles
 $config['meta_theme_color'] = "#ffffff";

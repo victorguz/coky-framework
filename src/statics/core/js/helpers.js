@@ -58,7 +58,6 @@ function goBackOnHistory(prefix = "coky") {
 
 }
 
-
 /**
  * @method successMessage
  * @description Mensaje modal con tipo success (iziToast|alert)
@@ -74,7 +73,10 @@ function successMessage(title, message, onClose = null) {
 		iziToast.success({
 			title: title,
 			message: message,
-			position: 'topCenter',
+			close: false,
+			position: 'topRight',
+			closeOnClick: true,
+			iconUrl: "statics/images/ionicons/checkmark-outline.svg",
 			onClosed: () => {
 				if (typeof onClose == 'function') {
 					onClose()
@@ -105,7 +107,10 @@ function warningMessage(title, message, onClose = null) {
 		iziToast.warning({
 			title: title,
 			message: message,
-			position: 'topCenter',
+			close: false,
+			position: 'topRight',
+			closeOnClick: true,
+			iconUrl: "statics/images/ionicons/warning-outline.svg",
 			onClosed: () => {
 				if (typeof onClose == 'function') {
 					onClose()
@@ -135,7 +140,10 @@ function infoMessage(title, message, onClose = null) {
 		iziToast.info({
 			title: title,
 			message: message,
-			position: 'topCenter',
+			close: false,
+			position: 'topRight',
+			closeOnClick: true,
+			iconUrl: "statics/images/ionicons/information-circle-outline.svg",
 			onClosed: () => {
 				if (typeof onClose == 'function') {
 					onClose()
@@ -165,7 +173,10 @@ function errorMessage(title, message, onClose = null) {
 		iziToast.error({
 			title: title,
 			message: message,
-			position: 'topCenter',
+			close: false,
+			position: 'topRight',
+			closeOnClick: true,
+			iconUrl: "statics/images/ionicons/bug-outline.svg",
 			onClosed: () => {
 				if (typeof onClose == 'function') {
 					onClose()
@@ -180,6 +191,76 @@ function errorMessage(title, message, onClose = null) {
 	}
 }
 
+/**
+ * @method whiteMessage
+ * @description Mensaje modal con tipo white (iziToast|alert)
+ * @param {String} title Título del mensaje
+ * @param {String} message Mensaje
+ * @param {Function} onClose Callback llamado al cerrar
+ */
+function whiteMessage(title, message, onClose = null, iconUrl = "") {
+	title = title !== undefined ? title : ''
+	message = message !== undefined ? message : ''
+
+	if (typeof iziToast !== 'undefined') {
+		iziToast.error({
+			title: title,
+			message: message,
+			close: false,
+			position: 'topRight',
+			closeOnClick: true,
+			class: "iziToast-color-white",
+			icon: iconUrl.length == 0 ? "" : iconUrl,
+			iconUrl: iconUrl.length == 0 ? "" : iconUrl,
+			onClosed: () => {
+				if (typeof onClose == 'function') {
+					onClose()
+				}
+			},
+		})
+	} else {
+		window.alert(`${title}:\r\n${message}`)
+		if (typeof onClose == 'function') {
+			onClose()
+		}
+	}
+}
+
+
+/**
+ * @method darkMessage
+ * @description Mensaje modal con tipo dark (iziToast|alert)
+ * @param {String} title Título del mensaje
+ * @param {String} message Mensaje
+ * @param {Function} onClose Callback llamado al cerrar
+ */
+function darkMessage(title, message, onClose = null) {
+	title = title !== undefined ? title : ''
+	message = message !== undefined ? message : ''
+
+	if (typeof iziToast !== 'undefined') {
+		iziToast.error({
+			title: title,
+			message: message,
+			close: false,
+			position: 'topRight',
+			closeOnClick: true,
+			class: "iziToast-color-dark",
+			icon: iconUrl.length == 0 ? "" : iconUrl,
+			iconUrl: iconUrl.length == 0 ? "" : iconUrl,
+			onClosed: () => {
+				if (typeof onClose == 'function') {
+					onClose()
+				}
+			},
+		})
+	} else {
+		window.alert(`${title}:\r\n${message}`)
+		if (typeof onClose == 'function') {
+			onClose()
+		}
+	}
+}
 /**
  * @method setCountdown
  * @description Crea una cuenta regresiva y lanza un evento

@@ -1,216 +1,302 @@
-// @import '../../sass/core.scss';
-// @import 'import/variables';
-// @import 'import/reset';
-// @import 'import/fonts';
+@import '../../includes/components';
 
-// * {
-//     box-sizing: border-box;
-//     font-family: "Montserrat";
-// }
+.login {
+    position: relative !important;
 
-// .primary {
-//     background-color: $primary-color-public !important;
-//     border-radius: 10px !important;
+    height: 100%;
+    max-height: 100vh !important;
 
-//     &:hover,
-//     &:active,
-//     &:focus {
-//         background-color: rgba($primary-color-public, 0.9) !important;
-//     }
-// }
+    background-color: $back-color;
 
-// .login {
-//     display: grid;
-//     grid-template-columns: 50% 50%;
+    .backgrounds-container {
+        $width: 100%;
+        $height: 100vh;
 
-//     background-color: var(--bg-color);
-//     position: relative;
+        width: $width;
+        min-height: $height;
 
-//     height: 100%;
-//     max-height: 100vh !important;
+        background-color: $back-color;
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        filter: brightness(70%);
 
-//     @media screen and (max-width:992px) {
-//         grid-template-columns: 100%;
-//     }
+        .overlay {
+            width: $width;
+            min-height: $height;
 
-//     .container {
-//         width: 100%;
-//         min-height: 100vh;
-//         background-position: center center;
-//         background-size: cover;
-//         background-repeat: no-repeat;
-//         filter: brightness(70%);
-//     }
+            .gradient {
+                width: $width;
+                min-height: $height;
 
-//     >.overlay {
-//         // position: absolute;
-//         // top: 0px;
-//         // left: 0px;
-//         width: 100%;
-//         height: 100%;
-//         // background-color: $login-overlay-color;
-//     }
+                opacity: 60%;
 
-//     .form-container {
-//         display: flex;
-//         align-items: center;
-//         justify-content: center;
-//         width: 100%;
-//         height: 100%;
-//         padding: 60px 0;
+                background-image: linear-gradient(to left bottom, $secondary-color, $primary-color);
+            }
+        }
+    }
 
-//         @media screen and (max-width:992px) {
-//             position: absolute;
-//             top: 0;
-//         }
+    .login-container {
+        position: absolute !important;
+        z-index: 100;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
 
-//         .ui.form {
-//             width: 400px;
-//             height: fit-content;
-//             padding: 2rem;
-//             border-radius: 1rem;
 
-//             background-color: white;
-//             display: flex;
-//             flex-flow: column;
-//             align-items: center;
-//             justify-content: center;
+        background-color: white;
+        padding: 2rem;
+        border-radius: $rounded;
 
-//             position: relative;
+        width: 70vw;
+        height: 90vh;
+        max-height: 90vh;
+        box-shadow: $shadow-md;
 
-//             @media screen and (max-width:480px) {
-//                 width: 90vw;
-//                 padding: 2rem 1rem;
-//             }
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
 
-//             .field {
-//                 width: 100%;
-//             }
+        @media screen and (max-width: 480px) {
+            width: 95vw;
+        }
 
-//         }
+        .desc {
+            position: relative;
+            width: 50%;
+            min-width: 300px;
+            height: 100%;
 
-//         .desc {
-//             // margin-top: -400px;
-//             // margin-bottom: 100px;
-//             position: absolute;
-//             bottom: 0px;
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+            justify-content: center;
 
-//             @media screen and (max-width:480px) {
-//                 bottom: auto;
-//                 height: 100vh;
+            @media screen and (max-width: 768px) {
+                display: none;
+                min-width: none;
+                width: 100%;
+            }
 
-//                 display: flex;
-//                 flex-flow: column;
-//                 justify-content: space-between;
-//                 padding: 40px 0;
-//             }
+            .logo {
 
-//             .caption {
-//                 display: flex;
-//                 flex-flow: column;
-//                 align-items: center;
-//                 justify-content: space-between;
-//                 margin-bottom: 10px;
-//                 width: 100%;
+                display: flex;
+                flex-flow: column;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 10px;
+                width: 100%;
+                height: 100%;
 
-//                 img {
-//                     width: 60px;
-//                 }
-//             }
+                img {
+                    width: 170px;
+                }
+            }
 
-//             .logo-developed {
-//                 display: flex;
-//                 flex-flow: column;
-//                 align-items: center;
+            .caption {
+                position: absolute;
+                bottom: 0;
 
-//                 text-align: center;
-//                 width: 100%;
-//                 padding: 15px;
+                display: flex;
+                flex-flow: column;
+                align-items: center;
+                justify-content: center;
 
-//                 small,
-//                 a {
-//                     color: white;
-//                     font-size: 0.7rem;
-//                     line-height: 1.3em;
+                text-align: center;
+                width: 100%;
+                padding: 15px;
 
-//                     @media (max-width:1440px) {
-//                         font-size: 0.5rem;
-//                     }
-//                 }
-//             }
-//         }
+                pointer-events: none;
 
-//         .problems-message-container {
-//             display: none;
-//             position: absolute;
-//             top: 0px;
-//             left: 0px;
-//             z-index: 10;
-//             width: 100%;
-//             height: 100%;
-//             background-color: $login-form-problems-bg-color;
+                small,
+                strong,
+                a {
+                    color: $gray-color-hover;
+                    font-size: 0.7rem;
+                    line-height: 1.3em;
+                }
 
-//             .content {
+                a {
+                    color: $gray-color-hover;
+                    pointer-events: all;
+                    border-bottom: 1px solid $gray-color-hover;
+                }
+            }
+        }
 
-//                 display: grid;
-//                 justify-content: center;
-//                 align-items: center;
-//                 grid-template-columns: 100%;
-//                 height: 100%;
-//                 width: 100%;
-//                 margin: 0 auto;
-//                 padding: 6rem 2rem;
-//                 text-align: center;
-//                 color: $login-form-problems-font-color;
-//                 font-size: 1.1rem;
+        .login-form {
+            height: 100%;
+            width: 100%;
+            max-width: 400px;
 
-//                 .title {
-//                     padding: 1.5rem 0rem;
-//                     font-size: 1.2rem;
-//                     text-transform: uppercase;
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+            justify-content: space-between;
 
-//                     /* .text {} */
+            @media screen and (max-width:480px) {
+                width: 90vw;
+                padding: 2rem 1rem;
+            }
 
-//                     .mark {
-//                         display: block;
-//                         color: $login-form-problems-title-mark-color;
-//                     }
-//                 }
+            .header {
+                margin: 0;
 
-//                 .message {
-//                     line-height: 1.8rem;
-//                 }
+                @media screen and (max-width: 768px) {
+                    display: none;
+                }
+            }
 
-//                 .ui.button.problem {
-//                     font-size: 0.8rem;
-//                 }
-//             }
-//         }
+            .actions {
+                display: flex;
+                flex-flow: column;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                height: 100%;
 
-//     }
+                padding: 0 30px;
 
-//     >.footer {
-//         position: absolute;
-//         bottom: 10px;
-//         left: 0px;
-//         width: 100%;
-//         height: 30px;
-//         text-align: center;
-//         color: $login-footer-font-color;
-//         font-size: 0.75rem;
-//     }
-// }
+                .field {
+                    width: 100%;
+                }
 
-// @media screen and (max-height:500px) {
+                .message {
+                    transition: all ease-in 0.5s;
 
-//     html {
-//         height: 600px;
-//     }
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    text-align: center;
 
-//     .container {
-//         >.footer {
-//             bottom: 0px;
-//             height: 25px;
-//         }
-//     }
-// }
+                    padding: 10px;
+                    margin: 15px;
+                    border-radius: $field-radius;
+                    box-shadow: $shadow-sm;
+
+                    width: 100%;
+                    background-color: $danger-color;
+                    color: white;
+                }
+
+                @media screen and (max-width: 768px) {
+                    padding: 0;
+                }
+            }
+
+            .desc {
+                position: inherit !important;
+                height: fit-content;
+                display: none;
+                min-width: none;
+                width: fit-content;
+
+                @media screen and(max-width:768px) {
+                    display: flex;
+                    flex-flow: row;
+                    justify-content: space-between;
+
+                    .header {
+                        display: flex;
+                    }
+
+                }
+
+                .logo {
+                    width: fit-content;
+
+                    img {
+                        width: 50px;
+                    }
+                }
+
+                .caption {
+                    position: inherit !important;
+                }
+            }
+        }
+
+
+
+    }
+
+    .form-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        padding: 60px 0;
+
+        @media screen and (max-width:992px) {
+            position: absolute;
+            top: 0;
+        }
+
+
+
+
+
+        .problems-message-container {
+            display: none;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            background-color: $back-color;
+
+            .content {
+
+                display: grid;
+                justify-content: center;
+                align-items: center;
+                grid-template-columns: 100%;
+                height: 100%;
+                width: 100%;
+                margin: 0 auto;
+                padding: 6rem 2rem;
+                text-align: center;
+                color: $white-color;
+                font-size: 1.1rem;
+
+                .title {
+                    padding: 1.5rem 0rem;
+                    font-size: 1.2rem;
+                    text-transform: uppercase;
+
+                    /* .text {} */
+
+                    .mark {
+                        display: block;
+                    }
+                }
+
+                .message {
+                    line-height: 1.8rem;
+                }
+
+                .ui.button.problem {
+                    font-size: 0.8rem;
+                }
+            }
+        }
+
+    }
+
+}
+
+@media screen and (max-height:500px) {
+
+    html {
+        height: 600px;
+    }
+
+    .container {
+        >.footer {
+            bottom: 0px;
+            height: 25px;
+        }
+    }
+}

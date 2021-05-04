@@ -76,6 +76,8 @@ class AdminPanelController extends \PiecesPHP\Core\BaseController
     {
         $args["slide"] = true;
 
+        set_custom_assets(["statics/core/css/modules/multiple-view.css"], "css");
+
         if (BLACKBOARD_NEWS_ENABLED) {
             add_global_asset(BLACKBOARD_NEWS_PATH_JS . '/main.js', 'js');
             $this->render('panel/layout/header');
@@ -104,7 +106,6 @@ class AdminPanelController extends \PiecesPHP\Core\BaseController
      */
     public function multipleView(Request $req, Response $res, array $args)
     {
-        set_custom_assets([ADMIN_MODULES_CSS . "/multiple-view.css"], "css");
         $links = get_config('menus')['multiple_links']->getHtml();
         $data = [];
 
@@ -115,6 +116,7 @@ class AdminPanelController extends \PiecesPHP\Core\BaseController
         if ($data["slide"]) {
             $this->render('panel/pages/multiple-view', $data);
         } else {
+            set_custom_assets(["statics/core/css/modules/multiple-view.css"], "css");
             $this->render('panel/layout/header');
             $this->render('panel/pages/multiple-view', $data);
             $this->render('panel/layout/footer');

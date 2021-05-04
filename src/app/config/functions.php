@@ -519,38 +519,52 @@ function moneyFormat($value)
  */
 function getIcon(string $name = "home",  string $color = "", string $sizePx = null, string $class = null)
 {
-    if ($name != "") {
+    if (mb_strlen($name) > 0) {
         $name = str_replace(" ", "-", trim($name));
         $file = "statics/images/ionicons/" . $name . ".svg";
 
-        if (file_exists($file)) {
-            $image = SVG::fromFile($file);
+        $image = getSVG($file);
 
-            if ($color != "") {
-                $doc = $image->getDocument();
-                // var_dump($doc->countChildren());
-                for ($i = 0; $i < $doc->countChildren() - 1; $i++) {
-                    $rect = $doc->getChild($i);
-                    // var_dump($rect);
-                    if (strpos($name, "outline") === false) {
-                        $rect->setStyle('fill', $color);
-                        $rect->setAttribute('fill', $color);
-                    }
-                    $rect->setStyle('stroke', $color);
-                    $rect->setAttribute('stroke', $color);
+        if ($color != "") {
+            $doc = $image->getDocument();
+            // var_dump($doc->countChildren());
+            for ($i = 0; $i < $doc->countChildren() - 1; $i++) {
+                $rect = $doc->getChild($i);
+                // var_dump($rect);
+                if (strpos($name, "outline") === false) {
+                    $rect->setStyle('fill', $color);
+                    $rect->setAttribute('fill', $color);
                 }
+                $rect->setStyle('stroke', $color);
+                $rect->setAttribute('stroke', $color);
             }
+        }
 
-            if ($sizePx != null && is_string($sizePx)) {
-                $item = "<div class='ionicono " . ($class != null ? $class : "") . "' style='width:$sizePx; height:$sizePx;'>$image</div>";
-            } else {
-                $item = "<div class='ionicono " . ($class != null ? $class : "") . "'>$image</div>";
-            }
-            return $item;
+        if ($sizePx != null && is_string($sizePx)) {
+            $item = "<div class='ionicono " . ($class != null ? $class : "") . "' style='width:$sizePx; height:$sizePx;'>$image</div>";
         } else {
-            return "(icon)";
+            $item = "<div class='ionicono " . ($class != null ? $class : "") . "'>$image</div>";
+        }
+        return $item;
+    } else {
+        throw new Exception("No se recibió un nombre de ionicon");
+    }
+}
+
+
+/**
+ * Devuelve un SVG en formato HTML
+ */
+function getSVG(string $url)
+{
+    if (mb_strlen($url) > 0) {
+        if (file_exists($url)) {
+            $image = SVG::fromFile($url);
+            return $image;
+        } else {
+            throw new Exception("No se encontró el svg en la ruta $url");
         }
     } else {
-        return "(icon)";
+        throw new Exception("No se recibió ninguna ruta");
     }
 }

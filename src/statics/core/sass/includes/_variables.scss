@@ -3,22 +3,11 @@
 
 $fontFamilyFirst: 'Montserrat';
 $fontFamilySecond: 'Montserrat';
+
 //Paragraph
 $pFontFamily: $fontFamilySecond;
 $listFontFamily: $fontFamilySecond;
-//========COLORS
-//Generales
-// $colorFirst: rgb(240, 240, 240);
-// $colorSecond: rgb(40, 100, 133);
-// $colorThird: rgb(150, 150, 150);
-// $colorFourth: rgb(70, 70, 70);
-// $colorFirstOver: white;
-//Sidebar
-$sidebarColor: rgb(220, 220, 220);
-$sidebarColorLogoDeveloped: rgb(200, 200, 200);
-$toggleMenuColor: rgb(146, 146, 146);
-$toggleMenuColorActive: white;
-//========SIZES
+
 //General
 $htmlFontSize: 14px;
 
@@ -35,6 +24,7 @@ $rounded-sm:10px;
 $rounded:5px;
 $border:1px solid $border-color;
 
+$statics-url:quote(var(--statics-url));
 
 //effects
 $shadow-xs:1px 1px 2px 0px $shadow-color;
@@ -44,22 +34,47 @@ $shadow:0px 10px 20px $shadow-color;
 $shadow-fb:0 1px 2px rgba(0, 0, 0, 0.2);
 
 //Public colors
-$back-color:unquote(var(--back-color));
 $navbar-color:unquote(var(--navbar-color));
 $navbar-hover-color:unquote(var(--navbar-hover-color));
 $navbar-height:unquote(var(--navbar-height));
 $navbar-icon-size:unquote(var(--navbar-icon-size));
 
 $white-color:#ffffff;
+$back-color:unquote(var(--back-color));
+$back-color-hover:unquote(var(--back-colo-hover));
+$back-color-opacity:unquote(var(--back-colo-opacity));
+
 $primary-color:unquote(var(--primary-color));
+$primary-color-hover:unquote(var(--primary-color-hover));
+$primary-color-opacity:unquote(var(--primary-color-opacity));
+
 $gray-color:unquote(var(--gray-color));
+$gray-color-hover:unquote(var(--gray-color-hover));
+$gray-color-opacity:unquote(var(--gray-color-opacity));
+
 $dark-color:unquote(var(--dark-color));
+$dark-color-hover:unquote(var(--dark-color-hover));
+$dark-color-opacity:unquote(var(--dark-color-opacity));
+
 $secondary-color:unquote(var(--secondary-color));
+$secondary-color-hover:unquote(var(--secondary-color-hover));
+$secondary-color-opacity:unquote(var(--secondary-color-opacity));
 
 $danger-color:unquote(var(--danger-color));
+$danger-color-hover:unquote(var(--danger-color-hover));
+$danger-color-opacity:unquote(var(--danger-color-opacity));
+
 $alert-color:unquote(var(--alert-color));
+$alert-color-hover:unquote(var(--alert-color-hover));
+$alert-color-opacity:unquote(var(--alert-color-opacity));
+
 $success-color:unquote(var(--success-color));
+$success-color-hover:unquote(var(--success-color-hover));
+$success-color-opacity:unquote(var(--success-color-opacity));
+
 $info-color:unquote(var(--info-color));
+$info-color-hover:unquote(var(--info-color-hover));
+$info-color-opacity:unquote(var(--info-color-opacity));
 
 $sidebar-color:unquote(var(--sidebar-color));
 $sidebar-icon-size:unquote(var(--sidebar-icon-size));
@@ -74,3 +89,4 @@ $default-radius:unquote(var(--default-radius));
 $dropdown-radius:unquote(var(--dropdown-radius));
 $card-radius:unquote(var(--card-radius));
 $field-radius:unquote(var(--field-radius));
+$button-radius:unquote(var(--button-radius));

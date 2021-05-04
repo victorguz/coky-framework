@@ -252,12 +252,13 @@ class UsersController extends AdminPanelController
 
         set_custom_assets([
             // baseurl('statics/core/css/modules/login-and-recovery/public.css'),
-            baseurl('statics/core/css/modules/login-and-recovery/css/login.css'),
+            baseurl(ADMIN_MODULES_CSS . '/login-and-recovery/login.css'),
             // baseurl('statics/css/modules/login.css'),
         ], 'css');
 
         set_custom_assets([
-            baseurl('statics/login-and-recovery/js/login.js'),
+            baseurl('statics/plugins/animations/vanilla-tilt/vanilla-tilt.js'),
+            baseurl(ADMIN_MODULES_JS . '/login-and-recovery/login.js'),
         ], 'js');
 
         // $this->render('panel/layout/header');
